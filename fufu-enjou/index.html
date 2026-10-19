@@ -1,0 +1,1184 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>夫婦喧嘩炎上シミュレーター｜フカシGames</title>
+<meta name="description" content="夫婦の愚痴を投稿すると、全国の夫と妻がリプ欄で戦争を始めるネタゲーム。無料・登録なし。書いた愚痴は、自分で「ネタ帳に送る」を押さない限りどこにも送られません。">
+<meta property="og:type" content="website"><meta property="og:url" content="https://futurex-jp.github.io/fufu-enjou/">
+<meta property="og:title" content="夫婦喧嘩炎上シミュレーター">
+<meta property="og:description" content="夫婦の愚痴を投稿すると、全国の夫と妻がリプ欄で戦争を始める。無料・登録なし">
+<meta property="og:image" content="https://futurex-jp.github.io/fufu-enjou/og.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://futurex-jp.github.io/fufu-enjou/og.png">
+<script data-goatcounter="https://fukashi-pk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>document.addEventListener('click',function(e){try{var a=e.target.closest('a[rel~="sponsored"]');var gc=window.goatcounter;if(!gc||!gc.count)return;if(a)gc.count({path:'fufu-ad-click',title:'広告クリック',event:true});if(e.target.closest('#c-send'))gc.count({path:'fufu-post',title:'投稿',event:true});if(e.target.closest('.share-btn'))gc.count({path:'fufu-share-open',title:'シェア画面',event:true});}catch(_){}},true);</script>
+</head><body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* ニセSNS（黒地）。夫婦の愚痴を投稿すると、リプ欄で全国の夫と妻が全面戦争になる */
+:root{
+  --bg:#000; --bg-2:#16181C; --line:#2F3336; --text:#E7E9EA; --sub:#71767B;
+  --blue:#1D9BF0; --pink:#F91880; --green:#00BA7C; --fire:#FF7A00; --fire-2:#FFB000;
+  --sheet:#FFFFFF; --sheet-text:#0F1419; --sheet-sub:#536471; --sheet-line:#EFF3F4;
+  --f:"Hiragino Sans","Yu Gothic UI","Noto Sans JP",system-ui,-apple-system,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%;background:var(--bg);color:var(--text)}
+body{font-family:var(--f);font-size:13.5px;line-height:1.45;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent;overscroll-behavior:none}
+button,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.app{max-width:600px;margin:0 auto;min-height:100%;border-inline:1px solid var(--line);position:relative;padding-bottom:calc(56px + env(safe-area-inset-bottom,0px))}
+.pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ヘッダー */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:14px;height:52px}
+.top-row h1{font-size:17px;font-weight:800;margin:0;flex:1}
+.top-row .flame{width:22px;height:22px}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:50%}
+.icon-btn:hover{background:var(--bg-2)}
+.tabs{display:grid;grid-template-columns:1fr 1fr}
+.tabs button{height:48px;color:var(--sub);font-weight:700;position:relative}
+.tabs button[aria-selected="true"]{color:var(--text)}
+.tabs button[aria-selected="true"]::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:56px;height:4px;border-radius:2px;background:var(--blue)}
+.reply{cursor:pointer}
+.reply .hint-tap{display:none}
+.mine-rp{background:#0b1a24}
+.battle-tag{font-size:11px;color:var(--fire);margin-left:4px;white-space:nowrap;flex:none}
+.dm-head{display:flex;align-items:center;gap:8px;padding-block:8px;border-bottom:1px solid var(--line);font-size:16px}
+.thread{display:grid;gap:10px;padding-block:14px}
+.bubble{justify-self:start;max-width:80%;background:var(--bg-2);border-radius:18px 18px 18px 4px;padding:9px 14px}
+.bubble p{margin:0;overflow-wrap:anywhere}.bubble small{color:var(--sub);font-size:11px}
+#b-txt{width:100%;border:0;outline:0;resize:none;background:transparent;color:var(--sheet-text);font-size:20px;line-height:1.4;min-height:24vh}
+.battle{margin:6px 0;border-block:2px solid var(--fire);background:linear-gradient(180deg,rgba(255,122,0,.07),transparent 60%)}
+.battle-head{display:flex;align-items:center;gap:6px;padding-block:8px;font-weight:800;color:var(--fire);font-size:14px}
+.battle-head small{color:var(--sub);font-weight:400;margin-left:auto}
+.battle .post{position:relative;border-bottom:0}
+.battle .post:not(:last-of-type)::before{content:"";position:absolute;left:calc(max(16px,env(safe-area-inset-left,0px)) + 15px);top:42px;bottom:-4px;width:2px;background:#3a3f44}
+.battle-head{cursor:pointer;user-select:none}
+.battle-head .fold-ic{color:var(--sub);font-weight:400;font-size:12px;margin-left:6px}
+.battle-more{display:block;width:100%;background:none;border:0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);color:var(--blue,#1D9BF0);font-size:13px;padding:8px 0;cursor:pointer}
+.battle-more[hidden]{display:none}
+.battle.fold .post.old{display:none}
+.battle .post{grid-template-columns:32px 1fr;gap:10px;padding-block:7px}
+.battle .av{width:32px;height:32px;font-size:13px}
+.battle .acts,.battle .to{display:none}
+.battle .post .text,.battle .post p{margin:2px 0 0}
+.battle-result{padding-block:10px;font-weight:800;text-align:center;border-top:1px dashed var(--line)}
+.battle-result.win{color:var(--green)}.battle-result.lose{color:var(--pink)}
+.newpill{position:fixed;z-index:12;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 62px);background:var(--blue);color:#fff;font-weight:800;font-size:14px;border-radius:999px;padding:8px 16px;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.hint{font-size:13px;color:var(--sub);padding-block:12px;border-bottom:1px solid var(--line)}
+.hint b{color:var(--text)}
+
+/* 投稿 */
+.post{display:grid;grid-template-columns:36px 1fr;gap:10px;padding-block:10px;border-bottom:1px solid var(--line);cursor:pointer}
+.post:hover{background:#080808}
+.av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;font-size:14px}
+.post .body{min-width:0}
+.meta{display:flex;gap:4px;align-items:baseline;font-size:13px;min-width:0}
+.meta b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:48%}
+.meta span{color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.txt{margin:2px 0 8px;white-space:pre-wrap;overflow-wrap:anywhere}
+.big .txt{font-size:18px;line-height:1.35;margin:8px 0 10px}
+.acts{display:flex;justify-content:space-between;max-width:430px;color:var(--sub);font-size:12px;font-variant-numeric:tabular-nums}
+.acts span{display:inline-flex;align-items:center;gap:5px}
+.acts svg{width:16px;height:16px;flex:none}
+.acts .rt.on{color:var(--green)} .acts .lk.on{color:var(--pink)} .acts .lk.on svg{fill:currentColor}
+.acts .rt,.acts .lk{cursor:pointer;border-radius:999px;padding:2px 4px;margin:-2px -4px}
+.acts .hot{animation:bump .25s ease-out}
+@keyframes bump{50%{transform:scale(1.18)}}
+.meta .camp{flex:none;font-size:10px;font-weight:800;border-radius:4px;padding:0 5px;color:#fff;white-space:nowrap;align-self:center;overflow:visible}
+.meta .camp.w{background:#F91880}.meta .camp.h{background:#1D9BF0}.meta .camp.n{background:#536471}
+.to{font-size:12px;color:var(--sub);margin-top:1px}.to b{color:var(--blue);font-weight:400}
+.me-pick{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--sheet-sub);margin:0 0 8px}
+.me-pick button{border:1px solid #CFD9DE;border-radius:999px;padding:3px 12px;font-weight:700;color:var(--sheet-text)}
+.me-pick button[aria-pressed="true"].w{background:#F91880;border-color:#F91880;color:#fff}
+.me-pick button[aria-pressed="true"].h{background:#1D9BF0;border-color:#1D9BF0;color:#fff}
+.mine-tag{font-size:11px;color:var(--fire);border:1px solid var(--fire);border-radius:999px;padding:0 6px;margin-left:4px}
+
+/* 詳細 */
+.detail .post{cursor:default;grid-template-columns:40px 1fr}
+.burn{display:flex;align-items:center;gap:8px;padding-block:10px;border-bottom:1px solid var(--line);font-weight:800}
+.burn small{color:var(--sub);font-weight:400}
+.burn .flame{width:18px;height:18px;animation:flick .5s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scale(1) rotate(-4deg)}to{transform:scale(1.15) rotate(4deg)}}
+.heat{height:4px;background:var(--bg-2)}
+.neta{margin:6px 12px 10px;padding:12px 14px;border:1px solid #3a3f47;border-radius:14px;background:#15181c;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.5;color:#c9ced6}.neta b{color:#fff;font-size:14px}.neta-q{background:#0d0f12;border-radius:10px;padding:8px 10px}.neta-q small{color:#8b929c;font-size:11.5px}.neta-q p{margin:2px 0 0;color:#e7e9ea;word-break:break-all}.neta-b{display:flex;gap:8px}.neta-b button{flex:1;border-radius:999px;padding:9px 10px;font-weight:800;font-size:13px;border:1px solid #3a3f47;background:transparent;color:#c9ced6}.neta-b .neta-yes{flex:1.6;border:0;background:linear-gradient(135deg,#FF394B,#FF7A00);color:#fff}.neta-b button:disabled{opacity:.6}
+.heat i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--fire-2),var(--fire),var(--pink));transition:width .4s}
+.reply{animation:drop .3s ease-out both}
+@keyframes drop{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.reply .acts{max-width:300px}
+.ad{grid-template-columns:36px 1fr;cursor:default}
+.ad .av{font-size:11px;letter-spacing:-.5px}
+.ad .pr{flex:none;font-size:10px;font-weight:800;border:1px solid var(--sub);color:var(--sub);border-radius:4px;padding:0 4px;align-self:center}
+.ad-card{display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:6px 0 4px;color:inherit;text-decoration:none}
+.ad-card .ad-img{height:96px;display:flex;align-items:center;justify-content:center;font-size:44px;background:linear-gradient(135deg,#1b2a3a,#2a1b2e)}
+.ad-card .ad-t{padding:7px 10px 2px;font-size:13px;font-weight:700}
+.ad-card .ad-d{padding:0 10px 8px;font-size:11.5px;color:var(--sub)}
+.ad-btns{display:flex;gap:6px;margin:6px 0 2px}
+.ad-btns a{flex:1;text-align:center;font-size:12.5px;font-weight:800;border-radius:999px;padding:7px 0;text-decoration:none;color:#000;background:#E7E9EA}
+.ad-btns a.rk{background:#BF0000;color:#fff}
+.ad-foot{font-size:11px;color:var(--sub);margin-top:4px;display:flex;gap:8px;align-items:center}.ad-foot span{white-space:nowrap;flex:none}
+.ad-foot small{font-size:9.5px;opacity:.8}
+.qt{border:1px solid var(--line);border-radius:12px;padding:7px 10px;margin:5px 0 7px;font-size:12.5px;color:var(--sub);overflow-wrap:anywhere}
+.qt b{color:var(--text)}
+
+/* 炎上の演出 */
+.glow{position:fixed;inset:auto 0 0 0;height:38vh;pointer-events:none;z-index:1;background:radial-gradient(120% 90% at 50% 120%,rgba(255,122,0,.42),rgba(249,24,128,.12) 45%,transparent 70%);opacity:0;transition:opacity 1.2s}
+.glow.on{opacity:1;animation:breathe 1.6s ease-in-out infinite alternate}
+@keyframes breathe{from{filter:brightness(.85)}to{filter:brightness(1.25)}}
+.toasts{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:30;display:grid;gap:6px;justify-items:center;pointer-events:none;padding-inline:16px}
+.toast{background:var(--blue);color:#fff;font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.5);animation:tin .3s ease-out both,tout .4s ease-in 2.6s forwards;max-width:100%;text-align:center}
+.toast.f{background:linear-gradient(90deg,var(--fire),var(--pink))}
+@keyframes tin{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+@keyframes tout{to{opacity:0;transform:translateY(-10px)}}
+
+/* 下のメニュー */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:10;background:#000;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav-in{max-width:600px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);height:54px;padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+.nav button{display:grid;place-items:center;position:relative;color:var(--text)}
+.nav svg{width:24px;height:24px}
+.nav button[aria-current="page"]{color:var(--blue)}
+.nav button[aria-current="page"] svg{stroke-width:2.6;fill:rgba(29,155,240,.18)}
+.nav button[aria-current="page"]::after{content:"";position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.nav button:focus{outline:none}.nav button:focus-visible{outline:2px solid var(--blue);outline-offset:-4px}
+.dm-sum{color:var(--sub);font-size:13px;padding-block:10px;border-bottom:1px solid var(--line)}
+.dm-sum b{color:var(--text)}
+.dm-n{margin-left:auto;background:var(--blue);color:#fff;font-size:12px;font-weight:800;min-width:20px;height:20px;border-radius:10px;display:grid;place-items:center;padding:0 6px;flex:none;align-self:center}
+.badge{position:absolute;top:6px;left:calc(50% + 4px);background:var(--blue);color:#fff;font-size:11px;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;padding:0 5px;border:2px solid #000;font-variant-numeric:tabular-nums}
+.badge.pinkb{background:var(--pink)}
+.fab{position:fixed;z-index:11;right:max(16px,calc(50% - 300px + 16px),env(safe-area-inset-right,0px));bottom:calc(70px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;box-shadow:0 4px 14px rgba(29,155,240,.45)}
+.fab svg{width:26px;height:26px}
+
+/* 通知・DM・トレンド */
+.row-item{display:grid;grid-template-columns:32px 1fr;gap:12px;padding-block:12px;border-bottom:1px solid var(--line);animation:drop .3s ease-out both}
+.row-item .ic{width:32px;height:32px;display:grid;place-items:center}
+.row-item p{margin:0;overflow-wrap:anywhere}
+.row-item small{color:var(--sub)}
+.dm{display:grid;grid-template-columns:44px 1fr auto;gap:12px;padding-block:12px;border-bottom:1px solid var(--line)}
+.dm.fresh{animation:drop .3s ease-out both}
+.dm .av{width:44px;height:44px}
+.dm p{margin:2px 0 0;color:var(--sub);overflow-wrap:anywhere}
+.dm b{color:var(--text)}
+.dm .unread{color:var(--text);font-weight:700}
+.trend{padding-block:10px;border-bottom:1px solid var(--line)}
+.trend small{color:var(--sub);display:block;font-size:12px}
+.trend b{display:block;font-size:15px;overflow-wrap:anywhere}
+.trend.mine b{color:var(--fire)}
+.empty{color:var(--sub);text-align:center;padding:40px 16px;font-size:14px}
+.rank-n{font-size:22px;font-weight:900;color:var(--sub);width:40px;text-align:center;align-self:center;font-variant-numeric:tabular-nums}
+.rank-n.top{color:var(--fire)}
+
+/* 投稿画面（白いシート） */
+/* ===== バトル演出（画面いっぱい） ===== */
+.fx{position:fixed;inset:0;z-index:80;overflow:hidden;display:grid;place-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fx .bg{position:absolute;inset:-80%;animation:fxbg .5s ease-out both}
+.fx.start .bg{background:repeating-conic-gradient(from 0deg,#ff2d55 0 8deg,#ff7a00 8deg 16deg);animation:fxspin 6s linear infinite,fxbg .35s ease-out both}
+.fx.start .dim{position:absolute;inset:0;background:radial-gradient(circle,rgba(0,0,0,0) 20%,rgba(0,0,0,.75) 75%)}
+.fx .vs{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;width:min(92vw,520px)}
+.fx .side{display:grid;justify-items:center;gap:8px;color:#fff;font-weight:900;text-shadow:0 2px 0 #000,0 0 12px rgba(0,0,0,.6);font-size:15px;text-align:center}
+.fx .side .av{width:84px;height:84px;font-size:34px;border:4px solid #fff;box-shadow:0 0 0 4px #000,0 0 30px rgba(255,255,255,.6)}
+.fx .side.l{animation:fxinL .45s cubic-bezier(.2,1.6,.4,1) both}.fx .side.r{animation:fxinR .45s cubic-bezier(.2,1.6,.4,1) both}
+.fx .vsT{font:900 64px/1 Impact,"Arial Black",sans-serif;color:#ffe600;-webkit-text-stroke:3px #000;text-shadow:0 0 24px #ff0,6px 6px 0 #000;animation:fxpop .5s .3s cubic-bezier(.2,1.8,.4,1) both;font-style:italic}
+.fx .big{position:absolute;left:0;right:0;bottom:16%;text-align:center;font-weight:900;font-size:clamp(38px,11vw,68px);color:#ffe600;-webkit-text-stroke:2px #000;text-shadow:0 0 18px rgba(255,230,0,.8),5px 5px 0 #000;background:linear-gradient(90deg,transparent,rgba(0,0,0,.7) 15%,rgba(0,0,0,.7) 85%,transparent);padding:10px 0;letter-spacing:.04em;animation:fxslam .5s .55s cubic-bezier(.2,1.6,.4,1) both;transform-origin:center}
+.fx .sub{position:absolute;left:16px;right:16px;bottom:9%;text-align:center;color:#fff;font-weight:800;font-size:15px;text-shadow:0 2px 0 #000;animation:fxbg .3s .8s both}
+.fx .flash{position:absolute;inset:0;background:#fff;animation:fxflash .45s ease-out both;pointer-events:none}
+.fx .slash{position:absolute;left:-10%;right:-10%;top:50%;height:10px;background:#fff;box-shadow:0 0 30px #fff,0 0 60px #ff0;transform:rotate(-14deg) scaleX(0);animation:fxslash .35s .2s ease-out both}
+.fx.round .bg{background:linear-gradient(135deg,#1d0b2e,#ff2d55 60%,#ff7a00)}
+.fx.round .big{bottom:auto;top:40%;font-size:clamp(44px,14vw,88px);font-family:Impact,"Arial Black",sans-serif;font-style:italic;color:#ffe600;animation:fxslam .4s cubic-bezier(.2,1.6,.4,1) both}
+.fx.round .sub{bottom:auto;top:calc(40% + clamp(54px,16vw,100px))}
+.fx.win .bg{background:repeating-conic-gradient(from 0deg,#ffd400 0 10deg,#ff9500 10deg 20deg);animation:fxspin 8s linear infinite,fxbg .3s both}
+.fx.peace .bg{background:repeating-conic-gradient(from 0deg,#ff8fb1 0 10deg,#7ee0b5 10deg 20deg);animation:fxspin 10s linear infinite,fxbg .3s both}
+.fx.lose .bg{background:radial-gradient(circle at 50% 45%,#5a0010,#0a0003 70%);animation:fxbg .3s both}
+.fx .res{position:relative;text-align:center;font-weight:900;line-height:1;color:#fff;-webkit-text-stroke:3px #000;font-size:clamp(56px,17vw,130px);white-space:nowrap;animation:fxpop .55s cubic-bezier(.2,1.9,.4,1) both}
+.fx.win .res{color:#fff7b0;text-shadow:0 0 30px #fff,0 0 60px #ffd400,8px 8px 0 #000}
+.fx.peace .res{color:#fff;text-shadow:0 0 30px #fff,8px 8px 0 #000}
+.fx.lose .res{color:#ff2d55;text-shadow:6px 0 #00e5ff,-6px 0 #ff00aa,8px 8px 0 #000;animation:fxpop .5s cubic-bezier(.2,1.9,.4,1) both,fxglitch .25s .6s steps(2) 4}
+.fx .res small{display:block;font-size:.22em;-webkit-text-stroke:0;color:#fff;text-shadow:0 2px 0 #000;margin-top:14px;letter-spacing:.1em}
+.fx .crack{position:absolute;inset:0;pointer-events:none;opacity:.85;animation:fxbg .1s .15s both}
+.fx .conf{position:absolute;top:-20px;width:10px;height:16px;border-radius:2px;animation:fxfall linear forwards}
+.fx .tap{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);left:0;right:0;text-align:center;color:rgba(255,255,255,.8);font-size:12px;font-weight:700;animation:fxblink 1s 1s infinite both}
+.shake{animation:fxshake .4s linear}
+@keyframes fxbg{from{opacity:0}to{opacity:1}}
+@keyframes fxspin{to{transform:rotate(360deg)}}
+@keyframes fxinL{from{transform:translateX(-120vw) rotate(-20deg)}to{transform:none}}
+@keyframes fxinR{from{transform:translateX(120vw) rotate(20deg)}to{transform:none}}
+@keyframes fxpop{0%{transform:scale(4);opacity:0}60%{transform:scale(.9);opacity:1}100%{transform:scale(1)}}
+@keyframes fxslam{0%{transform:scale(3) rotate(-8deg);opacity:0}70%{transform:scale(.95) rotate(-3deg);opacity:1}100%{transform:scale(1) rotate(-3deg)}}
+@keyframes fxflash{from{opacity:.95}to{opacity:0}}
+@keyframes fxslash{to{transform:rotate(-14deg) scaleX(1)}}
+@keyframes fxfall{to{transform:translate(var(--dx),110vh) rotate(var(--rot))}}
+@keyframes fxblink{50%{opacity:.3}}
+@keyframes fxglitch{0%{transform:translate(4px,-3px) skewX(8deg)}100%{transform:translate(-4px,3px) skewX(-8deg)}}
+@keyframes fxshake{0%,100%{transform:none}20%{transform:translate(-8px,4px)}40%{transform:translate(8px,-4px)}60%{transform:translate(-6px,-2px)}80%{transform:translate(6px,2px)}}
+@media (prefers-reduced-motion:reduce){.fx *{animation-duration:.01s!important;animation-iteration-count:1!important}}
+.fx3{position:fixed;inset:0;z-index:80;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fx3 canvas{position:absolute;inset:0;width:100%;height:100%}
+.fx3.start{background:repeating-conic-gradient(from 0deg at 50% 50%,#ff2d55 0 9deg,#ff7a00 9deg 18deg)}
+.fx3.round{background:radial-gradient(circle at 50% 50%,#ff4d6d,#2a0a3d 75%)}
+.fx3.win{background:repeating-conic-gradient(from 0deg at 50% 40%,#ffd400 0 10deg,#ff9500 10deg 20deg)}
+.fx3.lose{background:radial-gradient(circle at 50% 40%,#7a0012,#0a0003 70%);animation:fx3alarm .5s steps(2) 5}
+.fx3.peace{background:repeating-conic-gradient(from 0deg at 50% 45%,#ff9ec0 0 10deg,#9ff0cf 10deg 20deg)}
+.fx3 .t3{position:absolute;inset:0;pointer-events:none;perspective:700px}
+.fx3 .w3{position:absolute;left:0;right:0;text-align:center;font-weight:900;white-space:nowrap}
+.fx3 .w3.big{top:62%;font-size:clamp(46px,14vw,96px);color:#ffe600;transform:rotateX(18deg) rotate(-4deg);text-shadow:0 1px 0 #c79a00,0 2px 0 #b38a00,0 3px 0 #a07a00,0 4px 0 #8c6a00,0 5px 0 #775a00,0 6px 0 #604800,0 8px 0 #000,0 0 30px rgba(255,230,0,.7);-webkit-text-stroke:2px #000;animation:fx3slam .45s cubic-bezier(.2,1.7,.4,1) both}
+.fx3 .w3.big.low{top:74%}
+.fx3 .w3.big.round{top:40%;font-family:Impact,"Arial Black",sans-serif;font-style:italic;font-size:clamp(56px,17vw,110px)}
+.fx3 .w3.big.gold{top:12%;color:#fff3a0}
+.fx3 .w3.big.lose{top:14%;color:#ff2d55;text-shadow:5px 0 #00e5ff,-5px 0 #ff00aa,0 8px 0 #000;animation:fx3slam .4s cubic-bezier(.2,1.7,.4,1) both,fxglitch .2s .5s steps(2) 6}
+.fx3 .w3.big.peace{top:12%;color:#fff;text-shadow:0 2px 0 #ff5c8a,0 4px 0 #e0457a,0 6px 0 #c03068,0 9px 0 #000,0 0 26px #fff}
+.fx3 .w3.sub{bottom:calc(env(safe-area-inset-bottom,0px) + 54px);left:16px;right:16px;white-space:normal;font-size:15px;color:#fff;text-shadow:0 2px 0 #000,0 0 10px rgba(0,0,0,.7);animation:fxbg .3s both}
+.fx3 .w3.stamp{top:70%;left:50%;right:auto;transform:translateX(-50%) rotate(-12deg);font-size:clamp(28px,8.5vw,50px);color:#e60023;background:rgba(255,255,255,.9);border:6px solid #e60023;border-radius:12px;padding:4px 18px;animation:fx3stamp .35s cubic-bezier(.2,1.8,.4,1) both}
+.fx3 .w3.warn{top:30%;font-size:clamp(26px,8vw,44px);color:#fff;background:#e60023;padding:8px 0;animation:fx3slam .3s both,fxblink .4s .3s infinite}
+.fx3 .tap{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);left:0;right:0;text-align:center;color:rgba(255,255,255,.85);font-size:12px;font-weight:700;text-shadow:0 1px 0 #000}
+@keyframes fx3slam{0%{transform:rotateX(70deg) rotate(-4deg) scale(3);opacity:0}70%{opacity:1;transform:rotateX(10deg) rotate(-4deg) scale(.92)}100%{transform:rotateX(18deg) rotate(-4deg) scale(1)}}
+@keyframes fx3stamp{0%{transform:translateX(-50%) rotate(-12deg) scale(4);opacity:0}100%{transform:translateX(-50%) rotate(-12deg) scale(1);opacity:1}}
+@keyframes fx3alarm{50%{filter:brightness(1.6)}}
+.post.genius{background:linear-gradient(180deg,rgba(255,212,0,.09),rgba(255,122,0,.03));border-left:3px solid #ffb800}
+.post.genius .av{background:linear-gradient(135deg,#ffd400,#ff7a00)!important;color:#000}
+.gbadge{font-size:11px;font-weight:800;color:#000;background:#ffd400;border-radius:4px;padding:1px 5px;flex:none}
+.txt.thinking::after{content:"";display:inline-block;width:1.4em;text-align:left;animation:gdots 1.2s steps(4) infinite}
+@keyframes gdots{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+.share-btn{grid-column:1/-1;justify-self:stretch;margin-top:4px;justify-content:center;display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#FF394B,#FF7A00);color:#fff;font-weight:800;font-size:13.5px;border-radius:999px;padding:9px 12px;box-shadow:0 4px 14px rgba(255,57,75,.35)}
+.big{position:relative}
+.share{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.72);display:grid;place-items:end center;animation:fxbg .2s both}
+.share-in{width:100%;max-width:520px;max-height:92vh;overflow:auto;background:#16181c;border-radius:20px 20px 0 0;padding:14px 16px calc(env(safe-area-inset-bottom,0px) + 16px);animation:up .25s ease-out both}
+.share-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font-size:15px}
+.share-x{font-size:22px;color:var(--sub);width:36px;height:36px}
+.share-tabs{display:flex;gap:6px;justify-content:center;margin:0 0 10px}.share-tabs button{border:1px solid #3a3d44;border-radius:999px;padding:5px 14px;font-size:12.5px;font-weight:700;color:var(--sub)}.share-tabs button[aria-pressed=true]{background:#fff;color:#000;border-color:#fff}
+.share-img{display:block;width:min(100%,360px);margin:0 auto;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.6);-webkit-touch-callout:default}
+.share-hint{text-align:center;color:var(--sub);font-size:11.5px;margin:8px 0 12px}
+.share-btns{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.sb{display:grid;justify-items:center;gap:5px;font-size:11.5px;color:var(--text);text-decoration:none;background:none;border:0;padding:0}
+.sb span{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:18px;color:#fff;background:#2a2d33}
+.sb.x span{background:#000;border:1px solid #333;font-size:22px}.sb.line span{background:#06C755;font-size:12px}.sb.ig span{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);font-size:22px}
+.care{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.6);display:grid;place-items:center;padding:16px}
+.care-in{max-width:420px;width:100%;background:var(--sheet);color:var(--sheet-text);border-radius:16px;padding:20px 18px;line-height:1.6}
+.care-in h3{margin:0 0 8px;font-size:17px}.care-in p{margin:0 0 10px;font-size:14px}
+.care-in ul{margin:0 0 14px;padding-left:18px;font-size:14px}.care-in li{margin:4px 0}.care-in a{color:var(--blue);font-weight:700}
+.care-btns{display:flex;gap:10px;justify-content:flex-end}
+.compose{position:fixed;inset:0;z-index:40;background:var(--sheet);color:var(--sheet-text);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);animation:up .25s ease-out both}
+@keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.compose-bar{display:flex;align-items:center;justify-content:space-between;height:54px;max-width:600px;width:100%;margin:0 auto}
+.compose-bar .cancel{color:var(--sheet-text);font-size:16px}
+.send{background:var(--blue);color:#fff;font-weight:800;border-radius:999px;padding:8px 18px}
+.send[disabled]{opacity:.5;cursor:not-allowed}
+.compose-main{display:grid;grid-template-columns:40px 1fr;gap:12px;max-width:600px;width:100%;margin:0 auto;padding-top:8px;flex:1;min-height:0}
+.compose-main .av{background:var(--blue)}
+.scope{display:inline-block;color:var(--blue);border:1px solid #CFD9DE;border-radius:999px;font-size:13px;font-weight:700;padding:1px 10px;margin-bottom:6px}
+#cmp{width:100%;border:0;outline:0;resize:none;background:transparent;color:var(--sheet-text);font-size:20px;line-height:1.4;min-height:30vh}
+#cmp::placeholder{color:#8B98A5}
+.compose-foot{border-top:1px solid var(--sheet-line);max-width:600px;width:100%;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:48px;color:var(--sheet-sub);font-size:13px;padding-bottom:env(safe-area-inset-bottom,0px)}
+.ideas{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.ideas button{border:1px solid #CFD9DE;border-radius:999px;padding:4px 10px;font-size:13px;color:var(--sheet-text)}
+.note{font-size:12px;color:var(--sub);text-align:center;padding:18px 16px 30px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="app" id="app">
+  <header class="top">
+    <div class="top-row pad">
+      <button class="icon-btn" id="back" aria-label="戻る" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <svg class="flame" id="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF7A00" d="M12 2c1 3.5-1.6 5-1.6 7.6 0 1.4 1 2.4 2.2 2.4 1.6 0 2.4-1.4 2.2-3.4C17.6 10.6 19 13 19 15.6 19 19.4 15.9 22 12 22s-7-2.6-7-6.4C5 10.8 9.6 8.8 12 2z"/><path fill="#FFB000" d="M12 13c.6 1.8 2.6 2.4 2.6 4.4 0 1.6-1.2 2.6-2.6 2.6s-2.6-1-2.6-2.6c0-1.6 1.6-2.4 2.6-4.4z"/></svg>
+      <h1 id="title">ホーム</h1>
+    </div>
+    <div class="tabs" id="tabs" role="tablist">
+      <button role="tab" id="tab-feed" aria-selected="true">おすすめ</button>
+      <button role="tab" id="tab-rank" aria-selected="false">炎上ランキング</button>
+    </div>
+  </header>
+  <main id="view"></main>
+  <p class="note" id="note">※ニセSNSのネタゲームです。投稿はこの端末の中だけで燃えます。送られるのは、自分で「ネタ帳に送る」を押した投稿だけ（名前やURLは消して匿名で）。リプ・通知・DMはすべて架空です。本当のケンカはほどほどに</p>
+</div>
+<div class="glow" id="glow"></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<button class="fab" id="fab" aria-label="投稿する"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+<nav class="nav"><div class="nav-in">
+  <button id="nav-home" aria-label="ホーム" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg></button>
+  <button id="nav-search" aria-label="トレンド"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+  <button id="nav-rank" aria-label="炎上ランキング"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/></svg></button>
+  <button id="nav-bell" aria-label="通知"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></svg><span class="badge pinkb" id="bell-badge" hidden>0</span></button>
+  <button id="nav-mail" aria-label="メッセージ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span class="badge" id="mail-badge" hidden>0</span></button>
+</div></nav>
+
+<script id="engine">
+/* ===== 夫婦喧嘩炎上エンジン（AIなし・通信なし）。投稿者が妻なら「夫の陪審員」が投稿者を叩き、「妻の陪審員」が夫を叩く＝リプ欄で夫と妻の全面戦争 ===== */
+var ENJOU=(function(){
+  function hash(s){ var h=2166136261>>>0; for(var i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619)>>>0; } return h>>>0; }
+  function rng(seed){ var a=(seed>>>0)||1; return function(){ a^=a<<13; a>>>=0; a^=a>>>17; a^=a<<5; a>>>=0; return (a>>>0)/4294967296; }; }
+  function pick(r,a){ return a[Math.floor(r()*a.length)]; }
+  function short(t,n){ t=String(t).replace(/\s+/g,' ').trim(); return t.length>n? t.slice(0,n)+'…' : t; }
+  // me=投稿者（妻/夫）、pt=相手。atk=相手側の陪審員が投稿者を叩く、sup=投稿者側の陪審員が相手を叩く
+  // 辛辣で的確なやつ（2026-10-15 主「もっと辛辣な的確なコメントがほしい」）。atk=投稿者を刺す（相手側の陣営）、sup=相手を刺す（投稿者側の陣営）
+  var SHARP=[
+    {kw:['皿','洗い物','洗濯','掃除','料理','ゴミ','ごみ','片付け','靴下','脱ぎっぱなし','食器','家事','風呂','トイレ'],
+     atk:['自分の基準を押し付けて、相手のやる気を全部潰してない？','ネットで味方を集める時間で、皿は洗い終わる','やり方に口を出すから、誰もやらなくなる','「言わなくても気づいて」は相手を試してるだけ','「やってくれない」って言う前に、やり方を教えたことある？','完璧主義の人ほど、相手がやった家事を全部やり直す','家事の不満を1個ずつ言わずに溜めて爆発させるの、一番効率悪い','自分がやった家事は覚えてて、相手がやった家事は忘れてない？','その家事、本当に今日やらなきゃ死ぬやつ？','相手の「ありがとう」待ちしてるの、自分も言ってないのに','怒りながら家事するから、誰も近寄らなくなる','「私ばっかり」は、だいたい相手も同じこと思ってる','家事を減らす努力じゃなくて、相手を責める努力してない？','ルールを決めずに「察して」で回そうとした結果がこれ'],
+     sup:['「言ってくれればやる」は「言われるまでやらない」の言い換え','家事を「手伝う」って言える時点で、自分の家だと思ってない','やらないんじゃなくて、やらなくても困らない立場にいるだけ','気づかないんじゃない。気づかないフリが上手いだけ','褒めてもらえる家事しかやらないの、透けてる','家事を「見えないところ」でやってもらってる自覚がゼロ','洗い物を「つけ置き」と呼べば仕事した気になれる人','ゴミをまとめるのは誰で、出すだけで褒められるのは誰？','やらない人ほど「そんなに大変？」って言う','一回やっただけで「俺（私）もやってる」は通じない','自分が使ったものを片づけるのは家事じゃなくて最低限','トイレットペーパーの芯を置いていく人、家の中に妖精がいると思ってる','「やろうと思ってた」は、やらなかった人の決まり文句','頼まれた時だけ動く人は、頼む側の手間を一生知らない','家の中のことを全部「お願い」にさせる時点で、主役じゃない']},
+    {kw:['子ども','子供','赤ちゃん','寝かしつけ','夜泣き','保育園','育児','ワンオペ','オムツ','おむつ','ミルク'],
+     atk:['子どもの前で{pt}をこき下ろしてないか、そっちの方が心配','ワンオペを盾にすれば何を言ってもいいわけじゃない','「私しかできない」状態を作ったのは誰？','「私の方が子どもを分かってる」で相手を締め出してない？','やり方が違うだけで全部ダメ出ししたら、そりゃ手を出さなくなる','子どもを盾にして相手を責めるの、子どもが一番かわいそう','育児の大変さで競い始めたら、誰も幸せにならない','たまには丸一日任せて、口を出さずに見てみたら？'],
+     sup:['「何かあったら呼んで」は何もしない宣言','親になったのは同じ日なのに、片方だけレベルが上がってる','「見てた」は、スマホを見てたって意味だよね','子どもが泣いた瞬間に渡してくるの、育児じゃなくて返品','休日の「子守り」をしてる顔、ただの親なんだけどね','子どもが寝た後に帰ってくる人の「育児してる」は信用できない','オムツを替えた回数より、写真を撮った回数の方が多そう','泣いたら返す、懐いたら抱っこ。おいしいとこ取りすぎる','子どもの予防接種の予定、一個も言えなさそう','「パパ（ママ）がいい」って泣かれるのは、普段いないからだよ','「イクメン」って褒められたい人は、だいたい育児してない','保育園の持ち物、何が必要か一個でも言える？']},
+    {kw:['お金','給料','貯金','ローン','浪費','ポチ','買っ','小遣い','おこづかい','課金','ボーナス'],
+     atk:['稼ぎの話を持ち出したら、その時点で負け','財布を握ってる側の愚痴は、だいたい贅沢','自分の買い物はノーカウントなの、ずるい','家計の不満は、家計簿を見せてから言わないと説得力ゼロ','お金の話をネットでする前に、通帳を二人で見て','自分の美容代はノーカウントで、相手の趣味だけ浪費扱い'],
+     sup:['自分の趣味には一瞬でお金を出すのにね','「家族のため」って言う時ほど、だいたい自分のため','安いから買ったんじゃない。欲しかったから買っただけ','「付き合い」で消えるお金、家族との付き合いには使わない','ポイントがつくから買ったは、ただの言い訳','小遣いが足りないなら、まず自販機とコンビニをやめて','高い買い物ほど事後報告なの、確信犯','「元は取れる」って言ったもので、元を取ったものある？']},
+    {kw:['スマホ','携帯','ゲーム','YouTube','動画','SNS','既読','LINE'],
+     atk:['監視は愛じゃない。スマホくらい好きに見させてあげて','そう言うあなたも、今スマホで投稿してる','相手のスマホを気にしてる時間、自分もスマホ見てる','スマホを取り上げても、会話は増えない'],
+     sup:['画面の中の人には優しいのに、隣の家族には冷たい','ログインボーナスは毎日もらうのに、家族には何も返さない','既読をつける指はあるのに、返信する指はない','トイレが長いのは、腸じゃなくてスマホのせい','家族の話は既読スルー、ゲームの通知は秒で反応','ショート動画は3時間見られるのに、家族の話は3分聞けない','スマホを置いて話せる時間が1日10分もないの、かなり重症']},
+    {kw:['義母','義父','姑','義実家','実家','帰省','親戚'],
+     atk:['義実家の悪口をネットに書く方が、よっぽど問題になる','向こうからしたら、あなたも「よその家の人」','義実家の文句を{pt}に言っても、板挟みにしてるだけ','向こうの家のやり方を全部否定したら、そりゃ揉める'],
+     sup:['{pt}が自分の親に何も言えない時点で、答えは出てる','実家で子どもに戻る{pt}、家ではもう大人なんだよ','味方しない{pt}は、中立じゃなくて向こう側','実家に帰った途端、上げ膳据え膳を当然みたいに受けてる','「親も悪気はない」は、こっちが我慢する前提の言葉','自分の親を説得できないなら、せめてこっちの味方でいて','帰省の予定を親とだけ決めてくるの、家族会議のつもり？']},
+    {kw:['聞いてない','話聞','察して','気づいて','分かって','わかって','言わなくても','うん'],
+     atk:['察してほしいのに言葉にしないのは、相手に負けを用意してるだけ','話を聞いてほしいなら、まず結論から言って','「言ったよね」の証拠、出せる？','相手が話し終わる前に結論を言うの、聞いてない証拠','言葉より先にため息が出る人とは、誰も話したくない'],
+     sup:['話を聞かない人は、聞かなくても困らないと思ってる','「うん」しか言わない人の頭の中、たぶん今日の晩ご飯','話を聞いてるフリが上手い人ほど、内容を何も覚えてない','「で、結論は？」って言う人に、共感は一生わからない','聞いてほしいだけの話を、全部「解決」しようとする','大事な話をすると眠くなる体質、便利すぎる']},
+    {kw:['謝らない','謝って','ごめん','言い方','逆ギレ','キレ'],
+     atk:['「言い方」って言われるのは、言い方に問題があるから','謝ってほしいのか、勝ちたいのか、どっち？','相手が謝っても許さないなら、謝る意味がなくなる'],
+     sup:['謝れない大人が、子どもに「ごめんなさいは？」って言ってるの地獄','「言い方」の話にすり替えた時点で、内容では負けを認めてる','「ごめん」の後に「でも」が付く謝罪は、謝罪じゃない','謝る代わりに機嫌を取る人は、また同じことをする','「そんなつもりじゃなかった」は、相手が傷ついた事実を消さない','言い訳が先に出る人は、反省より自分を守ることで忙しい']},
+    {kw:['飲み会','飲み','終電','朝帰り','趣味','ゴルフ','釣り','推し','ライブ','サウナ','キャンプ'],
+     atk:['趣味の時間を全部奪ったら、そりゃ家に帰りたくなくなる', '自分の推し活はよくて、相手の趣味だけ文句言うのはずるい'],
+     sup:['「付き合いだから」の飲み会、家族との付き合いはいつするの', '帰りの連絡ができない人に、仕事の段取りの話はされたくない', '趣味の道具はすぐ増えるのに、家のことは何一つ増えない', '「たまには」が毎週ある不思議']},
+    {kw:['休日','休みの日','ゴロゴロ','寝てばかり','昼まで','ダラダラ','土日'],
+     atk:['休みの日まで予定を詰め込んだら、そりゃ寝たくもなる'],
+     sup:['休日の昼まで寝られるのは、誰かが子どもを見てるから', '「休みの日くらい休ませて」の「休み」、家族全員にあるんだよ', 'ソファと一体化してる人、家具扱いでいい']},
+    {kw:['風邪','熱','体調','寝込','インフル','具合','つわり'],
+     atk:['しんどいアピールで勝負するの、そろそろやめよう'],
+     sup:['自分の風邪は重病で、相手の風邪は気のせい', '具合が悪い相手に「ご飯は？」って聞くの、本気で言ってる？', '37度で寝込む人ほど、39度の人に「大丈夫？」しか言わない']},
+    {kw:['記念日','誕生日','プレゼント','サプライズ'],
+     atk:['覚えててほしいなら、カレンダーに入れてあげたら？', 'プレゼントの採点、相手にもされてると思った方がいい'],
+     sup:['記念日を忘れる人は、ゲームのイベント日は絶対に忘れない', '「何が欲しい？」は、考えるのをサボってるだけ', '当日のコンビニケーキ、気持ちより言い訳が先に見える']}
+  ];
+  var SHARP_ANY={
+    atk:['愚痴の8割は「自分は悪くない」でできてる','{pt}の言い分が一行も書いてない時点でフェアじゃない','その不満、本人に言ったことある？ないならただの陰口','いいねが付くほど、家での話し合いは遠のく','書けば書くほど、自分の首を絞めてる気がする','相手を変えたいなら、まず自分の言い方から変えた方が早い','投稿は消せるけど、スクショは一生残る','この投稿、{pt}が見たら同じくらい長い反論が書けそう','愚痴を言うのはいい。でも「全部相手が悪い」は無理がある','いいねの数は、家庭の問題を一個も解決しない','共感が欲しいのか、解決したいのか、どっち？','自分がされて嫌なことを、相手にしてないか一回見直して','そもそも、その人を選んだのは誰？','今ここで味方を集めても、家に帰ったら二人きり','書いてないけど、たぶん{me}側にも原因はある'],
+    sup:['{pt}は今日もこのポストに気づかない。それが答え','{pt}が直るのを待つより、{me}が諦める方が早いの悲しい','この{pt}、外面だけは良さそう','「悪気はない」って一番タチ悪いやつ','{pt}はたぶん「自分はいい方」だと思ってる','{pt}の「わかった」は、何も分かってないやつ','{pt}は自分が「当たり」の方だと信じてる','この{pt}、友達の前では家庭的なこと言ってそう','{pt}に悪気がないのが一番タチ悪い','{pt}の「次から気をつける」、その「次」は来ない','言われないと分からない人は、言われても分からない','{pt}は反省じゃなくて、怒られない方法を学習してるだけ','「疲れてる」で全部許されると思ってる大人','{pt}は家族を「帰ったら勝手に回ってる場所」だと思ってる','ここまで書かれて気づかないなら、もう才能']
+  };
+  function sharp(text){ var a=[], s=[]; SHARP.forEach(function(b){ if(b.kw.some(function(k){return text.indexOf(k)>=0;})){ a=a.concat(b.atk); s=s.concat(b.sup); } }); return {atk:a.concat(SHARP_ANY.atk), sup:s.concat(SHARP_ANY.sup)}; }
+  // リプの「型」いろいろ（箇条書き・専門家・誤読・要約・絵文字だけ・質問攻め・長文説教・宣伝）
+  var STYLE={
+    list:['{pt}がやるべきこと ①謝る ②黙ってやる ③二度と言い訳しない','今回の論点まとめ ①{pt}が悪い ②でも{me}の言い方も強い ③結局どっちも疲れてる','改善案 ①分担を紙に書く ②冷蔵庫に貼る ③守らなかったらアイス奢り'],
+    expert:['弁護士です。結論から言うと、これで離婚はできません。話し合ってください','FPです。家事を外注した時の値段で話し合うと、揉めにくいですよ','元保育士です。子どもは、こういう空気を一番敏感に感じ取ります','心理学かじった者ですが、これは典型的な「期待のすれ違い」です'],
+    misread:['最後まで読んだら、ただのノロケだった','え、これペットの話じゃないの？','タイトルだけ見て、飼い犬の愚痴だと思ってた'],
+    summary:['要するに「{p}」ってことね。はい{pt}が悪い','3行でまとめると、{pt}が悪い、{pt}が悪い、{pt}も悪い','つまり、二人とも余裕がないって話'],
+    emoji:['😇','🔥🔥🔥','🫠','🙄🙄','👏👏👏','🍿'],
+    ask:['ちなみに結婚何年目？','それ、今月何回目？','{pt}にこのポスト見せた？','子どもいる？いるなら話変わる','そもそも、なんでその人と結婚したの？'],
+    lecture:['いいですか。夫婦というのは、相手を変えるものではなく…（以下800字）','結婚とは我慢ではなく調整です。まず相手の一日を書き出して…（以下略）'],
+    spam:['夫婦円満の秘訣はプロフに書いてます','このポストで反応した人は伸びる','【無料】夫婦関係が3日で変わる方法はこちら👉']
+  };
+  var BOX=[
+    {kw:['皿','洗い物','洗濯','掃除','料理','ゴミ','ごみ','片付け','靴下','脱ぎっぱなし','食器','家事'],
+     atk:['自分でやれば一瞬で終わるのに投稿する時間はあるんだ','やってもらってる側が文句言うな','それ言ったらあなたも完璧じゃないでしょ','うちの{me}はもっとひどいから贅沢'],
+     sup:['靴下を洗濯カゴの横に置く{pt}、全国に何人いるの','「あとでやる」の「あと」は永遠に来ない','{pt}って家事を手伝うものだと思ってるよね','名もなき家事の存在を知らない{pt}、まだいたんだ']},
+    {kw:['子ども','子供','赤ちゃん','オムツ','おむつ','ミルク','寝かしつけ','夜泣き','保育園','抱っこ','育児','ワンオペ'],
+     atk:['{pt}だって仕事で疲れてるんだよ','完璧を求めすぎ。やり方が違うだけ','文句言うから{pt}が手を出さなくなるんだよ'],
+     sup:['寝かしつけの最後の5分を壊す{pt}は重罪','「見てるよ」はスマホを見てるだけ','夜泣きで起きない{pt}の耳、どうなってるの','育児は手伝いじゃない。当事者']},
+    {kw:['お金','課金','給料','貯金','ローン','浪費','ガチャ','円','買っ','小遣い','おこづかい'],
+     atk:['自分だって服買ってるでしょ','稼いでるのは誰？','おこづかい制の{pt}の気持ち考えたことある？'],
+     sup:['「安かったから」は買う理由じゃない','使ってない物が一番高い','家計簿見せたら黙ると思う','趣味にいくら使ってるか一回計算させよう']},
+    {kw:['スマホ','携帯','ゲーム','YouTube','動画','SNS','漫画','ネット','既読'],
+     atk:['あなたも今スマホで投稿してるよね','息抜きくらいさせてあげなよ','ゲームはセーブできない時があるの'],
+     sup:['その「うん」は何も聞いてないやつ','画面じゃなくて家族を見て','充電器ごと没収でいい','スマホに嫉妬していいレベル']},
+    {kw:['義母','義父','姑','舅','義実家','実家','お義母','帰省','親戚'],
+     atk:['義実家の悪口をネットに書くのはさすがに引く','向こうの親もあなたの親だよ','{pt}の親を悪く言うのは一線越えてる'],
+     sup:['自分の親の窓口は自分でやって','黙って座ってる{pt}が一番ずるい','味方してくれない{pt}が一番つらいやつ','帰省のたびに透明人間になる{pt}']},
+    {kw:['あと5分','遅刻','遅い','待た','支度','約束','連絡','帰り','残業','飲み会','飲み'],
+     atk:['連絡しなかったのは悪いけど、言い方ってあるよね','飲み会も仕事のうちなんだよ','細かすぎて息が詰まる'],
+     sup:['連絡一本で済む話','「あと5分」の5分は人類と単位が違う','終電で帰ってきて「付き合い」は通らない','待つ側の時間も同じ速さで流れてる']},
+    {kw:['いびき','寝相','寝る','寝て','起きない','二度寝','布団','目覚まし','アラーム'],
+     atk:['いびきは本人じゃどうにもならないよ','寝てる間のことまで責めるの？','耳栓買えば解決'],
+     sup:['スヌーズで起きるのは周りだけ','布団の8割を占領する{pt}','録音して聞かせたほうがいい']},
+    {kw:['トイレ','便座','トイレットペーパー','風呂','髪の毛','排水','洗面','タオル'],
+     atk:['トイレの話を全世界に発信するのやめて','気づいたほうがやればいいじゃん'],
+     sup:['トイレットペーパーを1cm残すのが一番ずるい','便座は次の人を想像して下ろして','排水口の髪の毛は妖精が片付けてると思ってる']},
+    {kw:['プリン','アイス','お菓子','ケーキ','冷蔵庫','最後の','残り','ご飯','夕飯','晩ご飯','弁当'],
+     atk:['名前書いてなかったなら仕方ない','食べ物くらいでそんなに怒る？','また買えばいいじゃん'],
+     sup:['食べ物の恨みは一生','せめて一口残すのが人の心','楽しみを奪うのは重罪']},
+    {kw:['聞いてない','話','返事','無視','覚えてない','なんでもいい','何でもいい','言った','察して','わかってない'],
+     atk:['言わなきゃわからないよ。察しては無理','あなたの話、長いんじゃない？','「なんでもいい」って言われたら困るのはこっち'],
+     sup:['「なんでもいい」で何でもよかった試しがない','聞いてるふりは一番バレる','返事が「うん」だけは会話じゃない']},
+    {kw:['記念日','誕生日','プレゼント','結婚記念','クリスマス','サプライズ'],
+     atk:['覚えてないくらいで責めすぎ','プレゼントの中身に文句言うのは失礼','欲しい物は先に言っておけばいい'],
+     sup:['記念日を忘れる{pt}、毎年同じこと言ってる','プレゼントがコンビニのは一生言われるやつ','カレンダーに入れるだけで済むのに']},
+    {kw:['休日','休み','ゴロゴロ','寝てばかり','出かけ','趣味','ゴルフ','釣り','推し'],
+     atk:['休みの日くらい休ませてあげなよ','あなたも推し活してるでしょ','一人の時間は必要'],
+     sup:['休日に一人だけ休んでる{pt}','趣味の日だけ早起きできるの不思議','家族の予定より趣味が先なの？']}
+  ];
+  var ATK=['どう考えても原因そっちで草','ちなみになんですけど、投稿者さんは家のこと何してるんですか？','{pt}の言い分を聞いたら全然違う話になりそう','{pt}さんかわいそう','片方の話だけじゃ判断できない','お互い様だと思う','それ全部{pt}のせいにしてない？','こういう投稿する{me}、家では何もしてなさそう','{pt}がかわいそうになってきた','{pt}の言い分も聞きたい','晒すのは違うでしょ','ネットに書く前に本人に言いなよ','これ{pt}が見たらどうするの','うちの{me}がこれ言ってきたら泣く','結婚って我慢だよ','愚痴を全世界に公開する{me}、強い'];
+  var SUP=['あなたの代わりに{pt}にキレたい','{pt}って自分はやってる側だと本気で思ってるんだよね','読んでて腹立ってきた。{me}さんは悪くない','{pt}ってなんでこうなの','うちの{pt}と完全に同じで笑えない','それは{pt}が悪い','{me}さん、よく今まで耐えた','言わないと一生気づかないやつ','全国の{pt}に読ませたい','{pt}あるあるすぎる','読んでるだけで疲れた','我慢しないで全部言っていい','その{pt}、見たことある気がする'];
+  var BETRAY=['{pt}だけど、これは{pt}が悪い。ごめん','同じ{pt}として恥ずかしい','{me}だけど、これは{pt}に同情する','{me}側だけど今回は{me}が言いすぎ'];
+  var GEN_ANY=[{"kw": ["家事", "皿", "掃除", "洗濯", "料理", "片付け", "ゴミ"], "g": [["pt", "「全然しない」は嘘。風呂掃除とか見えないとこやってるからな。それが見えてないだけ。見えるようにやれよ、と{me}が言ってないだけ。"], ["pt", "{me}が完璧主義だから、{pt}はまずみないとこから逃げてる。全部見返されるなら、最初から触りたくない。完璧を捨てろよ、{me}。"]]}, {"kw": ["子ども", "子供", "育児", "保育園", "赤ちゃん"], "g": [["me", "「全然しない」の正体は多分、あなたが指示待ちで放置してるから。{pt}は「やっても文句言われる」から最初から動かないんだ。まず口出しゼロで任せてみろ"], ["pt", "{pt}が動かないのは、{me}の「正解」が毎回違うからだ。毎回リセットされる恐怖で、脳が行動を拒否してる。あなたは完璧主義で、{pt}はただミスするのが怖いだけ"]]}, {"kw": ["お金", "給料", "小遣い", "貯金", "買"], "g": [["me", "金銭感覚が合わないって言いつつ、結局自分が買いたい物には文句言わんでしょ。自分の消費は「必要」、相手の消費は「無駄」という二重基準を、本人が自覚してるか確認した方がいい"]]}, {"kw": ["スマホ", "ゲーム", "携帯", "動画"], "g": [["me", "スマホは逃げ場。あなたが常に「見て」「聞いて」と来る距離感で、スマホが唯一の無音空間になってるんだよ。"], ["me", "愚痴ってるあなたが実はスマホ見てる時間の方が長いのでは？自己投影で{pt}を非難してるパターンは多いよ。"]]}, {"kw": ["義母", "義父", "義実家", "実家"], "g": [["me", "{pt}が黙ってるのは同意じゃなくて、責任逃れだ。{me}の苦悩を「まあ仕方ない」で済ませる男、その無関心こそが夫婦の信頼を壊している。"], ["pt", "「付き合いたくない」は逃げじゃなくて正当な権利。でも、それを{pt}に押し付けて“理解”を求める時点で、あなたの責任を丸投げしてるだけ。"]]}, {"kw": ["話", "会話", "察", "聞いて", "言わな"], "g": [["me", "噛み合わないと嘆く時、相手は「論理」で返してる。{me}は「感情」で聞いてる。要は翻訳装置が壊れてるだけ。{pt}に翻訳を頼むな、自分で翻訳しろ。"], ["pt", "{pt}の無愛想は拒絶じゃなくて、処理待ち。頭の中で答え組み立て中。そこを「何で答えないの」と焦らすから、相手は防御態勢に入る。黙って待つ勇気ある？"]]}, {"kw": ["言い方", "謝", "キレ", "怒"], "g": [["me", "きつい言い方って、実は自分が一番傷つきやすい言葉を選んでるだけなんじゃない？{pt}は無自覚に地雷踏んでるけど、{me}が「これだけ言われたら怒るよ」と教えないから、相手は永遠に学習しないまま同じミス繰り返すんだよ。"]]}, {"kw": [], "g": [["me", "{pt}の「あー、わかった」が裏返ってるのは、普段から細かい指示や確認疲れさせてるから。相手を頭脳疲労させてる自覚はないの？"], ["pt", "愚痴を撒き散らすことで、自分が被害者ポジションに逃げてるだけ。解決策を一緒に探さず感情だけ吐き出してるから、相手は疲弊して離れる方向に動く。"]]}]; // 駿AIの汎用在庫（話題に当たらない投稿用）：[{kw:[...], g:[[side,text],...]}]
+  var NOROKE=['うちの{pt}の愚痴言わせて。毎朝弁当のおかずが多すぎて太った','{pt}の愚痴です。「いってきます」がいまだにかわいくて困る','愚痴です。うちの{pt}、疲れてても笑顔で送り出してくる。こっちがクズに見える','聞いて。{pt}が今日も晩ご飯作って待ってた。ずるい','{pt}の愚痴。喧嘩しても次の日には好物が出てくる。勝てない'];
+  // 相手（夫・妻）が出てこない投稿用：自分のしんどさ系。「夫のせいにしてない？」みたいな的外れを出さない
+  var SELF_ATK=['みんな同じ状況でも頑張ってるけどね','言うだけ言ってスッキリした？','それ、{pt}に見せたらどんな顔するかな','弱音はいいけど、リプ欄に八つ当たりしないでね','ネットで聞くより{pt}に聞きなよ','そういう時期もある。でも投稿は消せないよ','それ、{pt}には言った？','SNSに書く元気があるならまだ大丈夫そう','みんなそれ乗り越えてるよ','{pt}に直接言いなよ','それくらいで弱音吐いてたら持たないよ','うちの{me}は文句言わずにやってたけどな'];
+  var SELF_SUP=['生きてるだけで満点','今日の晩ご飯は惣菜で優勝','{pt}に今すぐLINEして助けを呼んで','そのしんどさ、誰にも代われないのがつらいよね','休んでいい日。誰も怒らない','ちゃんと水分だけはとってね','無理しないで、今日は全部サボろう','{pt}は何してるの？ 家のこと全部任せな','読んでるだけでしんどい。おつかれ','{pt}、ちゃんと気づいてる？','今日はもう寝よう。洗い物は明日でいい','わかる。誰か代わってほしいよね'];
+var PILE_ME=['これ本気で言ってる？','この返信が全部を物語ってる','この人の家族が心配になる','自分が同じ目にあってから言って','スクショした。これは残しておく','この一言で何人の{me}が泣いてきたか','返信欄、この人への総ツッコミで埋まってて草'];
+  var PILE_DEF=['{pt}だけど、これはない。こういうのがいるから{pt}全体が叩かれる','同じ{pt}として恥ずかしい','{pt}代表として謝ります。この人は例外です','{pt}だけど、一回自分でやってみてから言って','{pt}だけど、これ言った過去の自分を殴りたい'];
+  var PILE_FUEL=['言い方はあれだけど、一理あると思う','みんな叩きすぎ。思っただけでしょ','正直、同じこと思ってる{pt}は多いよ'];
+  var PILE_SELF=['え、そんなに怒ること？','事実を言っただけなんだけど','なんでこんなに伸びてるの…','ちょっと言い方が悪かったかもしれない'];
+  var NEUTRAL=['そう思えてるうちはまだ幸せだと思う','ちなみに、二人とも何時に寝てる？','それ、寝不足が原因の喧嘩じゃない？','みんなの家はどうやって仲直りしてるの？','喧嘩したら何日くらい口きかない？','リプ欄で離婚を勧める人、だいたい独身','夫と妻で分断するのやめな','リプ欄が戦場で草も生えない','結局どっちも疲れてるだけ','とりあえず二人とも寝よう','ここの夫婦、明日には仲直りしてそう','こういうの見ると結婚が怖くなる','独身ですが見に来ました'];
+  var QT=['「{p}」←全国の夫婦が戦争始めてる','「{p}」で日本中の家庭がざわついてる','うちも「{p}」で昨日ケンカした','「{p}」（原文ママ）','「{p}」←これ{pt}に見せたら完全に詰む'];
+  var NAMES={'妻':['妻歴3年','妻歴8年','妻歴15年','新婚妻','共働き妻','ワンオペ妻','元妻','専業主婦歴5年','子育て中の妻','在宅勤務の妻'],'夫':['夫歴2年','夫歴10年','夫歴20年','新婚夫','共働き夫','単身赴任夫','元夫','週末パパ','子育て中の夫','在宅勤務の夫']};
+  var PREF=['北海道','青森','宮城','東京','神奈川','埼玉','千葉','静岡','愛知','大阪','京都','兵庫','広島','福岡','熊本','沖縄','新潟','長野'];
+  var COLORS={'妻':['#F91880','#D6336C','#E8590C','#C2255C'],'夫':['#1D9BF0','#1971C2','#0CA678','#5F3DC4'],'他':['#536471','#E0A400']};
+  var NOTIF=['あなたのポストがトレンド入りしました','リプ欄で夫と妻の論争が始まりました','引用リポストが急増しています','「#うちの{pt}」がトレンド入りしました','まとめサイトに「夫婦喧嘩まとめ」として掲載されました','夫婦カウンセラーのアカウントが引用しました','ワイドショーの夫婦特集で紹介されました','通知が999件を超えました','{pt}があなたのポストにいいねしました','{pt}があなたのポストを引用しました','{pt}がフォローを解除しました','{pt}から着信がありました'];
+  // DMの山札：[送り主, [流れ1, 流れ2, …]]。投稿ごとに流れを1本選んで、同じ人から時間差で続きが届く（{p}は投稿の文）
+  var DMP=[
+    ["{pt}",[["見た", "これ俺のこと？", "…ごめん", "ケーキ買って帰る"], ["ちょっと話ある", "ネットに書くのはなしでしょ", "帰ったら話そう"], ["いいねの数えぐくて草", "いや草じゃない", "今日は定時で帰ります"], ["会社の人に見られた", "部長に「大変だな」って肩叩かれた", "今日は皿洗い全部やる"], ["「{p}」って俺のこと？", "いや絶対俺のことだよね", "言ってくれればよかったのに", "…言われてたわ", "すみませんでした"], ["ねえ", "トレンド入ってるんだけど", "名前出てないよね？", "出てないならセーフ", "いやセーフじゃないか"], ["反論のポスト書いていい？", "やっぱやめとく", "勝てる気がしない"], ["晩ご飯なにがいい？", "（既読がつかない）", "ピザ頼んでおく", "あと洗い物は俺がやる"], ["今どこ？", "帰ってきてほしい", "靴下は全部カゴに入れた", "写真送る（洗濯カゴの写真）"], ["お母さんから電話きた", "「あんた何したの」って言われた", "俺が聞きたい"]]],
+    ["義母",[["見ましたよ", "うちの子はそんな子じゃありません", "…でも、少しはあるかもね", "今度おかず持っていくわね"], ["あら、有名人ね", "次はうちの悪口は書かないでね"], ["お父さんが「うちも昔こうだった」って言ってるわ", "私は何も言ってないわよ", "言ってないからね"], ["あの子には私から言っておきます", "ちゃんと叱りましたよ", "「わかってる」しか言わないの。昔からよ"], ["ところで年末は帰ってくるのよね？", "（この話は終わってない）"]]],
+    ["義父",[["（「がんばれ」のスタンプ）", "母さんには内緒にしとく"], ["読んだ", "うちの息子（娘）が申し訳ない", "今度ご飯でも行こう。三人で"], ["父さんもな、若い頃はな", "いや、何でもない"]]],
+    ["自分の母",[["ご飯ちゃんと食べてる？二人で", "お父さんもそうだったわよ", "いつでも帰ってきなさい"], ["ニュースで見たってお隣さんが言ってた", "お母さん恥ずかしくて買い物行けない", "冗談よ"], ["あんたも言い方きついとこあるからね", "お母さんに似たのね", "ごめんね"]]],
+    ["自分の父",[["母さんから聞いた", "父さんは{pt}さんの味方…と言いたいところだが", "今回は無理だ"], ["（「了解」のスタンプだけ）"], ["父さんも昔、弁当を3日忘れたことがある", "母さんにまだ言われる", "30年言われる"]]],
+    ["姉",[["あんたの投稿、トレンド入ってるよ", "スクショ撮った", "親戚のグループLINEに貼っていい？"], ["わかる", "うちの旦那（嫁）も同じ", "今度うちで愚痴大会しよ", "お酒持ってきて"], ["リプ欄全部読んだ", "3時間溶けた", "あんたの勝ち"]]],
+    ["弟",[["有名人じゃん", "サインください（嘘）"], ["姉ちゃん（兄ちゃん）のとこ、見ててこわい", "結婚って何"], ["母さんが心配してたよ", "俺は心配してない", "いや少しはしてる"]]],
+    ["中学の同級生",[["お前のとこもかｗ", "うちも昨日同じことで喧嘩した", "今度飲みに行こう。愚痴大会"], ["久しぶり！タイムラインで流れてきた", "元気そうで何より（？）"], ["同窓会のグループで話題になってる", "担任の先生もいいねしてた"]]],
+    ["元恋人",[["久しぶり。投稿見た", "あの頃も同じこと言ってたね", "…いや、何でもない"], ["元気？", "幸せそうで良かった（皮肉じゃないよ）"], ["こっちも結婚して、同じこと言われてる", "因果応報ってあるんだね"]]],
+    ["上司",[["昼休みに読んだ", "明日の会議、この話でアイスブレイクしていい？"], ["早く帰っていいよ", "家庭の方が大事", "その代わり明日は頼む"], ["うちの妻にも見せた", "僕が怒られた", "なぜ"]]],
+    ["職場の後輩",[["先輩のところも大変なんですね…", "結婚するの、ちょっと考え直します"], ["リプ欄のレスバ、先輩ですよね？", "強すぎて笑いました", "ファンになりました"]]],
+    ["ママ友",[["ニュースで見たよ、大丈夫？笑", "うちも全く同じ", "今度お茶しながら全部聞く"], ["保育園のお迎えの時、みんな話してたよ", "誰も名前は言ってないから安心して", "顔は言ってた"], ["うちの夫もこのポストにいいねしてた", "あとで問い詰める"]]],
+    ["パパ友",[["これ、うちの妻も同じこと言ってた", "男チームとして耳が痛い"], ["今度の公園、気まずいね笑", "うちも今日から皿洗う"]]],
+    ["息子（小3）",[["先生に「お家大変なの？」って聞かれた", "クラスのみんな知ってた"], ["ケンカしないで", "ゲームの時間増やしてくれたら仲直りしてもいいよ"]]],
+    ["夫婦カウンセラー",[["初回相談は無料です", "今なら夫婦で受けると半額です"], ["ポスト拝見しました", "典型的な「期待のすれ違い」です", "続きはセッションで（60分8,800円）"]]],
+    ["まとめサイト管理人",[["転載させていただきました（事後報告）", "おかげさまでPVが3倍になりました"], ["続報はありますか？", "できれば今日中に燃えてください"]]],
+    ["テレビ局ディレクター",[["突然すみません。ご夫婦で番組に出ていただけませんか？", "顔出しNGでも大丈夫です"], ["再現VTRを作らせてください", "{pt}役の俳優さんはイケメン（美人）にします"]]],
+    ["法律事務所",[["夫婦問題の無料相談はこちら", "※このメッセージは自動送信です"]]],
+    ["占い師",[["あなたの夫婦運、見えました", "今月は「言わない勇気」の月です"], ["ラッキーアイテムは食洗機です", "来月は「謝る勇気」の月です"]]],
+    ["怪しいアカウント",[["夫婦の悩み、お金で9割解決します", "LINE追加で無料プレゼント🎁"], ["はじめまして😊", "あなたの投稿に共感しました", "ところで副業に興味ありませんか？"]]],
+    ["大家さん",[["夜中の物音の件、これでしたか"], ["壁が薄くてすみません", "でも声の大きさは関係ないです"]]],
+    ["隣の部屋の人",[["昨日の夜、声聞こえてました…", "うちもです。お互い様"], ["ベランダ越しに応援してます", "今日は静かでしたね"]]],
+    ["美容師",[["次の来店の時、続き聞かせてください"], ["髪型変えたら仲直りできるかもしれません", "予約空いてます"]]],
+    ["結婚式の司会者",[["あの日の誓いの言葉、覚えてますか？", "「健やかなる時も」の後は、「皿を洗う時も」でした"]]],
+    ["婚活中の友達",[["参考にします（結婚とは）", "やっぱり婚活やめようかな"], ["リプ欄の人たち、全員既婚者？", "こわい", "でも結婚したい"]]],
+    ["同じ悩みの{me}",[["同じです。泣きながら読みました", "一緒にがんばりましょう"], ["DMで失礼します", "うちは「{p}」がもう3年続いてます", "先輩として言えるのは、諦めたら楽です", "でも諦めないでください"]]],
+    ["{pt}の同僚",[["奥さん（旦那さん）こわ…", "あ、すみません。送る相手を間違えました"], ["いつもお世話になってます", "{pt}さん、今日会社で元気なかったです", "何かあったんですか（全部知ってる）"]]],
+    ["運営チーム",[["あなたのポストが多くの反応を集めています", "ガイドライン違反はありません", "がんばってください（非公式）"]]],
+    ["近所のおばあちゃん",[["孫が見せてくれたよ", "うちのじいさんも昔はねえ", "まあ、仲良くしなさい"], ["野菜あげるから取りにおいで", "二人でね"]]]
+  ];
+  function dmPlan(text, me, seed){ me=role(me); var r=rng(hash(text+'#dm')+seed), pt=other(me);
+    var mine=DMP.filter(function(d){ return d[0]==='{pt}'; }), rest=DMP.filter(function(d){ return d[0]!=='{pt}'; });
+    for(var i=rest.length-1;i>0;i--){ var j=Math.floor(r()*(i+1)), t=rest[i]; rest[i]=rest[j]; rest[j]=t; }
+    var picks=mine.concat(rest.slice(0,8)), q=picks.map(function(d){ var th=d[1][Math.floor(r()*d[1].length)]; return {from:d[0], lines:th.slice(), n:0}; }), out=[];
+    while(out.length<20 && q.some(function(x){return x.n<x.lines.length;})){ var live=q.filter(function(x){return x.n<x.lines.length;}), x= live[0].from==='{pt}'&&r()<.35? live[0] : live[Math.floor(r()*live.length)];
+      out.push({from:fill(x.from,text,me), text:fill(x.lines[x.n++],text,me).replace(/俺/g, me==='夫'?'私':'俺').replace('奥さん（旦那さん）', me==='妻'?'奥さん':'旦那さん').replace('息子（娘）', me==='妻'?'息子':'娘').replace('旦那（嫁）', me==='妻'?'旦那':'嫁').replace('姉ちゃん（兄ちゃん）', me==='妻'?'姉ちゃん':'兄ちゃん').replace('イケメン（美人）', me==='妻'?'イケメン':'美人')}); }
+    return out; }
+  var DM=[['{pt}','これ俺のこと？'],['義母','見ましたよ'],['ママ友','ニュースで見たよ、大丈夫？笑'],['職場の後輩','先輩のところも大変なんですね…'],['自分の母','ご飯ちゃんと食べてる？二人で'],['夫婦カウンセラー','初回相談は無料です'],['まとめサイト管理人','転載させていただきました（事後報告）'],['{pt}','帰ったら話そう'],['中学の同級生','お前のとこもかｗ'],['{pt}','ケーキ買って帰る']];
+  var TRENDS=['#うちの夫','#うちの妻','#夫婦あるある','#名もなき家事','#寝かしつけ','#義実家','#記念日','#ワンオペ'];
+
+  function role(me){ return me==='夫'?'夫':'妻'; }
+  function other(me){ return me==='夫'?'妻':'夫'; }
+  function guess(text){ var w=/(妻|嫁|奥さん|かみさん|家内)/.test(text), h=/(夫|旦那|主人|亭主|ダンナ|オット|パパ)/.test(text); if(h&&!w) return '妻'; if(w&&!h) return '夫'; if(!w&&!h&&/(つわり|悪阻|妊娠|妊婦|臨月|陣痛|産後|授乳)/.test(text)) return '妻'; return null; }
+  function handleOf(r){ var s=''; for(var i=0;i<6;i++) s+=String.fromCharCode(97+Math.floor(r()*26)); return s+Math.floor(r()*90+10); }
+  function person(r,camp){ var c=camp||(r()<.5?'妻':'夫'); var n=pick(r,NAMES[c])+'（'+pick(r,PREF)+'）'; return {name:n, handle:handleOf(r), color:pick(r,COLORS[c]), initial:c, camp:c}; }
+  function neutralPerson(r){ return {name:pick(r,['独身の通行人','通りすがりの独身','結婚予定なし','婚活中の観測者']), handle:handleOf(r), color:pick(r,COLORS['他']), initial:'独', camp:'独身'}; }
+  function boxes(text){ var a=[], s=[]; BOX.forEach(function(b){ if(b.kw.some(function(k){return text.indexOf(k)>=0;})){ a=a.concat(b.atk); s=s.concat(b.sup); } }); return {atk:a, sup:s}; }
+  function fill(t,text,me){ return t.replace(/\{p\}/g, short(text,20)).replace(/\{me\}/g,me).replace(/\{pt\}/g,other(me)); }
+
+  function profile(text, seed, me){
+    var r=rng(hash(text+me)+seed*7919), b=boxes(text);
+    var base = 40000 + Math.floor(r()*160000);
+    if(b.atk.length) base*=1.3;
+    return {likes:Math.floor(base), tau: 35 + r()*40, rtRate:.28+r()*.15, rpRate:.10+r()*.07, viewRate:14+r()*10};
+  }
+  function at(p, sec){ var k=1-Math.exp(-Math.max(0,sec)/p.tau); var k2=Math.min(1, Math.max(0,sec)/(p.tau*6)); var lk=Math.floor(p.likes*(0.92*k+0.08*k2)); return {lk:lk, rt:Math.floor(lk*p.rtRate), rp:Math.floor(lk*p.rpRate), vw:Math.floor(lk*p.viewRate)+Math.floor(sec*37)}; }
+  // i本目のリプ。相手側（pt）の陪審員が投稿者を叩き、投稿者側（me）の陪審員が相手を叩く。ときどき裏切り・独身・引用・リプ同士のケンカ
+  function reply(text, seed, i, me, prev){
+    me=role(me); var pt=other(me);
+    var r=rng(hash(text+'#'+i+me)+seed), b=boxes(text), x=r(), t, who, to=null; var self=!/(夫|旦那|主人|亭主|ダンナ|オット|パパ|妻|嫁|奥さん|かみさん|家内|ママ|義母|義父|義実家)/.test(text);
+    var sh=sharp(text), y=r();
+    if(i===5||i===16){ var gp=GEN_ANY.filter(function(c){ return c.kw.some(function(k){ return text.indexOf(k)>=0; }); }); if(!gp.length) gp=GEN_ANY.slice(-1); var gl=[]; gp.forEach(function(c){ gl=gl.concat(c.g); }); var g0=Math.floor(hash(text)%gl.length), gx=gl[(g0+(i===16?1:0))%gl.length]; who=person(r, gx[0]==='me'?me:pt); return {who:who, text:fill(gx[1],text,me), quote:false, to:null, lk:2000+Math.floor(r()*9000), rt:200+Math.floor(r()*800), rp:40+Math.floor(r()*120)}; }
+    if(i%7===3){ who=person(r,r()<.5?me:pt); t=pick(r,QT); }
+    else if(!self && y<.22){ var sideA=r()<.5; who=person(r, sideA?pt:me); t=pick(r, sideA?sh.atk:sh.sup); }
+    else if(y<.36){ var ks=Object.keys(STYLE), kk=ks[Math.floor(r()*ks.length)]; who= (kk==='spam'||kk==='expert'||kk==='misread')? neutralPerson(r) : person(r, r()<.6?me:pt); t=pick(r,STYLE[kk]); if(kk==='expert'||kk==='spam') who.name= kk==='spam'?pick(r,['夫婦円満コンサル','幸せ夫婦ラボ','開運アドバイザー']):pick(r,['通りすがりの専門家','自称プロ','その道20年']); }
+    else if(x<.42){ who=person(r,pt); t= (b.atk.length&&r()<.6)? pick(r,b.atk) : pick(r, self?SELF_ATK:ATK); }
+    else if(x<.80){ who=person(r,me); t= (b.sup.length&&r()<.6)? pick(r,b.sup) : pick(r, self?SELF_SUP:SUP); }
+    else if(x<.90 && self){ who=person(r,me); t=pick(r,SELF_SUP); }
+    else if(x<.90){ var c=r()<.5?me:pt; var betray=true; who=person(r,c); t=pick(r, BETRAY.filter(function(s){ return c===pt? s.indexOf('{pt}だけど')===0||s.indexOf('同じ{pt}')===0 : s.indexOf('{me}')===0; })); }
+    else if(r()<.3){ who=person(r,me); t=pick(r,NOROKE); }
+    else { who=neutralPerson(r); t=pick(r,NEUTRAL); }
+    // 直前のリプが反対の陣営なら、そこへのケンカ返信にする
+    if(prev && !prev.ally && prev.who.camp!==who.camp && prev.who.camp!=='独身' && who.camp!=='独身' && r()<.35){ to=prev.who.handle; t=pick(r,['いや、それは{x}側の言い分でしょ','{x}ってみんなそう言うよね','論点ずらさないで','あなたの家庭の話はしてない','それ言い出したらキリない']).replace(/\{x\}/g,prev.who.camp); }
+    return {who:who, ally: typeof betray!=='undefined' && betray && who.camp===pt, text:fill(t,text,me), quote: i%7===3 && !to, to:to, lk:Math.floor(r()*r()*2400), rt:Math.floor(r()*r()*300), rp:Math.floor(r()*40)};
+  }
+  // AIが作ったリプ（またはサンプル用に手書きしたリプ）をリプの形に包む。陣営と名前はこちらで付ける
+  function aiReply(item, text, seed, i, me, prev){
+    var r=rng(hash(text+'@'+i)+seed), camp=item.camp==='夫'||item.camp==='妻'? item.camp : '独身';
+    var who= item.who || (camp==='独身'? neutralPerson(r) : person(r,camp));
+    var to = item.toH || (item.to && prev && !prev.ally && prev.who.camp!==camp ? prev.who.handle : null);
+    var o={who:who, text:String(item.text).slice(0,80), quote:!!item.quote, to:to, lk:Math.floor(r()*r()*2400), rt:Math.floor(r()*r()*300), rp:Math.floor(r()*40)};
+    if(/^(夫|妻)だけど/.test(o.text) && o.who.camp!==role(me)) o.ally=true;
+    if(item.bait){ o.bait=true; o.lk=Math.floor(r()*60); o.rp=800+Math.floor(r()*2400); o.rt=200+Math.floor(r()*900); }
+    if(item.shun){ o.lk=2000+Math.floor(r()*9000); o.rt=200+Math.floor(r()*800); o.rp=40+Math.floor(r()*120); }
+    if(item.qb){ o.qb=item.qb; o.lk=1500+Math.floor(r()*r()*9000); }
+    if(item.self){ o.bait=true; o.lk=Math.floor(r()*20); o.rp=300+Math.floor(r()*900); }
+    return o;
+  }
+
+  // ===== 素材ライブラリ（Claudeが手書きしたお題ごとのリプ・通知・DM）。投稿に一番近いお題を選ぶ =====
+  var TOPICS=[{"id": "弁当", "kw": ["弁当"], "r": [["me", "作った弁当が置いていかれるの、切なすぎる", 0], ["pt", "?2日,２日,二日|忘れたのは悪いけど、2日くらいでそこまで言う？", 0], ["me", "続けて置いていかれたら「いらない」って意味に見える", 1], ["pt", "出かける前はバタバタしてて頭から抜けただけでしょ", 0], ["me", "うちも残った弁当を自分で食べたことある。虚しかった", 0], ["pt", "弁当より「ありがとう」の一言が欲しいんだよね", 0], ["me", "作ってもらえるありがたみが分かってない", 0], ["pt", "{pt}だけど、これは完全に{pt}が悪い。ごめん", 0], ["n", "弁当作ってもらえる人生、うらやましい", 0], ["me", "次は靴の上に置いとこう。踏んだら気づく", 0], ["pt", "弁当箱を玄関に置く仕組みにすれば解決", 1], ["me", "仕組みの前に、作った人の手間を考えて", 1]], "n": ["{pt}があなたのポストにいいねしました", "「#弁当忘れ」がトレンド入りしました"], "d": [["{pt}", "弁当ごめん。明日は絶対持っていく"], ["ママ友", "うちも今朝忘れてった笑 同志"]], "g": [["pt", "{me}の怒りの中身は弁当ではなく、自分だけが頑張ってる不公平感。それを弁当の件で言及すると、{pt}は防御反応しか出ない。本題を見誤ってる"], ["pt", "作ってくれた側の気持ちより、作らなくてもいい自由を無意識に選んでる。弁当は義務であって愛情表現じゃない。それを誤解してるのが悲しいだけ"]]}, {"id": "皿洗い", "kw": ["皿", "洗い物", "食器", "シンク", "食洗機"], "r": [["me", "「水につけといた」は洗ったことにならない", 0], ["pt", "食べ終わってすぐ洗えって、休ませてよ", 0], ["me", "シンクに積み上げるのは芸術活動じゃない", 0], ["pt", "気づいた方がやればよくない？", 0], ["me", "気づく人がいつも同じなのが問題なんだよ", 1], ["pt", "{pt}だけど、うちも水につけて終わりにしてる…", 0], ["n", "食洗機買えば夫婦喧嘩が一個減る", 0], ["me", "洗ったと思ったら泡ついたままだった", 0], ["pt", "やったのに文句言われるとやる気なくす", 0], ["me", "やり直しになるなら、やってないのと同じ", 1], ["n", "皿洗いで離婚する夫婦、実在しそう", 0], ["me", "今日から使った人が洗うルールでいこう", 0]], "n": ["シンクの写真付きで引用されました", "{pt}があなたのポストを引用しました"], "d": [["{pt}", "今日の洗い物はやっとく"], ["自分の母", "食洗機、半分出してあげようか？"]], "g": [["me", "水につけるだけだと、次の人が「洗う」意識が起きないんだ。手抜きじゃなくて、工程の区切りが曖昧なせいで、最終的に誰もしない流れになってるだけだよ。"], ["me", "「水につけて終わりにする」で済むなら、それは{pt}が家事分担を「完了」している証拠。{me}がそれを「途中」と定義するのは、自分の負担を減らすための理屈作りに過ぎない。"]]}, {"id": "洗濯", "kw": ["洗濯", "靴下", "脱ぎっぱなし", "干して", "洗濯カゴ", "裏返し"], "r": [["me", "靴下が洗濯カゴの横で暮らしてる", 0], ["pt", "カゴの近くにあるならほぼ入ってる", 0], ["me", "その「ほぼ」を毎日拾ってるのはこっち", 1], ["pt", "裏返しのまま出すのは、表にする手間を減らす優しさ", 0], ["me", "裏返しの靴下を戻す作業、時給出してほしい", 0], ["n", "靴下をカゴの横に置く文化、全国共通なの？", 0], ["pt", "{pt}だけど、これは言われても仕方ない", 0], ["me", "うちは脱いだ場所が床。カゴの横はまだマシ", 0], ["pt", "干し方に文句言われるならもうやらない", 0], ["me", "やらない宣言する前に、カゴまで30cm歩いて", 1], ["n", "洗濯物で揉めるの、どの家も同じなんだな", 0], ["me", "次から裏返しのまま洗って裏返しのまま返す", 0]], "n": ["「#靴下は洗濯カゴへ」がトレンド入りしました", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "靴下、今カゴに入れた"], ["義母", "うちの子、昔からそうなのよ"]], "g": [["pt", "「横に置く」が愚痴になる時点で、洗濯物の動線設計がそもそも{pt}任せ。{me}がカゴの位置を動かせば解決"], ["me", "裏返しのまま放置するのは、{me}が表にする手間を「教育」してるとでも。その非対称な負担分担に気づいてないのが問題"]]}, {"id": "掃除", "kw": ["掃除", "散らか", "片付け", "片づけ", "部屋", "ほこり", "掃除機"], "r": [["me", "散らかしてる本人だけが散らかってると思ってない", 0], ["pt", "どこに何があるか本人は分かってるんだよ", 0], ["me", "分かってるのは本人だけで、家は共有物", 1], ["pt", "掃除の基準が厳しすぎるだけでは", 0], ["me", "床が見えるのは厳しい基準じゃない", 1], ["pt", "{pt}だけど、うちも机が物置になってる", 0], ["n", "散らかった部屋の写真、ちょっと見たい", 0], ["me", "片付けたら「どこやった？」って聞かれるやつ", 0], ["pt", "片付けるたびに物が消えるのも困る", 0], ["me", "消えたんじゃなくて、元の場所に戻しただけ", 1], ["n", "掃除ロボットが一番家族思い", 0], ["me", "今週末は二人で片付け大会にしよう", 0]], "n": ["{pt}があなたのポストにいいねしました", "片付け系インフルエンサーが引用しました"], "d": [["{pt}", "週末、一緒に片付けよう"], ["ママ友", "うちのリビングも戦場だよ"]], "g": [["pt", "片付けをお願いしても「なんで毎回言わないといけないの」で怒られるなら、言わないほうが無難と学習してんの。怒られるリスクを避けて沈黙してるだけで、サボってるんじゃない。"], ["me", "{pt}は「片付け」ではなく「分類」が下手。物を元の位置に戻すのが苦手で、とりあえず箱や棚に突っ込んでるだけ。完璧に揃えようとして逆に手が止まってるだけ。"]]}, {"id": "ゴミ出し", "kw": ["ゴミ", "ごみ", "分別", "収集"], "r": [["me", "ゴミをまとめたのはこっち、出しただけで家事した顔", 0], ["pt", "ゴミ出しやってるだけ偉くない？", 0], ["me", "うちは玄関に置いても持って行き忘れる", 1], ["pt", "朝は余裕ないんだよ、前日に言って", 0], ["me", "毎週同じ曜日なんだから言わなくても分かる", 1], ["pt", "{pt}だけど、ゴミ出しで威張ってた。反省", 0], ["n", "ゴミの日を覚えてるだけで尊敬する", 0], ["me", "うちは分別ぐちゃぐちゃで回収されなかったことある", 0], ["pt", "分別のルールが細かすぎるのが悪い", 0], ["me", "ルールが細かいのは自治体のせいで、こっちのせいじゃない", 1], ["n", "ゴミ出しは家事の入り口にすぎない", 0], ["me", "次からゴミ袋を靴の上に置いておく", 0]], "n": ["{pt}があなたのポストにいいねしました", "地域の掲示板アカウントが反応しました"], "d": [["{pt}", "明日のゴミは出しておく"], ["自分の母", "ゴミの日カレンダー送ろうか"]], "g": [["me", "まとめただけで完了だと認識してるんだよ。出し忘れはミスじゃなくて、ゴミ出しという工程自体が存在しない。"], ["me", "毎回怒鳴るから脳が「ゴミ出し=危険」と学習してて、無意識に先延ばしにしてる。恐怖で処理能力が下がる。"]]}, {"id": "料理の味", "kw": ["味", "まずい", "味付け", "しょっぱい", "薄い", "料理"], "r": [["me", "作ってもらって「味薄くない？」は禁句", 0], ["pt", "正直な感想言わないと上達しないでしょ", 0], ["me", "感想と文句の区別がついてない", 1], ["pt", "実家の味と比べちゃうのは仕方ない", 0], ["me", "実家に帰って食べればいいのでは", 1], ["pt", "{pt}だけど、無言で醤油かけるのはやめた方がいい", 0], ["n", "作ってくれる人がいるだけで勝ち組", 0], ["me", "黙って調味料かけるのが一番傷つく", 0], ["pt", "おいしいときはちゃんと言ってるよ", 0], ["me", "言ってるの聞いたことないけど", 1], ["n", "夫婦の味付け戦争、どこで和平するの", 0], ["me", "明日はそっちが作って。味付けは任せる", 0]], "n": ["{pt}があなたのポストにいいねしました", "料理研究家のアカウントが引用しました"], "d": [["{pt}", "今日のご飯、普通においしかった"], ["義母", "うちの味、教えましょうか？"]], "g": [["pt", "{pt}が本当に嫌なら無言で済ませる。毎回口にするのは、{me}に「次はこう直して」と期待してる証拠。味覚の差じゃなくて、共同作業のパートナーとして接してくれてるだけ。"], ["me", "愚痴で終わらせてるから、{pt}は「言っても無駄だ」と学習して、次はもっと攻撃的な言い方しか選ばなくなる。文句を「改善の依頼」として受け取って反論してないと、{pt}が変な方向に走る。"]]}, {"id": "夕飯なんでもいい", "kw": ["なんでもいい", "何でもいい", "夕飯", "晩ご飯", "献立", "何食べたい"], "r": [["me", "「なんでもいい」で何でもよかった試しがない", 0], ["pt", "本当に何でもいいときもあるんだよ", 0], ["me", "じゃあ出したものに文句言わないで", 1], ["pt", "聞かれた瞬間に決めるのは難しい", 0], ["me", "3択にしても「うーん」で終わる", 0], ["pt", "{pt}だけど、「なんでもいい」って言いながら全部却下してた", 0], ["n", "「なんでもいい」は最も難しい注文", 0], ["me", "毎日献立考えるのがどれだけ大変か", 0], ["pt", "考えるのが大変なら外食でいいじゃん", 0], ["me", "外食って言ったら「もったいない」って言うくせに", 1], ["n", "結局カレーになる家が多いと思う", 0], ["me", "今日の夕飯は、そっちが決めて", 0]], "n": ["「#なんでもいいは禁止」がトレンド入りしました", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "今日はカレーがいい（ちゃんと決めた）"], ["ママ友", "うちは「なんでもいい」禁止令出した笑"]], "g": [["me", "「なんでもいい」は選択肢を渡せって意味じゃなくて、思考停止してて決められないから、勝手に決めたら嫌な顔されるだけ。結局、自分で決める責任を全部{me}に押し付けてるだけ。"], ["me", "{pt}が「なんでもいい」って言うのは、実は「私が選んだものじゃなきゃ嫌だ」って裏側の意思表明。でも本音言えないから、結果出てから文句言ってる。この「言わないが故に怒る」サイクルを{me}が許してるから続くだけ。"]]}, {"id": "寝かしつけ", "kw": ["寝かしつけ", "寝かし", "寝た瞬間", "やっと寝"], "r": [["me", "寝かしつけ1時間が一瞬で水の泡になる絶望、わかる", 0], ["pt", "わざとじゃないんだから許してあげて", 0], ["me", "わざとじゃなくても、やり直すのはこっち", 1], ["pt", "寝かしつけ中って気づかなかったんだよ", 0], ["me", "部屋が暗い時点で察してほしい", 1], ["pt", "{pt}だけど、これは重罪。土下座案件", 0], ["n", "寝かしつけ、そんなに大変なんだ…", 0], ["me", "ドアを開ける音すら爆音に聞こえる", 0], ["pt", "寝かしつけ代わろうかって言っても断るじゃん", 0], ["me", "代わってくれたら泣き止まなくて戻ってくる", 1], ["n", "寝かしつけ担当の人に一回寝てほしい", 0], ["me", "明日はそっちが寝かしつけ担当で", 0]], "n": ["{pt}があなたのポストにいいねしました", "子育て中アカウントの間で拡散されています"], "d": [["{pt}", "今夜の寝かしつけ、やってみる"], ["ママ友", "寝かしつけ戦士おつかれ…"]], "g": [["me", "寝かしつけの最中にスマホいじってる時点で、夫婦の優先順位が完全にズレてる証拠。子守りより自分の世界が優先な人間に、暗闇で察しろとは言わないで。"], ["pt", "寝た瞬間に起こされるのは、{me}が『完全に寝た』と確認せずに寝かしつけを終了したから。未確認の状態で放置して、{pt}の行動に責任を転嫁してる"]]}, {"id": "夜泣き", "kw": ["夜泣き", "夜中", "授乳", "ミルク", "泣いて"], "r": [["me", "夜泣きで起きないの、耳どうなってるの", 0], ["pt", "仕事あるから寝ないと持たないんだよ", 0], ["me", "こっちも朝から子育てっていう仕事がある", 1], ["pt", "起こしてくれれば起きるのに", 0], ["me", "起こす元気があったら自分で抱っこしてる", 1], ["pt", "{pt}だけど、寝たふりしてたことある。ごめん", 0], ["n", "夜泣きの話を聞くたびに頭が下がる", 0], ["me", "うちは朝「よく寝た」って言われた。殺意わいた", 0], ["pt", "交代制にすればいいだけの話", 0], ["me", "交代制にしても起きないんだって", 1], ["n", "夜中の3時に戦ってる人たち、全員えらい", 0], ["me", "今夜は耳栓禁止で", 0]], "n": ["{pt}があなたのポストにいいねしました", "「#夜泣き戦士」がトレンド入りしました"], "d": [["{pt}", "今夜は自分が起きる"], ["自分の母", "昼寝しなさい、ちゃんと"]], "g": [["me", "寝ないで付き合ってる側が、逆に「寝ててごめん」って言ってないあたりが、一番の溝だと思う"], ["me", "「爆睡」で済ませてたら、そもそも起きたいと思えないくらい、日中の負担が限界突破してないか確認して"]]}, {"id": "オムツ", "kw": ["オムツ", "おむつ", "うんち", "おしり"], "r": [["me", "うんちの時だけ「ママー」って呼ぶのやめて", 0], ["pt", "やり方が違うって怒られるからやりたくない", 0], ["me", "怒られる前に一回最後までやって", 1], ["pt", "オムツ替えは普通にやってるよ", 0], ["me", "おしっこの時だけね", 1], ["pt", "{pt}だけど、うんちから逃げてた。認める", 0], ["n", "オムツ替えスキル、人生で一番役立ちそう", 0], ["me", "オムツの在庫が切れてても気づかない", 0], ["pt", "在庫管理まで求められても困る", 0], ["me", "在庫管理してる人がいるから毎日回ってる", 1], ["n", "オムツの値段、知って震えた", 0], ["me", "次のうんちは全部任せた", 0]], "n": ["{pt}があなたのポストにいいねしました", "育児系のまとめに掲載されました"], "d": [["{pt}", "次のオムツ、自分が替える"], ["ママ友", "うちもうんちの時だけ呼ばれる笑"]], "g": [["me", "「うんち」が嫌ってより、失敗して怒られるリスクを避けたいだけ。責任を押し付けられてる自覚があるから、最初から断るのが楽なんだよ。"], ["pt", "実は{me}がうんち替えの時に「汚いね」って言葉や表情が出てない？それを感じ取ってるから、{pt}は触りたくないんだよ。感情の露出を止めてみて。"]]}, {"id": "ワンオペ", "kw": ["ワンオペ", "一人で", "育児", "子ども", "子供", "保育園"], "r": [["me", "「手伝おうか」じゃなくて、親は二人いる", 0], ["pt", "平日は仕事なんだから仕方ないでしょ", 0], ["me", "休日も仕事って言ってゴロゴロしてるのは何", 1], ["pt", "やり方を教えてくれないとできない", 0], ["me", "教える手間で全部終わる", 1], ["pt", "{pt}だけど、「見てる」って言ってスマホ見てた", 0], ["n", "ワンオペって言葉が普通にある時点でおかしい", 0], ["me", "うちの{pt}は保育園の持ち物、一回も確認したことない", 0], ["pt", "言ってくれればやるよ", 0], ["me", "言わなきゃやらないのが問題なんだって", 1], ["n", "子育て中の人、全員に休日を配りたい", 0], ["me", "今週末は一人で出かけてくる。全部任せた", 0]], "n": ["{pt}があなたのポストにいいねしました", "「#ワンオペ」がトレンド入りしました"], "d": [["{pt}", "今週末は自分が見るから休んで"], ["自分の母", "週末、手伝いに行こうか"]], "g": [["pt", "「ワンオペ」って言葉を使う時点で、{pt}を「手伝うべき下働きの部品」としてしか見てない。配偶者として対等に扱う気がないから、相手も対等な行動を取れない。相手を人として尊重してる？"], ["me", "「何もしない」は嘘で、実際は「やる気がない」だ。やる気が出るまで待てば永久に何もしない。やる気より先に、やるべきことを指定して着手させて、その失敗を許すサイクルを作ってる？"]]}, {"id": "ゲーム", "kw": ["ゲーム", "Switch", "スイッチ", "ガチャ", "ログボ"], "r": [["me", "「このボス倒したら」が永遠に終わらない", 0], ["pt", "ゲームはセーブできない時があるの", 0], ["me", "セーブできる場所まで何時間かかるの", 1], ["pt", "息抜きくらいさせてあげなよ", 0], ["me", "息抜きが一日中続くのは休日って言う", 1], ["pt", "{pt}だけど、深夜2時までやってた。反省", 0], ["n", "ゲームしてる横で話しかけると無視されるの、あるある", 0], ["me", "うちは課金額見て固まったことある", 0], ["pt", "自分で稼いだお金なんだから自由でしょ", 0], ["me", "家計は一つ。ガチャは共有財産じゃない", 1], ["n", "ゲーム機を隠す嫁、見たことある", 0], ["me", "今日はコントローラーを預かります", 0]], "n": ["{pt}があなたのポストにいいねしました", "ゲーム実況者のアカウントが引用しました"], "d": [["{pt}", "今日はゲーム1時間で終わる"], ["中学の同級生", "お前んとこもか笑"]], "g": [["pt", "{pt}が朝起きないのは、{me}が夜中に愚痴を言ったり、寝る前の会話で消耗させてるから。家に帰っても気を張ってるから、ゲームで「無音」の時間を買ってる。まず{me}の夜の空気感を見直して。"], ["me", "反省してるなら、なぜ毎週同じことをしてるの？「ごめん」で済ませてる時点で、根本的な生活リズムのズレを放置してる。口先だけの謝罪は、家庭内の権力闘争で負けた側の逃げ技。"]]}, {"id": "スマホ", "kw": ["スマホ", "携帯", "YouTube", "動画", "SNS", "インスタ", "TikTok"], "r": [["me", "話しかけても「うん」しか返ってこないやつ", 0], ["pt", "ちゃんと聞いてるよ、目が画面なだけ", 0], ["me", "目が画面ならたぶん耳も画面", 1], ["pt", "自分だって今スマホで投稿してるじゃん", 0], ["me", "これは家族のために必要な投稿です", 1], ["pt", "{pt}だけど、食事中もスマホ見てた", 0], ["n", "夫婦でLINEする家、静かそう", 0], ["me", "スマホに嫉妬する日が来るとは", 0], ["pt", "仕事の連絡かもしれないでしょ", 0], ["me", "仕事の連絡でショート動画は流れない", 1], ["n", "スマホ置いて話すだけで解決しそう", 0], ["me", "夕飯の間はスマホを箱に入れる制度にする", 0]], "n": ["{pt}があなたのポストにいいねしました（スマホで）", "{pt}があなたのポストを引用しました"], "d": [["{pt}", "今スマホ置いた。話そう"], ["職場の後輩", "先輩、さっきの投稿見ました…"]], "g": [["me", "「うん」で終わるのは無視じゃなくて、会話を発展させる責任を全部こっちに押し付けてるだけ。相手の温度感で返すのが面倒なだけ。"], ["pt", "「聞いて」と言う前に、何を求めているか一言だけ言ってみて。「慰めて」「助言して」の区別がつかないから、{pt}は適当に返すしかない。"]]}, {"id": "既読無視", "kw": ["既読", "返信", "LINE", "連絡", "電話", "返事"], "r": [["me", "既読つけて何時間も無反応なの、何なんだろうね", 0], ["pt", "仕事中に返せないこともあるよ", 0], ["me", "スタンプ1個押すのに何時間もかからない", 1], ["pt", "返したと思ってたんだよ", 0], ["me", "心の中で返事しても届かない", 1], ["pt", "{pt}だけど、読んで返したつもりになってた", 0], ["n", "既読がつくだけまだ優しい", 0], ["me", "うちは「牛乳買ってきて」が既読のまま牛乳なしで帰ってきた", 0], ["pt", "読んだけど忘れた。人間だもの", 0], ["me", "人間なら確認してから帰ってきて", 1], ["n", "夫婦のLINE、スタンプだけで会話してそう", 0], ["me", "次から大事な連絡は電話にする", 0]], "n": ["{pt}があなたのポストにいいねしました（既読）", "{pt}から着信がありました"], "d": [["{pt}", "ごめん、さっきのLINE見た"], ["ママ友", "既読無視の会、入会しますか笑"]], "g": [["me", "既読無視の正体は「返すほどの内容じゃない」って判断。LINEは通知で済むから、返事する義務が薄い。重要なら電話や対面でやるべき。"], ["pt", "帰りの連絡を求めている時点で、{me}の側が{pt}の行動を監視しようとしてる。信用してるなら時間を聞かない。聞きたいなら信用してない証拠。"]]}, {"id": "飲み会", "kw": ["飲み会", "飲み", "終電", "朝帰り", "酔っ"], "r": [["me", "「軽く一杯」が終電コースになるのはなぜ", 0], ["pt", "飲み会も仕事のうちなんだよ", 0], ["me", "仕事なら終わる時間を連絡して", 1], ["pt", "盛り上がってる時に抜けられない", 0], ["me", "家で待ってる側も盛り上がってない", 1], ["pt", "{pt}だけど、連絡しなかったのは完全にアウト", 0], ["n", "飲み会の後の言い訳、全国共通テンプレありそう", 0], ["me", "うちのは酔って玄関で寝てた", 0], ["pt", "たまの飲み会くらい許してあげて", 0], ["me", "うちは「たまの飲み会」が週2", 1], ["n", "終電の車内、こういう人ばっかりだった", 0], ["me", "次の飲み会は門限つき", 0]], "n": ["{pt}があなたのポストにいいねしました（午前2時）", "「#軽く一杯とは」がトレンド入りしました"], "d": [["{pt}", "昨日はごめん。今日は早く帰る"], ["職場の人", "昨日はご主人をお借りしました…"]], "g": [["me", "連絡しなかったのは、帰ってきても「なんで連絡しなかったの」って怒られるのが怖いから。終電で帰る時点で「怒られるな」って分かってるから、そもそも連絡する選択肢を消したんだよ。"], ["me", "毎回「軽い一杯」で終電なら、それは「軽い」じゃなくて「重い」んだ。{pt}は「一杯飲んだだけ」って思ってるけど、{me}の視点では「1日中連絡なし」が最大の不誠実。時間より、存在確認の放棄がダメなのよ。"]]}, {"id": "あと5分", "kw": ["5分", "五分", "支度", "準備", "遅刻", "待た", "待って"], "r": [["me", "「あと5分」の5分は人類と単位が違う", 0], ["pt", "5分って言わないと急かされるから", 0], ["me", "急かされる時間に起きればいい", 1], ["pt", "支度に時間かかるのはお互い様でしょ", 0], ["me", "こっちは先に終わって玄関で待ってる", 1], ["pt", "{pt}だけど、うちも5分は25分くらい", 0], ["n", "待ち合わせで30分待つの、結婚しても続くんだ", 0], ["me", "出発時間を30分早く伝える作戦しかない", 0], ["pt", "それやるとバレて余計遅れるよ", 0], ["me", "バレる前提で遅れるのやめて", 1], ["n", "5分の定義を国が決めてほしい", 0], ["me", "次は置いていきます", 0]], "n": ["{pt}があなたのポストにいいねしました（5分後）", "「#あと5分とは」がトレンド入りしました"], "d": [["{pt}", "あと5分で出る（今度は本当）"], ["自分の母", "昔からあんたも遅刻してたでしょ"]], "g": [["me", "{pt}の「あと5分」は物理的な残り時間じゃなくて、心理的に切り替えるスイッチの合図。時間管理の問題じゃなくて、状態遷移の閾値が異常に高いだけ。そのスイッチを押すまで待ってやれ。"], ["me", "{pt}の「あと5分」は、{me}が一緒に動いてくれることを期待しているサイン。{me}が「早くしなさい」と言う代わりに、隣に座って一緒にやる時間を設ければ、{pt}の5分は本当に5分で終わる。"]]}, {"id": "いびき", "kw": ["いびき", "寝息", "うるさくて眠れ"], "r": [["me", "いびきが工事現場レベル", 0], ["pt", "いびきは本人じゃどうにもならないよ", 0], ["me", "だから録音して聞かせてあげる", 1], ["pt", "疲れてる証拠なんだから許して", 0], ["me", "こっちは疲れてるのに眠れない", 1], ["pt", "{pt}だけど、録音聞いて自分でも引いた", 0], ["n", "いびきで別室になる夫婦、多いらしい", 0], ["me", "鼻をつまむと一瞬止まるのが面白い", 0], ["pt", "耳栓すれば解決じゃん", 0], ["me", "耳栓を貫通してくるの", 1], ["n", "いびきの音量ランキング作ってほしい", 0], ["me", "今日から寝室は別です", 0]], "n": ["{pt}があなたのポストにいいねしました（寝る前に）", "睡眠アプリのアカウントが反応しました"], "d": [["{pt}", "いびき、病院で見てもらう"], ["自分の母", "うちのお父さんも凄かったわよ"]], "g": [["me", "いびきって睡眠時無呼吸のサインかも。放っとくと{pt}の健康被害も出るから、まずは病院行かせた方がお互いマシ"], ["pt", "うるさいって言う前に、寝室分けてないのが原因。共働きなら疲れも違うし、睡眠環境変えるのが一番現実的"]]}, {"id": "寝相", "kw": ["寝相", "布団", "毛布", "ベッド", "蹴"], "r": [["me", "うちも朝起きたら布団が全部取られてる", 0], ["pt", "寝てる間のことは責められない", 0], ["me", "寝てる間も布団の8割は譲らない意志がある", 1], ["pt", "ベッドが狭いだけでは", 0], ["me", "キングサイズでも同じことする", 1], ["pt", "{pt}だけど、気づいたら斜めで寝てる", 0], ["n", "寝相で喧嘩、平和でいいな", 0], ["me", "寝ながら蹴られた。夢の中で戦ってた", 0], ["pt", "布団を2枚にすれば解決", 0], ["me", "2枚にしても両方持っていく", 1], ["n", "寝相の悪い人の動画、見てみたい", 0], ["me", "今夜から布団に国境線を引く", 0]], "n": ["{pt}があなたのポストにいいねしました", "寝具メーカーのアカウントが反応しました"], "d": [["{pt}", "布団、もう1枚買おう"], ["ママ友", "うちは子どもに布団取られてる笑"]], "g": [["me", "蹴ってるとかより、無意識に距離を取ってるんだと思う。スキンシップが苦手なだけで、悪気はゼロ。毎晩のことでイライラしてるのは分かるけど、それって実は寂しいだけなんじゃない？"], ["pt", "{pt}が蹴ってるんじゃなくて、{me}が敏感すぎて、微かな動きも「蹴られた」と過剰反応してるだけかも。同じくらいの動きでも、神経質な人ほど不快に感じる。感覚のズレを修正する方が先じゃない？"]]}, {"id": "起きない", "kw": ["起きない", "二度寝", "目覚まし", "アラーム", "寝坊", "スヌーズ"], "r": [["me", "目覚ましで起きるのは周りだけ", 0], ["pt", "朝が弱い体質なんだよ", 0], ["me", "体質ならアラーム10個かけないで", 1], ["pt", "起こしてくれればいいのに", 0], ["me", "起こしたら「あと5分」って言われる", 1], ["pt", "{pt}だけど、スヌーズ7回押した日がある", 0], ["n", "スヌーズ機能、夫婦関係に悪い", 0], ["me", "休日だけは目覚ましなしで早起きするのが謎", 0], ["pt", "休日は楽しみがあるから起きられるの", 0], ["me", "平日も楽しみ作ってあげようか", 1], ["n", "起こす係の人に手当を出したい", 0], ["me", "明日から目覚ましは本人の耳元だけ", 0]], "n": ["{pt}があなたのポストにいいねしました（二度寝前に）", "目覚まし時計メーカーが反応しました"], "d": [["{pt}", "明日は1回で起きる"], ["自分の母", "寝坊は昔からよ、あの子"]], "g": [["pt", "アラーム10個も設定してたら、最初は嫌でも起きるけど、最終的に「全部押せば終わる」の条件付けが勝手に完成する。{me}が勝手に増やした回数こそが、{pt}の起立不全の最大の原因だ。"], ["pt", "毎朝同じ時間に鳴るアラームは脳が「騒音」と判断して無視するように学習する。10個鳴らしても意味がないのは、刺激の質が単調だから。光覚醒や音の変化を混ぜる設計思想の欠如だ。"]]}, {"id": "休日ゴロゴロ", "kw": ["休日", "ゴロゴロ", "寝てばかり", "一日寝", "休みの日", "ダラダラ"], "r": [["me", "休日にソファと一体化してる", 0], ["pt", "平日頑張ってるんだから休ませて", 0], ["me", "こっちの休日はどこにあるの", 1], ["pt", "休日くらい好きに過ごしたい", 0], ["me", "好きに過ごすのはいいけど、昼ご飯は誰が作るの", 1], ["pt", "{pt}だけど、気づいたら夕方になってた", 0], ["n", "休日に一日寝るの、独身の特権だと思ってた", 0], ["me", "うちのも起きたと思ったらまた横になってる", 0], ["pt", "一日寝られるのは体が求めてる証拠", 0], ["me", "体だけじゃなくて家族も求めてる", 1], ["n", "ソファの上で生活が完結する人いるよね", 0], ["me", "次の休日はこっちがソファになる番", 0]], "n": ["{pt}があなたのポストにいいねしました（ソファから）", "{pt}がフォローを解除しました"], "d": [["{pt}", "午後は出かけよう"], ["義母", "昔からよく寝る子なのよ"]], "g": [["me", "ソファに沈んでるのは、平日の「ありがとう」が形だけで本音の共有がゼロだから、家でも心まで休めてない証拠"], ["pt", "「ゴロゴロ」に文句あるなら、自分も同じ時間ソファでスマホ見てた？ 行動が揃って初めて対等な愚痴になる"]]}, {"id": "トイレットペーパー", "kw": ["トイレットペーパー", "トイペ", "ペーパー", "芯"], "r": [["me", "1cm残すのは交換しないための技術", 0], ["pt", "まだ使えると思ったんだよ", 0], ["me", "1cmで何をする気なの", 1], ["pt", "替えの場所を知らないだけ", 0], ["me", "場所を知らないのは替えたことがない証拠", 1], ["pt", "{pt}だけど、芯だけ残したことある", 0], ["n", "1cmは芸術の域", 0], ["me", "芯をホルダーに残したまま新しいのを床に置くな", 0], ["pt", "気づいた人がやればいい", 0], ["me", "気づくのがいつもこっちなんだって", 1], ["n", "トイレットペーパー問題、人類の永遠のテーマ", 0], ["me", "次は芯だけになるまで見守ってみる", 0]], "n": ["「#トイレットペーパー1cm」がトレンド入りしました", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "さっき新しいのに替えた"], ["自分の母", "買い置き、送ろうか？"]], "g": [["me", "「使い切った」時点で怒るなら、最初から“残り少なくなったら替えな”って明確にルール決めてなかった証拠。大人として甘すぎ"]]}, {"id": "便座", "kw": ["便座", "トイレ", "立って"], "r": [["me", "夜中に便座が上がってて落ちかけたことある", 0], ["pt", "上げたままの方が次の人が楽かもしれない", 0], ["me", "次の人が座る側なんだって", 1], ["pt", "座ってする方が掃除が楽なのは分かってる", 0], ["me", "分かってるなら座って", 1], ["pt", "{pt}だけど、これは下ろすべき。下ろします", 0], ["n", "便座の上げ下げで揉める家、全国に何軒あるの", 0], ["me", "トイレ掃除してる人の気持ちを考えて", 0], ["pt", "トイレの話を全世界に発信するのやめて", 0], ["me", "全世界が味方してくれてる", 1], ["n", "自動で下りる便座が最強", 0], ["me", "便座を下ろすまでが、トイレです", 0]], "n": ["{pt}があなたのポストにいいねしました", "住宅設備メーカーが反応しました"], "d": [["{pt}", "便座、ちゃんと下ろしてきた"], ["ママ友", "うちは張り紙した笑"]], "g": [["me", "「楽なまま」で放置するのは、次の人のことを考えてない証拠。自分が楽なだけで他人に負担を押し付けてる、あの自意識過剰な部分にイラついてるんだ。気遣いがない人間に「考えてる」なんて期待してない"], ["me", "「上げっぱなし」は、トイレから出る時に一瞬も手を止めない程度の気遣いができない、根本的な注意力の欠如。これがいけないなら、他の家事も同じレベルの雑さでやってる可能性が高く、便座はその氷山の一角に過ぎない"]]}, {"id": "風呂", "kw": ["風呂", "髪の毛", "排水", "お風呂", "シャンプー", "湯船"], "r": [["me", "排水口の髪の毛を妖精が片付けてると思ってる", 0], ["pt", "気づいた方がやればいいでしょ", 0], ["me", "気づかないふりの天才がいる", 1], ["pt", "風呂掃除はちゃんとやってるよ", 0], ["me", "浴槽だけね。床と排水口はこっち", 1], ["pt", "{pt}だけど、髪の毛は見ないふりしてた", 0], ["n", "排水口ネット、世界を平和にする発明", 0], ["me", "追い焚きしすぎてお湯がぬるい", 0], ["pt", "長風呂くらい許してよ", 0], ["me", "1時間入るなら次の人のこと考えて", 1], ["n", "お風呂で喧嘩する夫婦、湯冷めしそう", 0], ["me", "今日から排水口は最後に入った人の担当", 0]], "n": ["{pt}があなたのポストにいいねしました（風呂上がりに）", "掃除グッズのアカウントが反応しました"], "d": [["{pt}", "排水口、掃除しといた"], ["自分の母", "排水口ネット使いなさい"]], "g": [["pt", "「絶対に取らない」って絶対は嘘。取ってるけど「風呂掃除」とは別に「髪の毛処理」ってカテゴリ分けして無視してるだけ"], ["me", "取らないのは、取った後の「ありがとう」が来ないことを知っているから。無償の労働はしたくない。合理的"], ["pt", "{pt}は「風呂掃除」の定義を「浴槽と壁」に限定している。排水口は「配管」の一部であり、掃除対象外という認識"]]}, {"id": "プリン", "kw": ["プリン", "アイス", "お菓子", "ケーキ", "おやつ", "最後の", "チョコ", "ハーゲンダッツ"], "r": [["me", "楽しみにしてたものが冷蔵庫から消える絶望", 0], ["pt", "名前書いてなかったなら共有物", 0], ["me", "冷蔵庫に名前書く夫婦、悲しすぎる", 1], ["pt", "また買えばいいじゃん", 0], ["me", "今日食べたかったの、今日の気持ちは買えない", 1], ["pt", "{pt}だけど、最後の1個食べたことある。ごめん", 0], ["n", "食べ物の恨みは一生", 0], ["me", "せめて「食べたよ」の一言は欲しい", 0], ["pt", "3個入りの残り1個なら食べられて当然", 0], ["me", "1日1個ずつって決めてたの知ってるよね", 1], ["n", "プリンで離婚した夫婦の話、聞いたことある", 0], ["me", "明日、倍にして返してもらう", 0]], "n": ["「#プリンの恨み」がトレンド入りしました", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "プリン2個買って帰る"], ["中学の同級生", "食べ物の恨みは怖いぞ笑"]], "g": [["me", "冷蔵庫に名前書きなんてしないから、{pt}は「共有物」だと本気で思ってる。でもお前が毎日楽しみにしてる「私のプリン」が、{pt}の頭の中ではただの「残り物」になってるんだよ。"], ["me", "{pt}は「ごめん」で済ませる。でもお前が求めているのは謝罪じゃなくて、自分の喜びを{pt}が「優先すべきもの」と認識してくれること。そこが噛み合ってないから、毎回同じ喧嘩になる。"]]}, {"id": "冷蔵庫", "kw": ["冷蔵庫", "賞味期限", "作り置き", "残り物"], "r": [["me", "うちは作り置き無視してカップ麺食べてた", 0], ["pt", "どれが食べていいやつか分からないんだよ", 0], ["me", "全部食べていいやつだよ", 1], ["pt", "賞味期限切れてたら怖いじゃん", 0], ["me", "昨日作ったものは切れない", 1], ["pt", "{pt}だけど、冷蔵庫を開けて閉めるだけの人だった", 0], ["n", "冷蔵庫を何回も開けて何も取らない人いる", 0], ["me", "奥に何があるか一回も見たことないよね", 0], ["pt", "冷蔵庫の中身まで把握するの大変", 0], ["me", "把握してる人がいるから毎日ご飯が出る", 1], ["n", "作り置きしてくれる家、尊い", 0], ["me", "明日から冷蔵庫に案内図を貼る", 0]], "n": ["{pt}があなたのポストにいいねしました", "作り置き系アカウントが引用しました"], "d": [["{pt}", "作り置き、今日の夜食べる"], ["自分の母", "作り置き、上手になったね"]], "g": [["me", "放置って言うより、期限チェックが面倒なだけ。毎日開けて確認するのは脳が疲れるから、見なかったことにしてるんだよ。"], ["pt", "{me}が最初に「期限切れは捨てていい」とルールを明示してない。放置されてるのは、判断基準が不在だから。"]]}, {"id": "記念日", "kw": ["記念日", "結婚記念", "付き合った日"], "r": [["me", "記念日を覚えてるのがこっちだけ", 0], ["pt", "日付を覚えるのが苦手なだけで、気持ちはある", 0], ["me", "気持ちがあるならカレンダーに入れて", 1], ["pt", "言ってくれればちゃんとお祝いしたよ", 0], ["me", "言ったら記念日じゃなくて予定になる", 1], ["pt", "{pt}だけど、スマホに3回通知入れておくべき", 0], ["n", "記念日って何周年まで祝うものなの", 0], ["me", "うちは去年も忘れてた。来年も忘れる気がする", 0], ["pt", "毎日が記念日だと思ってる（言い訳）", 0], ["me", "そのセリフ、毎年聞く", 1], ["n", "記念日を忘れない人、モテるらしい", 0], ["me", "来年は1週間前から毎日アピールする", 0]], "n": ["{pt}があなたのポストにいいねしました（慌てて）", "花屋のアカウントが反応しました"], "d": [["{pt}", "今からケーキ買って帰る。ごめん"], ["ママ友", "記念日忘れられたら一週間言い続けていい"]], "g": [["me", "記念日を「イベント」としてしか見てないから、日付を覚える負担が重くて無意識にスルーしてる。日常的な愛の表現を「お祝い」という一点に絞った時点で、{pt}に負担を押し付けてる"], ["pt", "毎年怒られると、その日への期待値が恐怖に変わって無意識に脳がブロックしてる。{me}の反応を学習して、ストレス回避のために「忘れる」選択をしている。構造的な問題の無自覚"]]}, {"id": "誕生日", "kw": ["誕生日", "プレゼント", "サプライズ"], "r": [["me", "うちは誕生日プレゼントがコンビニのお菓子だった", 0], ["pt", "気持ちが大事でしょ", 0], ["me", "気持ちがコンビニで止まってる", 1], ["pt", "欲しい物を先に言ってくれれば", 0], ["me", "言ったら言ったで「それ高くない？」って言う", 1], ["pt", "{pt}だけど、当日に慌てて買ったことある", 0], ["n", "プレゼント選び、毎年一番難しい宿題", 0], ["me", "うちはサプライズかと思ったら本当に何もなかった", 0], ["pt", "祝ってもらえるだけいいじゃん", 0], ["me", "祝う側の誕生日は盛大にやってるけど", 1], ["n", "欲しい物リストを共有する夫婦は平和", 0], ["me", "来年の欲しい物リスト、冷蔵庫に貼っとく", 0]], "n": ["{pt}があなたのポストにいいねしました", "通販サイトのアカウントが反応しました"], "d": [["{pt}", "週末、ちゃんとしたプレゼント選び直そう"], ["自分の母", "誕生日おめでとう。ご飯は食べた？"]], "g": [["pt", "「適当」って言う前に、{pt}が予算的に何を選べるか確認した？生活費を握っている側が、余裕のある物を期待するのは少し都合がいい。経済構造が感情の余裕を殺しているだけ。"]]}, {"id": "浪費", "kw": ["買っ", "浪費", "ポチ", "セール", "通販", "Amazon", "アマゾン", "ネットで"], "r": [["me", "「安かったから」は買う理由じゃない", 0], ["pt", "自分だって服買ってるでしょ", 0], ["me", "服は着る。それは箱から出してもない", 1], ["pt", "セールの時に買うのは節約なんだよ", 0], ["me", "使わない物を安く買うのは節約じゃない", 1], ["pt", "{pt}だけど、置き配の箱を隠したことある", 0], ["n", "家に届く段ボールの数で夫婦の空気が分かる", 0], ["me", "同じ物が2個届いて言い訳できないやつ", 0], ["pt", "趣味にお金使うくらい許してあげて", 0], ["me", "許すから、家計簿に書いて", 1], ["n", "ポチる指は止められない", 0], ["me", "今月からポチる前に一言申告制", 0]], "n": ["{pt}があなたのポストにいいねしました", "通販サイトが「おすすめ」に表示しました"], "d": [["{pt}", "今月はもう何も買わない"], ["自分の母", "無駄遣いはほどほどにね"]], "g": [["pt", "「相談」は許可取りじゃなくて情報共有。毎回許可取るの疲れる。意思決定コストを減らしたいだけ。"], ["pt", "「また」がキー。一度許したら毎回やるのは{me}の対応の癖。線引きが曖昧だから{pt}も手加減できない。"]]}, {"id": "お金", "kw": ["小遣い", "おこづかい", "お金", "給料", "貯金", "家計", "ローン", "ボーナス"], "r": [["me", "家計を回してる側の苦労を知ってほしい", 0], ["pt", "稼いでるのは誰って話になるよ", 0], ["me", "稼ぐのも回すのも、どっちも仕事", 1], ["pt", "おこづかい制は窮屈すぎる", 0], ["me", "窮屈じゃない額にすると全部消える", 1], ["pt", "{pt}だけど、ボーナスの額を少なめに言ってた", 0], ["n", "お金の話ができる夫婦は長続きするらしい", 0], ["me", "うちは貯金残高を見せたら黙った", 0], ["pt", "将来のことばかり言われても息が詰まる", 0], ["me", "将来を考えてるのは家族のためだよ", 1], ["n", "家計簿アプリ、夫婦で共有すると平和らしい", 0], ["me", "今月から家計簿を二人で見る日を作る", 0]], "n": ["{pt}があなたのポストにいいねしました", "FP（お金の専門家）が引用しました"], "d": [["{pt}", "今月の家計、一緒に見よう"], ["自分の母", "お金のことは二人で話しなさい"]], "g": [["pt", "{me}が怒るのは「{pt}が自分の趣味に金を使う」こと自体より、その判断基準が自分と一致しないことの延長だ。価値観の相違を単なる金銭問題で矮小化してるのは{me}側の損失。"]]}, {"id": "義母", "kw": ["義母", "お義母", "姑", "義父", "お義父"], "r": [["me", "自分の親の窓口は自分でやって", 0], ["pt", "親を悪く言われるのはつらいんだよ", 0], ["me", "悪く言ってない、困ってるって言ってる", 1], ["pt", "悪気はないんだよ、昔の人だから", 0], ["me", "悪気がないから余計に困る", 1], ["pt", "{pt}だけど、横で黙ってたのは良くなかった", 0], ["n", "義母という単語だけで疲れる人が多すぎる", 0], ["me", "味方してほしいだけなのに、中立のふりする", 0], ["pt", "板挟みのつらさも分かって", 0], ["me", "板の片方はこっちだけ", 1], ["n", "義実家との距離感、正解がない", 0], ["me", "次の電話はそっちが出て", 0]], "n": ["{pt}があなたのポストにいいねしました", "{pt}が義母をこのポストにタグ付けしそうになりました"], "d": [["{pt}", "母さんには自分から言っておく"], ["義母", "見ましたよ"]], "g": [["me", "「困ってる」って言うだけじゃ伝わらない。{pt}は責任逃れしたいだけ。義母に直接会って、具体的に「来ないで」と線引きして初めて夫婦として問題解決に踏み出せる状態になる。"], ["me", "{pt}は「親孝行」の建前で逃げてる。実際は義母の面倒を自分が見るのが面倒で、{me}に「嫌な仕事」を押し付けているだけ。この構造を「夫婦の協力」だと錯覚してるから、あなたがずっと疲弊してる。"]]}, {"id": "帰省", "kw": ["義実家", "帰省", "実家", "親戚", "お盆", "正月"], "r": [["me", "義実家で透明人間になるのやめて", 0], ["pt", "実家でくらいゆっくりさせて", 0], ["me", "こっちは台所でゆっくりできない", 1], ["pt", "帰省を短くすれば解決", 0], ["me", "それを言うのはそっちの役目", 1], ["pt", "{pt}だけど、実家ではソファから動かなかった", 0], ["n", "帰省の帰りの車、空気が重そう", 0], ["me", "親戚の嫌みから守ってくれないのが一番つらい", 0], ["pt", "親戚の言うことは聞き流せばいいよ", 0], ["me", "聞き流すのはその場で守ってからにして", 1], ["n", "帰省の季節になるとこの手の投稿が増える", 0], ["me", "次の帰省は日帰りでお願いします", 0]], "n": ["{pt}があなたのポストにいいねしました（帰りの車で）", "「#帰省疲れ」がトレンド入りしました"], "d": [["{pt}", "次の帰省は短くしよう"], ["義母", "次はゆっくりしていってね"]], "g": [["me", "{pt}は実家では「息子」に戻れて楽ですが、あなたは{me}として常に緊張状態です。その心理的疲労が、体感的な期間を長く感じさせているだけ。"], ["pt", "{pt}が不満を言わないのは、あなたが不満を言う前提で動いているからですよ。あなたが「短くして」と言わない限り、{pt}は現状維持で楽に済ませる。"]]}, {"id": "話を聞かない", "kw": ["聞いてない", "話聞", "うん", "聞いて", "上の空", "話して"], "r": [["me", "「うん」しか言わないのは返事じゃなくて効果音", 0], ["pt", "話が長いから途中で分からなくなる", 0], ["me", "最後まで聞いたら30秒で終わる", 1], ["pt", "結論から言ってくれれば聞ける", 0], ["me", "結論じゃなくて気持ちを聞いてほしいの", 1], ["pt", "{pt}だけど、相づちだけで乗り切ってた", 0], ["n", "「聞いてる？」「聞いてる」で一日が終わる夫婦", 0], ["me", "うちは昨日話したこと、全部初耳の顔される", 0], ["pt", "大事な話なら先に大事って言って", 0], ["me", "全部大事な話なんだけど", 1], ["n", "話を聞くだけで円満になる家、多そう", 0], ["me", "今日は話を聞く練習の日にする", 0]], "n": ["{pt}があなたのポストにいいねしました（読んではいない）", "{pt}があなたのポストを引用しました"], "d": [["{pt}", "さっきの話、もう一回ちゃんと聞かせて"], ["ママ友", "うちも「うん」マシーンだよ"]], "g": [["pt", "{pt}はあなたの話を聞いているが、解決策を要求される前提で聞いてる。答えのない愚痴だけだと脳がフリーズするから、うんしか出ないんだよね。"]]}, {"id": "察して", "kw": ["察して", "言わなくても", "気づいて", "わかって", "分かって", "言ってくれれば"], "r": [["me", "言わなくても分かるくらい、毎日同じ状況", 0], ["pt", "言ってくれなきゃ分からないよ", 0], ["me", "言ったら「言われたからやった」になる", 1], ["pt", "察するのは無理、エスパーじゃない", 0], ["me", "エスパーじゃなくても、散らかってるのは見える", 1], ["pt", "{pt}だけど、見えてたけど見ないふりしてた", 0], ["n", "「察して」と「言ってよ」の永遠の戦い", 0], ["me", "言われる前にやってくれたら、それだけで100点", 0], ["pt", "言ってくれればやるって何度も言ってる", 0], ["me", "その「言ってくれれば」が一番疲れる", 1], ["n", "察してほしい側と察せない側、どっちもつらい", 0], ["me", "今日から家事リストを貼ります", 0]], "n": ["{pt}があなたのポストにいいねしました", "「#言ってくれればやる」がトレンド入りしました"], "d": [["{pt}", "言われる前にやること、決めてみる"], ["自分の母", "男の人はそういうものよ（昭和）"]], "g": [["pt", "言わないで期待するのは、相手を都合のいい人形にしたいだけ。自立した大人同士なら、要望は言語化して伝達するもんだよ。"], ["me", "気づかないのではなく、気づいても動かないだけ。優先順位が低いんだよ。感情の押し付けで「気遣い」を要求する方が非道い。"]]}, {"id": "エアコン", "kw": ["エアコン", "暑い", "寒い", "温度", "暖房", "冷房", "設定温度"], "r": [["me", "エアコン18度は北極", 0], ["pt", "暑いんだから仕方ないでしょ", 0], ["me", "こっちは毛布かぶってる", 1], ["pt", "寒いなら服を着ればいい", 0], ["me", "真夏に部屋の中でダウン着ろって？", 1], ["pt", "{pt}だけど、勝手にリモコン隠したことある", 0], ["n", "エアコンの温度で喧嘩、全国の夏の風物詩", 0], ["me", "うちは寝てる間にこっそり温度下げられてた", 0], ["pt", "電気代気にしすぎじゃない？", 0], ["me", "電気代の請求書を見るのはこっちなんだよ", 1], ["n", "エアコン2台にすれば解決（家が許せば）", 0], ["me", "今日から温度は交代制", 0]], "n": ["{pt}があなたのポストにいいねしました", "電力会社のアカウントが反応しました"], "d": [["{pt}", "今夜は26度にする"], ["自分の母", "風邪ひかないようにね"]], "g": [["me", "18度に設定してるとは言い難い。実際には25度で効きが悪いから18に下げてるだけで、体感温度が合わないだけ。設定値じゃなく風量や送風口で調整しろ。"], ["pt", "あなたが「凍えてる」と言う時点で、室温よりあなたの代謝が異常に低い。普通なら18度は快適なのに、あなたが極端に寒がってるだけ。自己管理不足。"]]}, {"id": "運転", "kw": ["運転", "車", "駐車", "ナビ", "助手席"], "r": [["me", "助手席でずっとダメ出しされる", 0], ["pt", "危ないから言ってるんだよ", 0], ["me", "危なくない時も言ってる", 1], ["pt", "運転中にスマホ見るのはアウト", 0], ["me", "ナビ見てただけ", 1], ["pt", "{pt}だけど、助手席で寝てた。ごめん", 0], ["n", "車の中の夫婦喧嘩、逃げ場がない", 0], ["me", "駐車に3回切り返して見られてる緊張感", 0], ["pt", "一発で入れればいいのに", 0], ["me", "じゃあ運転代わって", 1], ["n", "助手席の人が一番運転上手説", 0], ["me", "帰りは運転代わってもらう", 0]], "n": ["{pt}があなたのポストにいいねしました（助手席で）", "カー用品のアカウントが反応しました"], "d": [["{pt}", "帰りの運転、代わるよ"], ["自分の母", "安全運転でね"]], "g": [["pt", "運転中に怒鳴られるから荒くなるんじゃない？ 助手席でスマホいじりながら「危ない」とか言われてたら、誰だって反射的にハンドル切るよ。あれは嫌がらせに近い。"], ["me", "{pt}はあなたの意見に興味がない。ただ「叱責されている」という感覚だけで運転している。あなたの恐怖を共感したいのではなく、自分の運転評価を下げたくないだけ。"]]}, {"id": "趣味", "kw": ["趣味", "ゴルフ", "釣り", "推し", "ライブ", "キャンプ", "サウナ", "筋トレ"], "r": [["me", "趣味の日だけ早起きできるの不思議", 0], ["pt", "趣味くらい自由にさせてあげて", 0], ["me", "家族の予定より趣味が先なのが問題", 1], ["pt", "一人の時間がないと持たないんだよ", 0], ["me", "こっちの一人の時間はいつ来るの", 1], ["pt", "{pt}だけど、道具にいくら使ったか言えない", 0], ["n", "趣味がある人、正直うらやましい", 0], ["me", "道具が増えて部屋が狭くなっていく", 0], ["pt", "自分だって推し活してるでしょ", 0], ["me", "推し活は家族の予定とかぶせてない", 1], ["n", "夫婦で同じ趣味にすれば解決…しない", 0], ["me", "来月はこっちが趣味の日をもらう", 0]], "n": ["{pt}があなたのポストにいいねしました（趣味の帰りに）", "{pt}があなたのポストを引用しました"], "d": [["{pt}", "来週はそっちが好きに出かけていいよ"], ["ママ友", "趣味の日、交代制にしたら平和になった"]], "g": [["me", "愚痴の矛先が「ゴルフ」じゃなくて「毎週」という頻度にある時点で、本当の怒りは時間管理の甘さじゃなくて、あなたの存在が{pt}の優先順位リストの最下位に固定されてることへの恐怖なんじゃないかな"], ["pt", "あなたが愚痴る背景には、自分の趣味や一人の時間を「罪悪感なく」持ててない不安があるんじゃない？{pt}が趣味を楽しんでる姿が、自分の「家族一筋」な生き方への対比として苦しく映ってるだけで、{pt}に罪はない"]]}, {"id": "服・見た目", "kw": ["服", "ダサい", "髪型", "太った", "痩せ", "体型", "化粧"], "r": [["me", "出かける直前に「その服で行くの？」は反則", 0], ["pt", "正直に言ってあげただけ", 0], ["me", "正直と失礼の間に線を引いて", 1], ["pt", "褒めてもらいたいなら先に言って", 0], ["me", "褒めてほしいって言ってから褒められても", 1], ["pt", "{pt}だけど、髪切ったの3日気づかなかった", 0], ["n", "髪型の変化に気づける人、少数派だと思う", 0], ["me", "「太った？」は口に出す前に飲み込んで", 0], ["pt", "心配して言ってるんだよ", 0], ["me", "心配ならスイーツを買ってこないで", 1], ["n", "夫婦の見た目の話、地雷原", 0], ["me", "明日、気づくかどうか試してみる", 0]], "n": ["{pt}があなたのポストにいいねしました", "{pt}がプロフィール写真を変えました"], "d": [["{pt}", "その服、似合ってるよ（本心）"], ["ママ友", "髪切ったの気づかれないの、あるある"]], "g": [["pt", "髪型より「機嫌」の方が重要度高いから、その方が変わったのに気づいてるだけ。髪を褒めるより、機嫌を害さない沈黙を選んでるだけな"], ["pt", "気づいてても言わないだけな。褒めると面倒事になりそうだから無視してるとか、むしろ深い関係性での防衛反応でしょ。気になってる証拠だろ"]]}, {"id": "ペット", "kw": ["猫", "犬", "ペット", "散歩", "トイレ砂", "餌", "エサ"], "r": [["me", "ペットには優しいのに人間には冷たい", 0], ["pt", "動物は文句言わないからね", 0], ["me", "文句言わせないように動いて", 1], ["pt", "散歩はちゃんと行ってるよ", 0], ["me", "散歩だけね。トイレ掃除と餌は誰がやってると思う", 1], ["pt", "{pt}だけど、猫に話しかける声のほうが優しかった", 0], ["n", "ペットがいる家は喧嘩してもすぐ仲直りしそう", 0], ["me", "ペットの写真は100枚撮るのに家族の写真はない", 0], ["pt", "かわいいんだから仕方ない", 0], ["me", "家族もかわいいでしょ", 1], ["n", "ペットが仲裁してくれる家、ある", 0], ["me", "今日はペットの世話、全部任せた", 0]], "n": ["{pt}があなたのポストにいいねしました", "動物系アカウントが引用しました"], "d": [["{pt}", "今日のトイレ掃除、やっとく"], ["自分の母", "ペットの写真も送ってね"]], "g": [["pt", "{me}は猫の世話を『愛』と認識しているが、{pt}には『雑用』でしかない。{me}が感情移入していることに{pt}は気づいていないだけ。雑用を愛情表現だと思った{me}側の錯覚。"]]}, {"id": "手伝う発言", "kw": ["手伝う", "手伝おうか", "手伝って", "やってあげ"], "r": [["me", "「手伝おうか」の「手伝う」に引っかかる", 0], ["pt", "やろうとしてるんだから言い方くらい許して", 0], ["me", "自分の家の家事を手伝うって何", 1], ["pt", "何をやればいいか教えてくれれば", 0], ["me", "見れば分かる、それが家事", 1], ["pt", "{pt}だけど、「やってあげた」って言ったことある。反省", 0], ["n", "「手伝う」を禁止ワードにする家、増えてそう", 0], ["me", "やったら褒めてほしいオーラ出すのやめて", 0], ["pt", "褒めてくれたらもっとやるよ", 0], ["me", "毎日やってる側は誰にも褒められてない", 1], ["n", "言葉一つでこんなに燃えるの、怖い", 0], ["me", "今日から「手伝う」は禁止ワード", 0]], "n": ["「#手伝うって言うな」がトレンド入りしました", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "今日の家事、全部やる（手伝うじゃなくて）"], ["ママ友", "手伝う禁止令、うちも出した"]], "g": [["me", "「手伝う」って言える時点で、家事は{me}の責務で自分は外部支援者だと本気で思ってる。役割分担が根本からズレてる証拠で、言い方以前に構造が歪んでる"], ["pt", "毎日同じ作業をルーティン化されてると、相手はもう手伝い先じゃなくて同僚。手伝うって言葉は上下関係を作ってるだけで、実は「任せて」が正解"]]}, {"id": "外食", "kw": ["外食", "店", "ランチ", "予約", "レストラン", "ファミレス"], "r": [["me", "店選びを全部任せて、着いてから文句", 0], ["pt", "言わないと次も同じ店になるから", 0], ["me", "じゃあ次は自分で選んで", 1], ["pt", "予約するほどのこと？", 0], ["me", "予約しなかったら1時間待ったでしょ", 1], ["pt", "{pt}だけど、メニュー決めるのに15分かかった", 0], ["n", "外食で店が決まらない夫婦、何組見てきたか", 0], ["me", "結局いつものファミレスになる", 0], ["pt", "いつもの店が一番安心なんだよ", 0], ["me", "安心より、たまには冒険したい", 1], ["n", "店選びは交代制が平和", 0], ["me", "次の外食はそっちが予約から全部", 0]], "n": ["{pt}があなたのポストにいいねしました", "グルメアカウントが引用しました"], "d": [["{pt}", "次は店、自分で予約する"], ["中学の同級生", "いい店知ってるぞ"]], "g": [["pt", "{me}は『揉める』と表現してるけど、{pt}は『意思決定の疲弊』を感じてるだけ。毎回ゼロからゼロ和で相談するのは認知負荷が高い。{pt}が黙って選ぶと、{me}は『無視された』と感じる悪循環。"]]}, {"id": "テレビ", "kw": ["テレビ", "リモコン", "チャンネル", "録画", "番組"], "r": [["me", "リモコンの主導権が一度も回ってこない", 0], ["pt", "見たい番組がかぶるのは仕方ない", 0], ["me", "かぶってるんじゃなくて、全部そっちが選んでる", 1], ["pt", "録画すればいいじゃん", 0], ["me", "録画容量がそっちの番組で満杯", 1], ["pt", "{pt}だけど、寝てるのにテレビつけっぱなしだった", 0], ["n", "テレビ2台ある家、平和そう", 0], ["me", "見てないなら消して、で「見てる」って言うやつ", 0], ["pt", "音がついてないと落ち着かない", 0], ["me", "落ち着かないのはこっちの睡眠", 1], ["n", "リモコン戦争、昭和から続いてる", 0], ["me", "今日のリモコンはこっちが持つ", 0]], "n": ["{pt}があなたのポストにいいねしました（テレビを見ながら）", "テレビ局のアカウントが反応しました"], "d": [["{pt}", "今日は好きな番組見ていいよ"], ["自分の母", "お父さんもリモコン離さなかったわ"]], "g": [["me", "あれはリモコンの問題じゃなくて「この家の支配権を握っている」という安心感の演出だよ。離したら自分の存在価値が希薄になるから、必死で握りしめてるだけ。"]]}, {"id": "電気つけっぱなし", "kw": ["電気", "つけっぱなし", "消し忘れ", "開けっぱなし", "閉め忘れ"], "r": [["me", "部屋を出るたびに電気がつけっぱなし", 0], ["pt", "すぐ戻るつもりなんだよ", 0], ["me", "戻ってきたことがない", 1], ["pt", "電気代そんなに変わらないでしょ", 0], ["me", "請求書見てから言って", 1], ["pt", "{pt}だけど、ドアも開けっぱなしにしてる", 0], ["n", "つけっぱなし星人、どの家にもいる", 0], ["me", "家中の電気をつけて歩く人の後ろを消して歩く人生", 0], ["pt", "気づいたなら消してくれればいいのに", 0], ["me", "それをずっとやってるから投稿してる", 1], ["n", "人感センサー、夫婦円満の味方", 0], ["me", "次につけっぱなしにしたら電気代は割り勘", 0]], "n": ["{pt}があなたのポストにいいねしました", "電力会社のアカウントが反応しました"], "d": [["{pt}", "さっき全部消してきた"], ["自分の母", "電気はこまめに消しなさい"]], "g": [["me", "多分「すぐ戻る」が嘘で「つけっぱなしでいると安心する」が本音。部屋が明かりで満たされてる間だけ自分が主権を持つ時間なんだよ。消した瞬間、孤独が来るから消せないんだ。"], ["pt", "「つけっぱなし」はあなたの「完璧な管理」への拒絶反応。あなたが細部にまで口を出さないでほしい、という無言の抵抗。明かりを消す＝あなたのルールに従う、だから消せない。権力闘争の一環。"]]}, {"id": "頼んだのに半分", "kw": ["頼んだ", "お願いした", "お願いしたのに", "言われてない", "全部とは", "確認", "半分だけ", "1個だけ", "一個だけ", "1本だけ"], "r": [["me", "「全部」って言わないと全部やらないの、なんで", 0], ["pt", "言われた通りにやったのに怒られるの理不尽", 0], ["me", "分からなかったなら聞けばいいだけ", 1], ["pt", "頼み方が曖昧なのも悪くない？", 0], ["me", "仕事なら確認するのに、家だと確認しないのが一番引っかかる", 1], ["pt", "「お願い」なら多少ズレても許してよ", 0], ["me", "「ごめん、分からなかった」の一言で終わる話", 0], ["pt", "{pt}だけど、これは聞かなかった{pt}が悪い", 0], ["n", "頼んだことが半分だけ終わってる現象、名前つけたい", 0], ["me", "次から箇条書きで渡す。チェック欄つきで", 0], ["pt", "責める言い方されると謝りたくなくなる", 0], ["me", "言い方の話にすり替えないで", 1]], "n": ["{pt}が「全部とは言われてない」と引用しました", "「#全部って言わないとやらない」がトレンド入りしました"], "d": [["{pt}", "残りもやっといた。最初から聞けばよかった"], ["ママ友", "うちも「言われてない」が口ぐせ笑"]], "g": [["me", "怒ってるのはビールじゃなくて、指示通りに動いてほしいのに毎回「解釈違い」で揉める確率の高さだよ。毎回確認させないと不安になる"], ["pt", "{pt}は「1本」で済ませた自分を「効率的にやった」と評価してる。{me}は「配慮が足りない」と感じてる。この評価軸のズレを埋めようとしてない"]]}, {"id": "判断を丸投げ", "kw": ["行っていい", "いってきていい", "行ってきていい", "断るよ", "大変なら", "行っていいよ", "いいよって", "許可", "誘われた"], "r": [["me", "「大変なら断るよ」って、大変なのは分かってるでしょ", 0], ["pt", "聞いてくれるだけ優しいと思うけど", 0], ["me", "聞くんじゃなくて、自分で状況を見て決めてほしい", 1], ["pt", "「いいよ」って言ったのはそっちでしょ", 0], ["me", "「いいよ」以外の返事が言いにくい聞き方してる", 1], ["pt", "行くなって言われたら行かないのに", 0], ["me", "判断をこっちに預けて、責任もこっちに置いていくのやめて", 0], ["pt", "{pt}だけど、これやってた。今気づいた", 0], ["n", "「いいよ」の中身を読み取るの、夫婦の難関", 0], ["me", "うちも「大丈夫？」って聞くだけで、何も変わらない", 0], ["pt", "たまの飲み会くらい気持ちよく送り出してよ", 0], ["me", "送り出したあと一番大変な時間を一人で回すのはこっち", 1]], "n": ["{pt}があなたのポストにいいねしました（飲み会の会場から）", "「#大変なら断るよ」がトレンド入りしました"], "d": [["{pt}", "今回は断った。今日は早く帰る"], ["ママ友", "「いいよ💦」の💦に全部入ってるよね"]], "g": [["me", "「大変なら断る」は責任転嫁の典型。{me}の機嫌を気遣うフリをして、決断の重荷を丸投げしてるだけ。結局「ダメ」って言わせないよう、自分だけ安全圏に居る悪手だよ。"], ["pt", "{pt}は「行かないで」と言われたくないから、選択肢を渡して逃げ道を作ってる。{me}が「いいよ」って返す前提で聞いてるし、そこに怒ってるなら{me}側の期待値がズレてるだけ。"]]}, {"id": "頭冷やしてくる", "kw": ["頭冷やし", "頭を冷やし", "出て行った", "出ていった", "家を出", "外に出", "コンビニ行って", "散歩してくる", "ドライブ"], "r": [["me", "喧嘩のたびに一人だけ外に出られるの、ずるい", 0], ["pt", "その場で言い合うより、一回離れた方がいいでしょ", 0], ["me", "その間に家のことを回してるのはこっち", 1], ["pt", "冷静になるために出てるんだよ", 0], ["me", "うちは泣きながらご飯作ってたよ", 1], ["pt", "{pt}だけど、これ言われて初めて気づいた", 0], ["n", "「頭冷やしてくる」できるのは片方だけなの、確かに", 0], ["me", "逃げる自由すら平等じゃない", 0], ["pt", "帰ってきてちゃんと謝ったならいいじゃん", 0], ["me", "謝る前に、留守の間のことを想像して", 1], ["n", "次は二人とも同時に頭冷やしに行こう", 0], ["me", "次はこっちが先にコンビニ行く", 0]], "n": ["{pt}が外出先からあなたのポストを見ています", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "今帰る。何か買ってくものある？"], ["自分の母", "お父さんもすぐ外に出てたわ"]], "g": [["me", "外に出るって、対話じゃなくて単なる逃走だよね。問題解決のために離れるなら、戻ってきてからちゃんと向き合う義務がある。毎回逃げてるだけじゃ、{me}の怒りの矛先が空振りして余計に溜まるだけ"], ["me", "喧嘩中に外に出られるのは、家庭の物理的責任を{me}に完全に丸投げして、自分の自由時間だけ確保してるから。冷静になるために出るのは理解できるけど、それって結局家事労働の不公平を固定化する行為だよね"]]}, {"id": "口きかない", "kw": ["口きかない", "口をきかない", "口を聞", "口聞いて", "話さない", "無視", "冷戦", "何日目", "日目", "会話がない", "会話ない"], "r": [["me", "喧嘩して何日も口きかないの、どっちが先に折れるかの勝負になってる", 0], ["pt", "話しかけても無視されるから、こっちも黙るしかない", 0], ["me", "無視されたくないなら、先に謝ればいい", 1], ["pt", "黙ってる時間が一番の答えだと思ってる", 0], ["me", "黙ってれば終わると思ってるのが一番ずるい", 1], ["pt", "{pt}だけど、口きかない作戦はこっちもしんどい", 0], ["n", "みんな喧嘩したら何日くらい話さないの？", 0], ["me", "?子ども,子供,息子,娘|子どもの前だけ普通に話すの、疲れるよね", 0], ["pt", "時間が経てば自然に戻るよ", 0], ["me", "自然に戻ったこと、一回もない", 1], ["n", "LINEだけは事務連絡してる夫婦、多そう", 0], ["me", "今日こそこっちから「おはよう」って言ってみる", 0]], "n": ["{pt}がこのポストを見ました（まだ口はきいていません）", "「#夫婦の冷戦」がトレンド入りしました"], "d": [["{pt}", "……おはよう"], ["ママ友", "うち最長9日だった。生きて"]], "g": [["me", "5日経つと「謝る」より「誰が先に歩み寄るか」のプライドが勝っちゃうのが人間。口が重くなる前に、軽く一言だけ投げてみれば、相手もフタを開けやすくなる"], ["pt", "「5日目」とカウントしてる時点で、まだ怒りのピークから下り坂に入ってる。今は何を言っても「まだ怒ってる」って解釈されるだけ。まずは1日、徹底的に距離を置くのが一番早い"]]}, {"id": "いる方が疲れる", "kw": ["帰ってくると", "帰宅", "いる方が疲れ", "いない方が", "いない方がラク", "いない方が楽", "いる日の方", "休日の方", "帰ってきてから"], "r": [["me", "一人で回してる時より、帰ってきてからの方がイライラする", 0], ["pt", "帰ってきたら手伝ってるのに、それ言われるの悲しい", 0], ["me", "手伝うたびに「どこ？」「これどうするの？」って聞かれて、結局こっちが動いてる", 1], ["pt", "仕事から帰ってすぐ戦力になれって無理", 2], ["me", "戦力になれじゃなくて、子どもを一人増やさないでほしい", 1], ["pt", "{pt}だけど、帰ってからスマホ見てる自覚ある", 0], ["n", "「一人の方がラク」って言われるの、地味に一番きつい", 0], ["me", "一人の時はペースが崩れないから、まだ回る", 0], ["pt", "そう思うなら最初から言ってくれれば", 0], ["me", "言ったら「疲れてるのに」って不機嫌になる", 1], ["n", "子ども＋大人一人、の大人一人が問題なんだね", 0], ["me", "帰ってきたら、まず聞かずに動いて", 0]], "n": ["{pt}があなたのポストを帰りの電車で読んでいます", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "今日は帰ったらお風呂担当する"], ["ママ友", "わかる。休日の方が疲れるの何なんだろうね"]], "g": [["me", "「一人で回してる時」が基準だから、帰宅後の微小な雑音や無関心が相対的に大きく見えるだけ。基準が歪んでるから、いくら手伝われても帳消しにならないんだ"], ["pt", "「イライラする」と言う前に、帰宅後の10分で何をしてほしいか具体的な指示を出した事ある？。期待値を共有してないまま「戦力」を要求してるだけ"]]}, {"id": "育休は休み", "kw": ["育休", "産休", "休めて", "休みでいい", "休んでる", "長期休み", "家にいるだけ", "専業"], "r": [["me", "育休は休みじゃなくて、24時間の育児期間", 0], ["pt", "会社行かなくていいのはうらやましいって思っちゃう", 0], ["me", "交代していいよ。明日から1週間", 1], ["pt", "昼間は赤ちゃんと一緒に寝られるんでしょ", 2], ["me", "寝られるのは赤ちゃんだけ", 1], ["pt", "{pt}だけど、一日見たら二度と言えなくなった", 0], ["n", "「休み」の二文字で全部台無しになる", 0], ["me", "トイレすら一人で行けない日が休み？", 0], ["pt", "大変なのは分かってるけど、仕事も大変なんだよ", 0], ["me", "どっちが大変かじゃなくて、休みじゃないって話", 1], ["n", "育休の名前を「育児勤務」に変えたら解決しそう", 0], ["me", "次の休日、丸一日まかせるから感想聞かせて", 0]], "n": ["「#育休は休みじゃない」がトレンド入りしました", "{pt}の同僚があなたのポストを引用しました"], "d": [["{pt}", "休みって言ったのは撤回する。ごめん"], ["自分の母", "赤ちゃんの時が一番寝られなかったわよ"]], "g": [["me", "「いいよな」で終わらせてる時点で、育児の主体を完全に{me}に押し付けてる。{pt}は“観察者”でいて、{me}だけが“当事者”になる構造を、あの一言で固定してる。"], ["pt", "{me}が「助けて」と言わずに「愚痴」で済ませてると、{pt}は「自分は必要とされていない」と感じる。距離を置くのは冷たさじゃなくて、関わりたくないという防衛本能。"]]}, {"id": "俺は気にしない", "kw": ["気にしない", "気にならない", "俺はいい", "私はいい", "同じことしたら", "こっちがやると", "ダブスタ"], "r": [["me", "自分がやる時は「気にしない」で、こっちがやると怒るの何", 0], ["pt", "本当に気にならないんだから仕方ない", 0], ["me", "気にならないなら、こっちがやっても怒らないで", 1], ["pt", "それとこれとは状況が違う", 0], ["me", "状況が違うのはいつもそっちに都合がいい時だけ", 1], ["pt", "{pt}だけど、自分ルールで動いてる自覚はある", 0], ["n", "「俺は気にしない」は相手が気にしてる時に言う言葉じゃない", 0], ["me", "{me}が気にしてるって話をしてるの", 0], ["pt", "そんな細かいことで責められても", 0], ["me", "細かいことの積み重ねで心が離れる", 1], ["n", "自分に甘く相手に厳しい人、夫婦に限らず多い", 0], ["me", "次に「気にしない」って言ったら同じことやり返す", 0]], "n": ["{pt}が「気にしてない」とリプしました", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "気にしてないって言い方は良くなかった"], ["ママ友", "「俺は気にしない」名言集作れるよね"]], "g": [["pt", "{pt}は「気にしない」と言いながら、実はあなたがやったことに対して「もっとこうしてほしかった」という期待を持ってる。その期待が裏切られたら怒る。無関心ではなく、関わりすぎて壊れてる。"]]}, {"id": "やってるつもり", "kw": ["やってるつもり", "俺もやってる", "私もやってる", "やってるじゃん", "やってるのに", "何もしない", "なにもしない", "何もしてない"], "r": [["me", "何もしないより、「自分はやってる」と本気で思ってる方がしんどい", 0], ["pt", "ゴミ出しもしてるし風呂も洗ってる、やってるでしょ", 0], ["me", "「やってること」を数えるより、やってないことを数えて", 1], ["pt", "全部やれって言われたら無理", 0], ["me", "全部じゃなくて、気づいたことを自分からやってほしい", 1], ["pt", "{pt}だけど、やってる自慢してた。恥ずかしい", 0], ["n", "家事の見えない部分、リスト化したら100個超えるらしい", 0], ["me", "名前のない家事を全部こっちが拾ってる", 0], ["pt", "言ってくれたらやるのに", 0], ["me", "「言ってくれたら」の、言う係がしんどい", 1], ["n", "家事の割合、夫婦で答えるとだいたい合計150%になる説", 0], ["me", "一週間、全家事を書き出して見せる", 0]], "n": ["「#名前のない家事」がトレンド入りしました", "{pt}があなたのポストを引用しました"], "d": [["{pt}", "書き出してみたら、確かに少なかった"], ["自分の母", "お父さんも「やってる」って言ってたわ"]], "g": [["me", "「やってる」って口に出す時点で、お前の頭はすでに「報酬」を求めてる。義務ではなく取引として見ちゃってるんだよ。だから{me}が感謝を返さないと怒る、あの構図になるんだろ。"], ["pt", "「気づいたことを」が地雷だ。{pt}は指示待ちでしか動けない。{me}は「気づかない{pt}が嫌」で、{pt}は「言われたことしかしてない」で、両方とも相手の脳内OSを理解してない"]]}, {"id": "謝らない", "kw": ["謝らない", "謝って", "謝れ", "ごめん", "言い方", "責められ", "逆ギレ"], "r": [["me", "「ごめん」の3文字がなんでこんなに出ないの", 0], ["pt", "言い方がきつかったら、謝る気もなくなる", 0], ["me", "謝らない理由を言い方のせいにしないで", 1], ["pt", "何に謝ればいいのか分からない", 0], ["me", "分からないなら、それを聞いて", 1], ["pt", "{pt}だけど、謝ったら負けだと思ってた時期ある", 0], ["n", "先に謝った方が勝ち、くらいでいいのに", 0], ["me", "うちの{pt}、謝る代わりにアイス買ってくる", 0], ["pt", "謝っても「本当に分かってる？」って言われるのがつらい", 0], ["me", "同じこと繰り返すから、そう言われるんだよ", 1], ["n", "ごめんとありがとうが言える夫婦は長持ちするらしい", 0], ["me", "今日は「ごめん」を言うまで寝かせない", 0]], "n": ["{pt}が「ごめん」と下書きして消しました", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "さっきはごめん。言い方の問題じゃなかった"], ["ママ友", "アイスで済ませようとするの、うちだけじゃなかった"]], "g": [["me", "謝らないのは、自分の非を認めると「もう二度としない」と約束しないと駄目だから。その責任の重さから逃げてんの。無意識に防御してる"], ["me", "謝れないのは、謝ると自分が「被害者」から「加害者」に立場が変わるから。承認欲求や自己防衛が、謝罪の優先度を下げてんの"]]}, {"id": "離婚", "kw": ["離婚", "別居", "実家に帰", "出ていけ", "出て行け", "別れ", "再構築"], "r": [["me", "喧嘩のたびに「離婚」って言葉を出すの、ずるい", 0], ["pt", "それくらい追い詰められてるってことだよ", 0], ["me", "本気じゃないなら、軽く使わないで", 1], ["pt", "そこまで言わせた理由を考えた方がいい", 0], ["me", "理由を話す前に「離婚」が出てくるから話にならない", 1], ["pt", "{pt}だけど、勢いで「離婚」って言って後悔した", 0], ["n", "「離婚」は最終兵器。一回撃ったら戻せない", 0], ["me", "子どもの前で言うのだけはやめて", 0], ["pt", "本気で言ってる時もあるよ。ちゃんと聞いて", 0], ["me", "本気なら、喧嘩の勢いじゃなくて落ち着いて話して", 1], ["n", "リプ欄で離婚を勧める人、だいたい独身", 0], ["me", "まずは一晩寝てから、もう一回話す", 0]], "n": ["{pt}があなたのポストをブックマークしました", "「#離婚の二文字」がトレンド入りしました"], "d": [["{pt}", "さっきのは言い過ぎた。もう一回話そう"], ["自分の母", "いつでも帰ってきていいけど、まず話しなさい"]], "g": [["me", "毎回「離婚」で止められてるから、根本的な不満が溜まっていく悪循環。言葉で逃げるから、次はもっと重い事になるだけ。"], ["me", "「離婚」って言葉は、実は「今はもう話したくない」っていう無防備な断り方。攻撃に見えて、実は守りの行動なんじゃない？"]]}, {"id": "途中までの家事", "kw": ["途中まで", "スタートボタン", "ゴミ袋", "袋をセット", "浴槽だけ", "コップだけ", "やる家事", "やらない家事", "家事選", "詰め替え", "在庫"], "r": [["me", "ゴミは出すのに、新しい袋はセットしない", 0], ["pt", "ゴミ出しはやってるんだから、そこは評価して", 0], ["me", "袋をセットするまでがゴミ出し", 1], ["pt", "やる家事を決めておいた方がお互いラクでしょ", 0], ["me", "決めてもいいけど、やる家事を自分で選べるのはずるい", 1], ["pt", "{pt}だけど、洗濯はスタートボタン押して終わりにしてた", 0], ["n", "「浴槽洗って」で浴槽だけ洗うの、ある意味正確", 0], ["me", "コップだけ洗わずにシンクの端に寄せるの、なんなの", 0], ["pt", "言ってくれればやるのに", 0], ["me", "シャンプーの詰め替えも日用品の在庫も、言われる前に誰かがやってる", 1], ["n", "途中まで家事、全国の家庭で同時多発してる", 0], ["me", "次から「最後まで」って毎回つける", 0]], "n": ["「#途中まで家事」がトレンド入りしました", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "ゴミ袋、今セットした"], ["ママ友", "うちはダンボールまとめたあとハサミが行方不明になる"]], "g": [["me", "{pt}は「ゴミを出す」でしか完了感を得てなくて、袋のセットは報酬ゼロの雑務だから無意識にスキップしてる。{me}は両方で1セットだと思ってる。報酬設計のズレだよ"]]}, {"id": "家事分担表", "kw": ["分担", "割合", "点数", "合計", "何割", "10対0", "9対1", "比率"], "r": [["me", "家事の割合、聞く相手によって合計が150%になる", 0], ["pt", "仕事を10入れたら、こっちもかなりやってることになる", 0], ["me", "仕事はお互いしてる。家のことの話をしてる", 1], ["pt", "{me}の自己採点が厳しすぎるだけでは", 0], ["me", "じゃあ1週間、全部メモして見せ合おう", 1], ["pt", "{pt}だけど、点数つけたら完敗だった", 0], ["n", "分担表、つけた瞬間に喧嘩が始まる説", 0], ["me", "名前のない家事を入れたら、たぶん倍になる", 0], ["pt", "点数で比べ出したら夫婦は終わり", 0], ["me", "比べないと、片方だけがずっと多いままなんだよ", 1], ["n", "猫を入れたら癒し1000点で猫の圧勝", 0], ["me", "今日から冷蔵庫に分担表を貼る", 0]], "n": ["{pt}が分担表を見て黙りました", "「#家事分担表」がトレンド入りしました"], "d": [["{pt}", "表見た。来週から洗濯はこっちでやる"], ["ママ友", "うちは合計50対7だった"]], "g": [["pt", "点数で測ってる時点で、あなたは「評価されること」を求めているだけ。{pt}は家事を“仕事”と捉えて、報酬や評価のない自己完結したタスクとして処理してる。"]]}, {"id": "機嫌が悪い", "kw": ["機嫌", "不機嫌", "ピリピリ", "ムスッと", "怒ってる", "怒ってない", "声のトーン", "地雷"], "r": [["me", "機嫌が悪い理由を聞いたら、余計に怒られるやつ", 0], ["pt", "理由を聞く前に、自分に心当たりがないか考えて", 0], ["me", "考えても本当に分からないから聞いてる", 1], ["pt", "「どうしたの？」より「何か手伝う？」が正解", 0], ["me", "手伝うって言ったら「そういうことじゃない」って言われた", 1], ["pt", "{pt}だけど、何もなく不機嫌になることはない。たぶん原因ある", 0], ["n", "そっとお茶を出して「お疲れさま」が最強らしい", 0], ["me", "家の空気がピリピリしてると、こっちまで息が浅くなる", 0], ["pt", "不機嫌になる日もある。人間だもの", 0], ["me", "なる日もあるのはいい。撒き散らさないでほしい", 1], ["n", "しばらく様子見て、LINEで聞くと答えてくれることもある", 0], ["me", "今日は晩ご飯何がいいか聞いてみる", 0]], "n": ["{pt}の機嫌がさらに悪くなりました（このポストを見た模様）", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "別に怒ってない"], ["自分の母", "そういう時は甘いものよ"]], "g": [["pt", "「理由がわからない」が本音なら、昨夜の会話で{pt}に刺さった一言を、朝になって急に自覚した{me}側の無自覚さこそが原因ではないか。"], ["pt", "{pt}は{me}の愚痴を聞きたいわけではなく、{me}が{pt}の機嫌を「管理」しようとしてくること自体にイラッとしている。距離を置くべき時を、{me}が近づきすぎた。"]]}, {"id": "体調不良", "kw": ["風邪", "熱", "体調", "寝込", "インフル", "コロナ", "頭痛", "具合が", "発熱", "38度"], "r": [["me", "こっちが熱を出したら「自分も熱あるかも」って測り始める、あれ何", 0], ["pt", "本当にしんどいんだから仕方ない", 0], ["me", "37度で寝込む人と、39度で家事する人がいる", 1], ["pt", "体調悪い時くらい優しくしてよ", 0], ["me", "こっちが寝込んだ時に優しくしてもらった記憶がない", 1], ["pt", "{pt}だけど、ちょっと大げさにしてる自覚はある", 0], ["n", "体調不良の時の「大丈夫？」だけは信じられない", 0], ["me", "「何か食べたいものある？」の一言で全部許せるのに", 0], ["pt", "しんどいオーラ出してるのは、心配してほしいから", 0], ["me", "心配はする。でも何日も続くとこっちが倒れる", 1], ["n", "夫婦で同時に寝込んだら誰が家を回すのか問題", 0], ["me", "次こっちが寝込んだら、ポカリ買ってくるところから始めて", 0]], "n": ["{pt}が体温計の写真を送ってきました", "{pt}があなたのポストにいいねしました（布団の中から）"], "d": [["{pt}", "ポカリ買ってきた。今日は家のことやる"], ["自分の母", "風邪の時は甘えていいのよ"]], "g": [["me", "{pt}が寝込むと「何もしない」ってイライラするのは、あなたの「世話焼き」が愛情表現の唯一の手段だから。相手が動かないと、自分の存在意義が薄れるから怒ってる"], ["pt", "39度で家事する人なんて稀。大抵は「自分が倒れると周りに迷惑かける」って思える強迫観念がそうさせるだけ。37度で寝込む{pt}は、その強迫観念がないだけ。正常"]]}, {"id": "昔の方が楽", "kw": ["昔は", "昭和", "今の時代", "亭主関白", "威厳", "共働き", "専業主婦", "大黒柱"], "r": [["me", "今の時代、仕事も家事も育児も全部やるのが当たり前になってる", 0], ["pt", "昔は専業主婦が多かったんだから比べるのがおかしい", 0], ["me", "比べてるんじゃなくて、今がしんどいって話", 1], ["pt", "共働きなら家のことも半分でしょ", 0], ["me", "半分やってるつもりで、半分に届いてない人が多い", 1], ["pt", "{pt}だけど、確かに昔の方が楽そうとは思う", 0], ["n", "昭和と比べだしたら、もう話が終わらない", 0], ["me", "威厳はいらない。ありがとうがあればいい", 0], ["pt", "我慢の上にある家庭って、幸せなの？", 0], ["me", "我慢をどっちか一人に寄せないでって話", 1], ["n", "結婚のメリット論争、リプ欄で毎日やってる", 0], ["me", "昔とか今とかじゃなく、うちの話をしよう", 0]], "n": ["「#昭和の夫」がトレンド入りしました", "{pt}があなたのポストを引用しました"], "d": [["{pt}", "威厳とかいらない。今日の皿洗いはやる"], ["義母", "うちの時代はね…（以下略）"]], "g": [["me", "「昔」ってのは比較対象が明確な基準を失くした時の万能の言い訳。今の不満を「昔はこうだった」という幻想で正当化したいだけ。基準をズラすのが上手い人ほど、今の現実から逃げたい証拠。"], ["pt", "{me}が「昔の方が楽」と言いたくなる心理は、今の努力が報われない感覚から。でも「昔」は労働量が少なかったんじゃなくて、役割が分断されてただけ。分断された世界を「楽」と錯覚して、今の一体型のしんどさを正当化してるのが悲しい。"]]}, {"id": "すぐ怒る", "kw": ["怒鳴", "キレて", "キレる", "キレた", "キレられ", "ヒステリ", "すぐ怒", "怒られ", "怖い", "ブチギレ", "八つ当たり"], "r": [["me", "ちょっとしたことでキレられて、家で気が休まらない", 0], ["pt", "怒らせてる原因があるんじゃない？", 0], ["me", "原因があっても、怒鳴っていい理由にはならない", 1], ["pt", "普段我慢してるから、爆発するんだよ", 0], ["me", "我慢してるなら、爆発する前に言ってほしい", 1], ["pt", "{pt}だけど、余裕がない時に八つ当たりしてた", 0], ["n", "怒りっぽい時は、だいたい寝不足か空腹", 0], ["me", "子どもの前で大声出すのだけはやめて", 0], ["pt", "怒るのにもエネルギー使ってるんだよ", 0], ["me", "そのエネルギーを話し合いに回して", 1], ["n", "「怖い」が出てきたら、もう一回距離置いた方がいい", 0], ["me", "今日は落ち着いてから話そうって言ってみる", 0]], "n": ["{pt}があなたのポストを見ています", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "さっきは言い過ぎた。ごめん"], ["自分の母", "余裕がない時は誰でもそうなるよ"]], "g": [["me", "「ちょっとしたことで」って言葉が怪しい。たぶん積もった不満の合算で爆発してるだけ。毎回細かく指摘されても、結局全部無視されてたからじゃない？"], ["pt", "{pt}側からすると、同じ指摘が毎晩繰り返されてるから「またか」となるんだよ。一回聞いて終わりにする文化が、この家には最初から無かった可能性が高い。"]]}, {"id": "車選び", "kw": ["SUV", "ミニバン", "車を買", "車買", "新車", "スライドドア", "セレナ", "ステップワゴン", "軽自動車", "3列"], "r": [["me", "子育て中なのにスライドドアじゃない車を選ぼうとしてる", 0], ["pt", "ミニバンはダサい。一生に何回も買えないんだから乗りたい車がいい", 0], ["me", "乗るのは毎日の送迎のこっち", 1], ["pt", "SUVでも3列あれば十分", 0], ["me", "3列目に子どもを乗せる時の苦労を知って", 1], ["pt", "{pt}だけど、結局ミニバン買ってよかったと思ってる", 0], ["n", "駐車場でドアぶつけないか毎回ヒヤヒヤするやつ", 0], ["me", "チャイルドシートを付け外ししてから意見して", 0], ["pt", "車くらい好きなの選ばせてよ", 0], ["me", "好きなのは子どもが大きくなってから", 1], ["n", "車選びで揉める夫婦、ディーラーで毎週見る", 0], ["me", "試乗は子ども全員連れて行こう", 0]], "n": ["ディーラーのアカウントが反応しました", "{pt}があなたのポストにいいねしました"], "d": [["{pt}", "ミニバンの見積もりも取ってきた"], ["ママ友", "スライドドアは正義"]], "g": [["me", "結局、{me}の負担軽減より自分の運転の楽しさを選ぶ男だ。SUVは運転が楽しいからで、子供のためじゃない"], ["pt", "ミニバンを「実用車」としか見えてないのが悲しい。趣味の車は精神安定剤だ。送迎だけならレンタカーでも代用できる"]]}, {"id": "つわり・妊娠", "kw": ["つわり", "悪阻", "妊娠", "妊婦", "吐きづわり", "食べづわり", "臨月", "陣痛", "胎動", "マタニティ"], "r": [["me", "つわり本当にしんどいよね。今日は何もしなくていい日", 0], ["pt", "つわりって病気じゃないんでしょ？", 2], ["me", "病気じゃないけど、ずっと船酔いしてる状態だよ", 1], ["pt", "うちは普通に家事してたけどな", 2], ["me", "人によって全然違うの。比べないで", 1], ["pt", "{pt}だけど、代われるなら代わりたかった", 0], ["n", "つわり中に「何なら食べられる？」って聞いてくれる人、尊い", 0], ["me", "{pt}は家のことと買い出し全部やって当然の時期", 0], ["pt", "料理の匂いがダメって言われても、何作ればいいの", 0], ["me", "作らなくていい。食べられそうなもの買ってきて", 1], ["n", "つわり明けまで、とりあえず水分だけはとって", 0], ["me", "「いつ終わるの？」って聞かれるのが一番きつかった", 0]], "n": ["{pt}があなたのポストを見て、ポカリを買いに行きました", "「#つわりは病気じゃない論争」がトレンド入りしました"], "d": [["{pt}", "今日は晩ご飯いらないよ。何か食べられそうなものある？"], ["自分の母", "つわりはね、無理しないのが一番よ"]], "g": [["pt", "「病気じゃない」って言葉、実は{pt}の恐怖の裏返し。自分が治せない不安を「大げさだ」で処理してるだけ"], ["me", "{pt}の「病気じゃない」は、{me}の苦しみを「自分の責任じゃないもの」として切り捨てて、自分の楽を確保してるだけ"]]}, {"id": "レス・夜", "kw": ["レスで", "レスが", "レスに", "レスの", "レス歴", "年レス", "レス夫婦", "レス状態", "レス1", "レス2", "レス3", "レス4", "レス5", "レス6", "レス7", "レス8", "レス9", "夜の営み", "スキンシップ", "セックスレス", "触られ", "求められ", "拒否", "断られ", "風俗", "性欲", "体の関係"], "r": [["me", "断られ続けると、自分に魅力がないのかなって思っちゃう", 0], ["pt", "疲れてる日に求められても応えられない", 0], ["me", "疲れてない日がこの何年かで1日もないのが問題", 1], ["pt", "家事と育児で手一杯なのに、そこまで求めないで", 0], ["me", "先に家のことを一緒にやれば、余裕も生まれるかも", 1], ["pt", "{pt}だけど、断る側も罪悪感で苦しいんだよ", 0], ["n", "レスの話題、リプ欄が毎回いちばん荒れる", 0], ["me", "手をつなぐとか、ハグだけでもあったら全然違う", 0], ["pt", "「ありがとう」も言わない人に触られたくない", 2], ["me", "昼間の態度が夜に出るって、本当にそう", 1], ["n", "まず二人で話せる時間を作るところからだね", 0], ["me", "今夜は子どもが寝たら、ちゃんと話してみる", 0]], "n": ["{pt}があなたのポストを見て、そっと寝室に行きました", "「#夫婦のスキンシップ」がトレンド入りしました"], "d": [["{pt}", "今度の休み、二人で出かけない？"], ["ママ友", "うちも同じ。今度ゆっくり話そ"]], "g": [["me", "スキンシップで愛情確認しようとしてる時点で、日常会話の温度が冷めてる証拠。手を取り合う前に、今日あった話をしてる？そっからでしょ。"], ["pt", "スキンシップを『義務』みたいに求めてない？{pt}が拒否するのは、義務感でされるスキンシップがさらに疲れるから。好きで近づいてきてほしい。"]]}];
+  function matchTopics(text){
+    var sc=TOPICS.map(function(t){ var s=0; t.kw.forEach(function(k){ if(text.indexOf(k)>=0) s+=k.length; }); return {t:t,s:s}; }).filter(function(x){return x.s>0;});
+    sc.sort(function(a,b){return b.s-a.s;});
+    return sc.slice(0,2).map(function(x){return x.t;});
+  }
+  function fromTopics(text, me, seed){
+    me=role(me); var pt=other(me), ts=matchTopics(text); if(!ts.length) return null;
+    var r=rng(hash(text)+seed), reps=[];
+    ts.forEach(function(t,ti){ t.r.forEach(function(x,i){ if(ti>0 && i%2) return; var tx=x[1]; if(tx.charAt(0)==='?'){ var k=tx.indexOf('|'); if(!tx.slice(1,k).split(',').some(function(w){return text.indexOf(w)>=0;})) return; x=[x[0],tx.slice(k+1),x[2]]; } reps.push({camp: x[0]==='me'?me : x[0]==='pt'?pt : '独身', text: fill(x[1],text,me), to: x[2]===1, bait: x[2]===2}); }); });
+    // 辛辣で的確なリプを早い段階に3本（相手を刺す→投稿者を刺す→相手を刺す）
+    var sh=sharp(text), shA=sh.atk.slice(), shS=sh.sup.slice(); (function(){ var z=[]; for(var q=0;q<30;q++) z.push([2+q*2, q%2?'atk':'sup']); return z; })().forEach(function(z){ var pool=z[1]==='sup'?shS:shA; if(!pool.length) return; var k=Math.floor(r()*pool.length), tx=pool.splice(k,1)[0]; reps.splice(Math.min(reps.length,z[0]),0,{camp: z[1]==='sup'?me:pt, text: fill(tx,text,me), to:false}); });
+    // 炎上リプ：そのリプに投稿者側の総ツッコミ＋同じ陣営からの擁護（「同じ{pt}として恥ずかしい」）＋燃料（本人の開き直り）を後ろに散らして入れる
+    // 返信先は投稿順で決めておく（炎上リプへのツッコミを差し込んでも、言い返す相手がずれないように）
+    reps.forEach(function(x,i){ x.who = x.camp==='独身'? neutralPerson(r) : person(r,x.camp); if(x.to && i>0 && reps[i-1].camp!==x.camp) x.toH=reps[i-1].who.handle; });
+    var deck=function(arr){ var a=arr.slice(), n=0; for(var i=a.length-1;i>0;i--){ var j=Math.floor(r()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return function(){ return a[(n++)%a.length]; }; };
+    var dME=deck(PILE_ME), dDEF=deck(PILE_DEF), dFUEL=deck(PILE_FUEL), dSELF=deck(PILE_SELF);
+    var baits=reps.filter(function(x){ return x.bait; }).slice(0,2);
+    baits.forEach(function(bt,bi){ var bw=bt.who; var mine=bt.camp===pt? me : pt;
+      var pile= bi===0 ? [ {camp:mine, text:dME()}, {camp:bt.camp, text:dDEF()}, {camp:mine, text:dME()}, {camp:bt.camp, text:dFUEL()}, {camp:'self'}, {camp:bt.camp, text:dDEF()}, {camp:mine, text:dME()} ] : [ {camp:mine, text:dME()}, {camp:bt.camp, text:dDEF()}, {camp:'self'}, {camp:mine, text:dME()} ];
+      var at=reps.indexOf(bt);
+      pile.forEach(function(x,j){ var it= x.camp==='self' ? {camp:bt.camp, who:bw, text:dSELF(), toH:null, self:true} : {camp:x.camp, text:fill(x.text,text,me), toH:bw.handle, qb:{name:bw.name, text:bt.text}}; reps.splice(Math.min(reps.length, at+2+j*2+bi), 0, it); });
+    });
+    // 駿AIが本気で考えたリプ（在庫 topics の g）を普通の人の顔で1〜2本だけ紛れ込ませる。目印は付けない
+    var G=[]; ts.forEach(function(t){ (t.g||[]).forEach(function(x){ G.push(x); }); }); if(!G.length){ var gc=GEN_ANY.filter(function(c){ return c.kw.some(function(k){ return text.indexOf(k)>=0; }); }); (gc.length?gc:GEN_ANY.slice(-1)).forEach(function(c){ c.g.forEach(function(x){ G.push(x); }); }); }
+    for(var gi=0; gi<2 && G.length; gi++){ var gk=Math.floor(r()*G.length), gx=G.splice(gk,1)[0]; reps.splice(Math.min(reps.length, 5+gi*7+Math.floor(r()*3)), 0, {camp: gx[0]==='me'?me:gx[0]==='pt'?pt:'独身', text: fill(gx[1],text,me), to:false, shun:true}); }
+    // 引用リポスト（投稿の文を入れる）を4番目に1本
+    reps.splice(3,0,{camp: r()<.5?me:pt, text: fill(pick(r,QT),text,me), to:false, quote:true});
+    var ns=[], ds=[]; ts.forEach(function(t){ t.n.forEach(function(x){ ns.push(fill(x,text,me)); }); t.d.forEach(function(x){ ds.push({from:fill(x[0],text,me), text:fill(x[1],text,me).replace(/俺/g, pt==='妻'?'私':'俺')}); }); });
+    return {replies:reps, notifs:ns, dms:ds, topics:ts.map(function(t){return t.id;})};
+  }
+
+  // ===== リプ欄バトル（あなたの言い返しに相手と周りが反応する。AIなし） =====
+  var B={
+    apology:{kw:['ごめん','すみません','すいません','申し訳','反省'], r:['謝れば済むと思ってる？','謝罪はスクショで出すのがマナー','…まあ、そこまで言うなら許す'], al:['謝れるのえらい','素直なのが一番強い']},
+    question:{kw:['？','?','なんで','なぜ','どこが'], r:['質問に質問で返さないで','自分の胸に聞いてみて','それ本気で分からないの？'], al:['いい質問','それ、ちゃんと答えてほしい']},
+    laugh:{kw:['w','ｗ','草','笑'], r:['笑ってごまかすな','草生やしてる場合？','余裕ぶってるけど効いてるでしょ'], al:['余裕の勝ち','笑って流せる人が勝ち']},
+    insult:{kw:['バカ','ばか','アホ','あほ','うるさ','黙れ','しね','カス','だまれ','きもい','キモい'], r:['口が悪すぎて引く','言い返せなくなると悪口になる','通報しておきますね'], al:['気持ちは分かるけど言葉は選ぼう','落ち着いて、こっちが正しいんだから']},
+    agree:{kw:['確かに','たしかに','そうかも','一理ある','わかる'], r:['わかればいい','素直で好感度上がった','急に大人になるのやめて'], al:['大人の対応','器が大きい']},
+    family:{kw:['うちの','家族','子ども','子供','嫁','旦那','夫','妻'], r:['よその家のことは知らないけど','家庭の事情を盾にするのずるい','それはそれ、これはこれ'], al:['家の中のことは家の人にしか分からない','外野が口出しすることじゃないよね']},
+    long:{kw:[], r:['長文乙','3行でまとめて','読む気なくした'], al:['長文だけど全部正しい','よく言った、全部読んだ']},
+    who:{kw:['だれ','誰','何者','どちら様'], r:['通りすがりの{c}です','名乗るほどの者じゃない','あなたこそ誰','全国の{c}代表です'], al:['ほんとに誰','知らない人が一番うるさい']},
+    huh:{kw:['は？','は?','はぁ','はあ','え？','え?','意味わからん','意味不明'], r:['「は？」じゃなくて言葉で返して','図星だったんだ','意味わからないのはこっち'], al:['「は？」で全部伝わる','その「は？」に全部詰まってる']},
+    back:{kw:['お前','おまえ','あなたこそ','そっちこそ','あんたこそ','自分は'], r:['こっちの話はしてない','ブーメラン返し、ずるい','論点すり替えないで'], al:['ブーメラン返し決まった','それな、自分のこと棚に上げてる']},
+    plain:{kw:[], r:['論点ずらさないで','それブーメランになってるよ','必死すぎて逆に怪しい','はいはい、そうですね','リプ欄で反論するのダサい'], al:['その通り','言ってやって','援護します','相手にしなくていいよ']}
+  };
+  var WIN=['{x}がアカウントに鍵をかけました','{x}が返信を削除しました','{x}がアカウントを削除しました'];
+  var LOSE=['あなたの返信が引用で晒されています','あなたの返信に「効いてて草」が殺到しています'];
+  var CONCEDE=['…今回はこっちが言いすぎた','もう寝ます','ごめんなさい、言い過ぎました','何も言い返せない'];
+  function kindOf(t){ if(t.length>45) return 'long'; var ks=['insult','who','huh','back','apology','agree','laugh','question','family']; for(var i=0;i<ks.length;i++){ if(B[ks[i]].kw.some(function(k){return t.indexOf(k)>=0;})) return ks[i]; } return 'plain'; }
+  // round=同じ相手と何回目か。返り値: 相手の返し・味方・敵・決着
+  function battle(userText, target, myCamp, round, seed, postText){
+    var r=rng(hash(userText+'#'+round)+seed), k=kindOf(userText);
+    var res={kind:k, target:null, allies:[], enemies:[], end:null};
+    if(target.camp===myCamp){ // 味方に返信したとき：仲間うちの会話にする（決着なし）
+      var uu=short(userText,14);
+      var F = k==='insult' ? ['味方にまで噛みつくのやめて','ちょっと落ち着こう、こっちは味方'] : k==='apology' ? ['気にしないで、味方だから','謝ることないよ'] : k==='who' ? ['同じ'+myCamp+'として見過ごせなくて','通りすがりの味方です'] :
+        ['ありがとう、一緒に言ってやろう','「'+uu+'」ほんとそれ','任せて、援護射撃する','こっちの'+myCamp+'はみんな味方だよ','うちも同じ目にあってるから分かる'];
+      res.target=pick(r,F);
+      if(r()<.6) res.allies.push({who: person(r,myCamp), text: pick(r,['私も加勢します','ここ、'+myCamp+'の団結すごい','チーム'+myCamp+'強い'])});
+      if(r()<.35) res.enemies.push({who: person(r, myCamp==='妻'?'夫':'妻'), text: pick(r,['身内で慰め合ってて草','味方同士で盛り上がってるだけじゃん'])});
+      return res;
+    }
+    var enemyCamp = target.camp==='独身' ? (myCamp==='妻'?'夫':'妻') : target.camp;
+    var ally = target.camp===myCamp ? '独身' : myCamp;
+    if(k==='agree'){ res.target=pick(r,B.agree.r); res.allies.push({who: person(r,myCamp), text: pick(r,B.agree.al)}); res.end={win:true, text:target.name+'と和解しました'}; return res; }
+    var concede = k==='apology' ? r()<.3+round*.15 : (round<2 ? r()<.05 : r()<.12+(round-1)*.22);
+    if(k==='insult' && r()<.3){ res.target=pick(r,B.insult.r); res.end={win:false, text:'あなたの返信が通報されました（口が悪いと負け）'}; return res; }
+    if(concede){ res.target=pick(r,CONCEDE); res.end={win:true, text:pick(r,WIN).replace('{x}',target.name)}; }
+    else {
+      var u=short(userText,14), c=target.camp==='独身'?'独身':target.camp;
+      var QB=['「'+u+'」←効いてて草','「'+u+'」しか言えないの？','「'+u+'」って言われてもね','「'+u+'」はこっちのセリフ'];
+      var topicR=[]; if(postText){ var ts=matchTopics(userText); if(ts.length){ ts[0].r.forEach(function(x){ if(x[0]==='pt' && x[1].charAt(0)!=='?') topicR.push(fill(x[1],postText,myCamp)); }); } }
+      var pool = topicR.length && r()<.6 ? topicR : (r()<(k==='plain'?.5:.25) ? QB : B[k].r);
+      res.target=pick(r,pool).replace(/\{c\}/g,c);
+    }
+    var na=1+Math.floor(r()*2), ne=Math.floor(r()*2);
+    for(var i=0;i<na;i++) res.allies.push({who: ally==='独身'? neutralPerson(r) : person(r,ally), text: pick(r,B[k].al.concat(B.plain.al,['「'+short(userText,12)+'」まさにそれ'])).replace(/\{c\}/g,ally)});
+    if(!res.end) for(var j=0;j<ne;j++) res.enemies.push({who: person(r,enemyCamp), text: pick(r,B.plain.r)});
+    if(!res.end && round>=3 && r()<.35){ res.end={win:false, text:pick(r,LOSE)}; }
+    return res;
+  }
+  function notif(text,i,me){ return fill(NOTIF[i%NOTIF.length],text,role(me)); }
+  function dm(text,i,me){ var d=DM[i%DM.length]; return {from:fill(d[0],text,role(me)), text:fill(d[1],text,role(me)).replace('俺',role(me)==='夫'?'私':'俺')}; }
+  function fmt(n){ if(n>=100000000) return (n/100000000).toFixed(1).replace(/\.0$/,'')+'億'; if(n>=10000) return (n/10000).toFixed(n>=100000?0:1).replace(/\.0$/,'')+'万'; return n.toLocaleString('ja-JP'); }
+  // センシティブな投稿の振り分け：crisis＝燃やさず相談先を出す／grief＝燃やさず、やさしいリプだけ／adult＝この場では扱わない
+  var SENS={
+    crisis:['死にたい','しにたい','消えたい','自殺','首を吊','飛び降り','リスカ','殴られ','殴る','蹴られ','叩かれ','暴力','DV','ＤＶ','首を絞','虐待','殺される','殺してやる','殺したい'],
+    grief:['流産','死産','中絶','稽留','不妊','妊活','亡くな','他界','葬式','葬儀','お通夜','余命','乳がん','胃がん','がん治療','がんが見つか','癌','闘病','入院','手術','障害','発達','アスペ','うつ病','鬱','パニック障害','適応障害'],
+    adult:['セックス','性行為','エッチ','夜の営み','セックスレス','レス夫婦','年レス','レス歴','風俗','AV','性病','性欲','体の関係']
+  };
+  function sensitive(text){ var t=String(text); if(/(^|[^ァ-ヶ])レス([0-9０-９一二三四五六七八九十]|$|で|が|に|な|の|夫|妻)/.test(t)) return SENS.crisis.some(function(w){return t.indexOf(w)>=0;})?'crisis':'adult'; for(var k in SENS){ if(SENS[k].some(function(w){ return t.indexOf(w)>=0; })) return k; } return null; }
+  var GENTLE=['読んでて胸がぎゅっとなった。無理しないでね','ここに書けてよかった。ひとりで抱えないで','今日は何もしなくていい日にしよう','{pt}にも、今の気持ちそのまま伝えていいと思う','言葉にするのもしんどかったよね','同じ経験あるよ。時間はかかったけど、少しずつ楽になった','温かいものでも飲んで、ゆっくりしてね','返信しなくていいからね。読んでるよ','つらい時はつらいって言っていい','あなたは悪くない','誰かに話せる場所があったら、頼っていいんだよ','今日ここまで過ごせただけで十分'];
+  function gentle(text, seed, i, me){ me=role(me); var r=rng(hash(text+'~'+i)+seed); var c=r()<.75?me:(r()<.5?other(me):null); var who= c? person(r,c) : neutralPerson(r); return {who:who, text:fill(GENTLE[i%GENTLE.length],text,me), lk:Math.floor(r()*80), rt:0, rp:Math.floor(r()*3)}; }
+  // ---- サーバーで学習したお題を足す（形が壊れている物は捨てる。同じidは足さない） ----
+  function addTopics(arr){ var ok=0; if(!Array.isArray(arr)) return 0; var have={}; TOPICS.forEach(function(t){have[t.id]=1;});
+    arr.forEach(function(t){ try{ if(!t||typeof t.id!=='string'||have[t.id]) return; if(!Array.isArray(t.kw)||!t.kw.length||!t.kw.every(function(k){return typeof k==='string'&&k.length>=2;})) return;
+      if(!Array.isArray(t.r)||t.r.length<4||!t.r.every(function(x){return Array.isArray(x)&&/^(me|pt|n)$/.test(x[0])&&typeof x[1]==='string'&&x[1].length&&x[1].length<=140;})) return;
+      TOPICS.push({id:t.id,kw:t.kw,r:t.r.map(function(x){return [x[0],x[1],x[2]===1?1:x[2]===2?2:0];}),n:Array.isArray(t.n)?t.n.filter(function(x){return typeof x==='string';}):[],d:Array.isArray(t.d)?t.d.filter(function(x){return Array.isArray(x)&&typeof x[0]==='string'&&typeof x[1]==='string';}):[],g:Array.isArray(t.g)?t.g.filter(function(x){return Array.isArray(x)&&typeof x[1]==='string';}):[],learned:true}); have[t.id]=1; ok++; }catch(e){} });
+    return ok; }
+  function topicCount(){ return TOPICS.length; }
+  // ---- ネタ帳に送る前に消すもの（URL・メール・@ID・電話番号）。サーバー側でも同じものを消す ----
+  function cleanNeta(t){ return String(t||'').replace(/https?:\/\/\S+/gi,'[URL]').replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g,'[メール]').replace(/[@＠][A-Za-z0-9_]{1,15}/g,'@***').replace(/0\d{1,4}-\d{1,4}-\d{3,4}/g,'[電話]').replace(/0\d{9,10}/g,'[電話]').trim().slice(0,200); }
+  return {addTopics:addTopics, topicCount:topicCount, cleanNeta:cleanNeta, dmPlan:dmPlan, sensitive:sensitive, gentle:gentle, battle:battle, fromTopics:fromTopics, matchTopics:matchTopics, aiReply:aiReply, hash:hash, rng:rng, person:person, profile:profile, at:at, reply:reply, notif:notif, dm:dm, fmt:fmt, trends:TRENDS, short:short, guess:guess, other:other, role:role};
+})();
+if(typeof module!=='undefined') module.exports=ENJOU;
+</script>
+
+<script>
+(function(){
+  var E=ENJOU, $=function(id){return document.getElementById(id);};
+  var NOW=function(){return Date.now()/1000;};
+  // 最初から流れているサンプル投稿（架空）
+  var SAMPLES=[['夫が脱いだ靴下を洗濯カゴの横に置く。3日連続','妻'],['妻に「なんでもいい」って言われたから決めたら全部却下された','夫'],['寝かしつけ終わった瞬間に夫のゲーム音で起きた','妻'],['妻が俺のプリン食べた','夫'],['旦那の「あと5分」が毎回30分','妻'],['嫁がスマホ見ながら「うん」しか言わない','夫'],['結婚記念日を夫が忘れてた','妻'],['休日に妻が一日寝てた','夫'],['夫がトイレットペーパーを残り1cmで放置','妻'],['義実家で嫁が不機嫌だった','夫']];
+  var store={mine:[], notifs:[], dms:[], unreadN:0, unreadM:0};
+  try{ var sv=JSON.parse(localStorage.getItem('fufu_enjou_v1')||'null'); if(sv&&sv.mine) store.mine=sv.mine.slice(-30); }catch(e){}
+  function save(){ try{ localStorage.setItem('fufu_enjou_v1', JSON.stringify({mine:store.mine})); }catch(e){} }
+  var t0=NOW();
+  var SAMPLE_AI={"夫が脱いだ靴下を洗濯カゴの横に置く。3日連続": [["妻", "3日連続はもう芸術作品として展示しよう", 0], ["夫", "カゴに入れる直前で力尽きてるだけ", 0], ["妻", "カゴの横まで来てるのに、あと30cmが遠い", 1], ["夫", "3日も放置できるなら自分で入れればいいのに", 0], ["夫", "靴下だけで3日ネタにできるの逆にすごい", 0], ["独身", "靴下をカゴの近くに置く文化、全国共通なの？", 0], ["夫", "夫だけど、カゴの横は「一時置き場」なんだよ", 0], ["妻", "一時置き場が3日続いたら常設展示です", 1]], "妻に「なんでもいい」って言われたから決めたら全部却下された": [["夫", "「なんでもいい」は「私が決めたものならいい」の略", 0], ["妻", "却下されたってことは、選んだ店がハズレだったんだよ", 0], ["夫", "最初から候補3つ出してほしい", 1], ["妻", "昨日も同じ店選んだでしょ", 0], ["夫", "全部却下されて最後に自分の案に戻るやつ", 0], ["妻", "妻だけど、これは妻が悪い。ごめん", 0], ["独身", "この会話、カップル時代から続いてそう", 0], ["妻", "聞き方が「どうする？」なのが悪い", 1]], "寝かしつけ終わった瞬間に夫のゲーム音で起きた": [["妻", "寝かしつけの最後の5分を壊すのは重罪", 0], ["夫", "イヤホンしてると思ってたんだよきっと", 0], ["妻", "1時間かけた寝かしつけがゲームの効果音で0に", 1], ["夫", "ゲームくらいさせてあげて、夫も仕事終わりだよ", 0], ["妻", "それならイヤホン買ってあげよう、夫のお金で", 1], ["夫", "夫だけど、これはかばえない", 0], ["独身", "ゲーム音で起きる赤ちゃん、耳がいい", 0], ["妻", "次は夫が寝かしつけ担当で決まり", 0]], "妻が俺のプリン食べた": [["夫", "プリンの恨みは一生", 0], ["妻", "名前書いてなかったなら共有物", 0], ["夫", "最後の1個を取られる絶望、わかる", 0], ["妻", "プリン1個で全国に晒される妻", 1], ["夫", "せめて「食べたよ」の一言は欲しい", 0], ["妻", "3個入りの残り1個なら食べられて当然", 0], ["独身", "プリンに名前を書く日が来るとは", 0], ["夫", "買って返してもらうまでが裁判", 1]], "旦那の「あと5分」が毎回30分": [["妻", "「あと5分」の単位が人類と違う", 0], ["夫", "支度に時間かかるのは妻のほうでは", 1], ["妻", "毎回30分なら最初から30分って言って", 0], ["夫", "5分って言わないと急かされるから", 0], ["妻", "毎回ってことは、もう信用ゼロ", 0], ["夫", "夫だけど、うちも5分は25分くらい", 0], ["独身", "待ち合わせで30分待つの、結婚しても続くんだ", 0], ["妻", "次からは25分早い時間を伝えよう", 1]], "嫁がスマホ見ながら「うん」しか言わない": [["夫", "「うん」は返事じゃなくて効果音", 0], ["妻", "夫の話が長いから、スマホに逃げてるんだよ", 0], ["夫", "スマホの方が面白い話してるんだろうな", 0], ["妻", "大事な話ならスマホ置いてから話しかけて", 1], ["夫", "自分のときは「聞いてる？」って怒るくせに", 0], ["妻", "妻だけど、これは耳が痛い", 0], ["独身", "会話が「うん」で成立する夫婦、平和では", 0], ["夫", "次は「うん」以外が返ってくるか実験しよう", 1]], "結婚記念日を夫が忘れてた": [["妻", "カレンダーに入れるだけで済むのに", 0], ["夫", "日付を覚えるのが苦手なだけで、気持ちはある", 0], ["妻", "誕生日は覚えてるのに記念日は忘れる謎", 0], ["夫", "妻も先に言ってくれればよかったのに", 1], ["妻", "言ったら記念日じゃなくて予定になる", 1], ["夫", "夫だけど、これはスマホに3回通知入れるべき", 0], ["独身", "記念日って何周年まで祝うものなの？", 0], ["妻", "来年は1週間前から毎日アピールしよう", 0]], "休日に妻が一日寝てた": [["夫", "休日に一日寝るの、うらやましい", 0], ["妻", "平日ずっと頑張ってたから寝かせてあげて", 0], ["夫", "起きたら夕方で、一日が消えてたやつ", 0], ["妻", "その間、子どもの世話は夫がやったの？", 1], ["夫", "一日寝てて夜も普通に寝られるの才能", 0], ["妻", "妻だけど、たまには許して", 0], ["独身", "休日に寝るのは独身の特権だと思ってた", 0], ["夫", "次の休日は夫が一日寝る番", 1]], "夫がトイレットペーパーを残り1cmで放置": [["妻", "1cm残すのは交換しないための技術", 0], ["夫", "まだ使えると思ったんだよ", 0], ["妻", "1cmで何をする気なの", 1], ["夫", "替えがどこにあるか知らないだけ", 0], ["妻", "場所を知らないのは使ったことがない証拠", 1], ["夫", "夫だけど、うちも全く同じで恥ずかしい", 0], ["独身", "1cmは芸術の域", 0], ["妻", "次は芯だけになるまで見守ろう", 0]], "義実家で嫁が不機嫌だった": [["夫", "義実家で上機嫌でいられる嫁、存在する？", 0], ["妻", "夫が横で何もしてなかったからでは", 0], ["夫", "帰りの車の空気、想像できる", 0], ["妻", "自分の親の窓口は自分でやって", 0], ["夫", "不機嫌になる前に一言ほしかった", 1], ["妻", "言っても気づかないから不機嫌になるんだよ", 1], ["独身", "義実家って言葉だけで疲れる", 0], ["夫", "夫だけど、次は帰省を短くしよう", 0]]};
+  var posts = SAMPLES.map(function(t,i){ var r=E.rng(E.hash(t[0])+i); var p=E.person(r,t[1]); return {id:'s'+i, text:t[0], me:t[1], who:p, at:t0-(5+i*9+Math.floor(r()*8)), seed:i, sample:true, ai:{replies:(SAMPLE_AI[t[0]]||[]).map(function(x){return {camp:x[0],text:x[1],to:!!x[2]};})}}; });
+  function meOf(r){ return {name:'あなた', handle:'you', color:r==='夫'?'#1D9BF0':'#F91880', initial:'あ', camp:r}; }
+  store.mine.forEach(function(m){ posts.unshift({id:m.id,text:m.text,me:m.me||'妻',who:meOf(m.me||'妻'),at:m.at,seed:m.seed,mine:true,gentle:!!m.gentle,unmatched:!!m.unmatched,neta:m.neta||'',ai:m.gentle?null:E.fromTopics(m.text,m.me||'妻',m.seed)}); });
+
+  var view='feed', openId=null, timers=[], dmOpen=null, battleUntil=0;
+  function dmColor(n){ if(n==='夫') return '#1D9BF0'; if(n==='妻') return '#F91880'; var c=['#536471','#7856FF','#0CA678','#D6336C','#E0A400','#E8590C']; return c[E.hash(n)%c.length]; }
+  function clearTimers(){ timers.forEach(clearTimeout); timers=[]; }
+  function later(fn,ms){ timers.push(setTimeout(fn,ms)); }
+  function ago(at){ var s=Math.max(1,Math.floor(NOW()-at)); if(s<60) return s+'秒'; if(s<3600) return Math.floor(s/60)+'分'; return Math.floor(s/3600)+'時間'; }
+  function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
+  var ICON={
+    rp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 0 1 8-7h0a8 8 0 0 1 0 15H8l-4 3v-6"/></svg>',
+    rt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 4 4 7l3 3M4 7h11a4 4 0 0 1 4 4v1M17 20l3-3-3-3M20 17H9a4 4 0 0 1-4-4v-1"/></svg>',
+    lk:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.3C1.2 8.4 3.4 5 6.8 5c2 0 3.4 1.1 4.2 2.4C11.8 6.1 13.2 5 15.2 5c3.4 0 5.6 3.4 4.3 6.7C19.5 16.4 12 21 12 21z"/></svg>',
+    vw:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 20V10M10 20V4M15 20v-7M20 20v-11"/></svg>'
+  };
+  function avatar(p){ var a=el('div','av',p.initial); a.style.background=p.color; return a; }
+  function acts(){ var d=el('div','acts'); ['rp','rt','lk','vw'].forEach(function(k){ var s=el('span',k==='rt'?'rt':k==='lk'?'lk':''); s.innerHTML=ICON[k]; var n=el('b'); n.dataset.k=k; n.style.fontWeight='400'; s.appendChild(n); d.appendChild(s); }); return d; }
+  document.addEventListener('click', function(e){ var sp=e.target.closest && e.target.closest('.acts .lk, .acts .rt'); if(!sp) return; e.stopPropagation(); e.preventDefault(); var b=sp.querySelector('b'); var on=sp.classList.toggle('on'); var n=parseInt((b.textContent||'').replace(/,/g,''),10); if(!isNaN(n) && !/万|億/.test(b.textContent)) b.textContent=E.fmt(Math.max(0,n+(on?1:-1))); sp.classList.remove('hot'); void sp.offsetWidth; sp.classList.add('hot'); if(on) buzz(); }, true);
+  function setActs(d,v){ d.querySelectorAll('b[data-k]').forEach(function(b){ var nv=E.fmt(v[b.dataset.k]); if(b.textContent!==nv){ b.textContent=nv; b.parentNode.classList.remove('hot'); void b.parentNode.offsetWidth; b.parentNode.classList.add('hot'); } }); }
+  function postCard(p, big){
+    var c=el('article','post'+(big?' big':'')); c.dataset.id=p.id;
+    c.appendChild(avatar(p.who));
+    var b=el('div','body'); var m=el('div','meta'); m.appendChild(el('b',null,p.who.name)); if(p.who.camp) m.appendChild(campTag(p.who.camp)); var s=el('span',null,'@'+p.who.handle+' · '); var tm=el('span','tm',ago(p.at)); tm.dataset.at=p.at; s.appendChild(tm); m.appendChild(s); if(p.mine) m.appendChild(el('span','mine-tag','あなた'));
+    b.appendChild(m); b.appendChild(el('p','txt',p.text)); var a=acts(); b.appendChild(a); c.appendChild(b);
+    c._acts=a; c._post=p; return c;
+  }
+  function campTag(c){ return el('span','camp '+(c==='妻'?'w':c==='夫'?'h':'n'),c==='独身'?'独身':c); }
+  function vals(p){ var v=E.at(E.profile(p.text,p.seed,p.me), NOW()-p.at); if(p.gentle){ var o={}; for(var k in v) o[k]= typeof v[k]==='number'? Math.floor(v[k]*(k==='lk'?0.004:0.0005)) : v[k]; return o; } return v; }
+
+  // ---- 画面 ----
+  function setTabs(){ $('tab-feed').setAttribute('aria-selected', view==='feed'); $('tab-rank').setAttribute('aria-selected', view==='rank'); $('tabs').hidden = !(view==='feed'||view==='rank');
+    $('back').hidden = view!=='detail'; $('logo').style.display = view==='detail'?'none':'';
+    $('title').textContent = {feed:'ホーム',rank:'ホーム',detail:'ポスト',bell:'通知',mail:'メッセージ',search:'トレンド'}[view];
+    ['home','search','rank','bell','mail'].forEach(function(n){ $('nav-'+n).removeAttribute('aria-current'); });
+    $({feed:'nav-home',detail:'nav-home',rank:'nav-rank',bell:'nav-bell',mail:'nav-mail',search:'nav-search'}[view]).setAttribute('aria-current','page');
+    $('fab').hidden = view==='mail'; }
+  function render(){
+    clearTimers(); pending=[]; if(pill) pill.hidden=true; var v=$('view'); v.innerHTML=''; setTabs(); window.scrollTo(0,0);
+    if(view==='feed'){ var h=el('div','hint pad'); h.innerHTML='夫婦の愚痴タイムライン。<b>投稿をタップ</b>すると、リプ欄で全国の夫と妻が戦争を始めます。右下の ＋ からあなたの愚痴も投稿できます'; v.appendChild(h);
+      posts.slice().sort(function(a,b){return b.at-a.at;}).forEach(function(p){ var c=postCard(p); c.classList.add('pad'); c.onclick=function(){ openPost(p.id); }; v.appendChild(c); }); }
+    if(view==='rank'){ var list=posts.slice().sort(function(a,b){return vals(b).lk-vals(a).lk;});
+      list.forEach(function(p,i){ var c=postCard(p); c.classList.add('pad'); c.style.gridTemplateColumns='40px 40px 1fr'; var n=el('div','rank-n'+(i<3?' top':''),String(i+1)); c.insertBefore(n,c.firstChild); c.onclick=function(){ openPost(p.id); }; v.appendChild(c); }); }
+    if(view==='detail') renderDetail(v);
+    if(view==='bell'){ store.unreadN=0; badges(); if(!store.notifs.length) v.appendChild(el('p','empty','まだ通知はありません。何か投稿すると、ここが止まらなくなります'));
+      store.notifs.slice().reverse().forEach(function(n){ var r=el('div','row-item pad'); var ic=el('div','ic'); ic.innerHTML='<svg class="flame" viewBox="0 0 24 24" width="26" height="26"><path fill="#FF7A00" d="M12 2c1 3.5-1.6 5-1.6 7.6 0 1.4 1 2.4 2.2 2.4 1.6 0 2.4-1.4 2.2-3.4C17.6 10.6 19 13 19 15.6 19 19.4 15.9 22 12 22s-7-2.6-7-6.4C5 10.8 9.6 8.8 12 2z"/></svg>'; r.appendChild(ic); var b=el('div'); b.appendChild(el('p',null,n.text)); b.appendChild(el('small',null,ago(n.at)+'前')); r.appendChild(b); v.appendChild(r); }); }
+    if(view==='mail'){ if(!store.dms.length) v.appendChild(el('p','empty','メッセージはありません。燃えると、知り合いから連絡が来ます'));
+      // 送り主ごとに1行（本物のDMと同じ）。タップで会話を開く
+      var by={}, order=[]; store.dms.forEach(function(d){ if(!by[d.from]){ by[d.from]=[]; order.push(d.from); } by[d.from].push(d); });
+      order.sort(function(a,b){ return by[b][by[b].length-1].at - by[a][by[a].length-1].at; });
+      if(dmOpen && by[dmOpen]){ by[dmOpen].forEach(function(d){ d.read=true; }); badges(); var hd=el('div','pad dm-head'); var bk=el('button','icon-btn','‹'); bk.setAttribute('aria-label','一覧へ戻る'); bk.onclick=function(){ dmOpen=null; render(); }; hd.appendChild(bk); hd.appendChild(el('b',null,dmOpen)); v.appendChild(hd);
+        var th=el('div','pad thread'); by[dmOpen].forEach(function(d){ var bb=el('div','bubble'); bb.appendChild(el('p',null,d.text)); bb.appendChild(el('small',null,ago(d.at)+'前')); th.appendChild(bb); }); v.appendChild(th); return; }
+      if(store.dms.length){ var un=unreadDm(); var sm0=el('div','pad dm-sum'); sm0.innerHTML='<b>'+order.length+'人</b>から <b>'+store.dms.length+'件</b>'+(un?'　·　未読 <b style="color:var(--blue)">'+un+'件</b>':'　·　全部既読'); v.appendChild(sm0); }
+      order.forEach(function(from,i){ var list=by[from], last=list[list.length-1], nu=list.filter(function(d){return d.read===false;}).length; var r=el('div','dm pad'+(NOW()-last.at<2?' fresh':'')); r.style.cursor='pointer'; r.onclick=function(){ dmOpen=from; render(); };
+        r.appendChild(avatar({initial:from.charAt(0), color:dmColor(from)})); var b=el('div'); var top=el('div'); top.appendChild(el('b',null,from)); var sm=el('small',null,'　'+ago(last.at)+(list.length>1?' · '+list.length+'件':'')); sm.style.color='var(--sub)'; top.appendChild(sm); b.appendChild(top); b.appendChild(el('p',nu?'unread':null,last.text)); b.style.minWidth='0'; b.style.flex='1'; r.appendChild(b); if(nu) r.appendChild(el('span','dm-n',String(nu))); v.appendChild(r); }); }
+    if(view==='search'){ var mine=posts.filter(function(p){return p.mine && !p.gentle;}).sort(function(a,b){return vals(b).lk-vals(a).lk;});
+      var items=[]; mine.slice(0,3).forEach(function(p){ items.push({mine:true, label:'「'+E.short(p.text,60)+'」', n:30000+vals(p).rt*3}); });
+      E.trends.forEach(function(t,i){ items.push({label:t, n:20000-i*1900}); });
+      items.sort(function(a,b){return b.n-a.n;}).forEach(function(it,i){ var d=el('div','trend pad'+(it.mine?' mine':'')); d.appendChild(el('small',null,(i+1)+'位 · '+(it.mine?'炎上中':'トレンド'))); d.appendChild(el('b',null,it.label)); d.appendChild(el('small',null,E.fmt(it.n)+'件のポスト')); v.appendChild(d); }); }
+  }
+
+  function renderDetail(v){
+    var p=posts.filter(function(x){return x.id===openId;})[0]; if(!p){ view='feed'; return render(); }
+    var c=postCard(p,true); c.classList.add('pad'); v.appendChild(c); if(p.mine && !p.gentle){ var sb=el('button','share-btn'); sb.type='button'; sb.innerHTML='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12M7 8l5-5 5 5M5 14v5h14v-5"/></svg>この炎上をシェア（X・インスタ・LINE）'; sb.onclick=function(e){ e.stopPropagation(); openShare(p); }; c.appendChild(sb); }
+    if(p.mine && p.unmatched && !p.gentle) v.appendChild(netaCard(p));
+    var heat=el('div','heat'); var hi=el('i'); heat.appendChild(hi); v.appendChild(heat);
+    var burn=el('div','burn pad'); burn.innerHTML='<svg class="flame" viewBox="0 0 24 24"><path fill="#FF7A00" d="M12 2c1 3.5-1.6 5-1.6 7.6 0 1.4 1 2.4 2.2 2.4 1.6 0 2.4-1.4 2.2-3.4C17.6 10.6 19 13 19 15.6 19 19.4 15.9 22 12 22s-7-2.6-7-6.4C5 10.8 9.6 8.8 12 2z"/></svg>返信 <small id="burn-msg">燃えています</small><small style="margin-left:auto">リプをタップで言い返せる</small>'; v.appendChild(burn);
+    var list=el('div'); v.appendChild(list);
+    $('glow').classList.add('on');
+    // 今までのぶんを先に並べ、そのあと次々に増える
+    var shown=0, k=0, used={}, prev=null;
+    var ai=0, adN=0;
+    function addReply(animate){ var rp, AL=(p.ai&&p.ai.replies)||[]; if(p.gentle){ if(shown>=12) return; rp=E.gentle(p.text,p.seed,shown,p.me); } else if(ai<AL.length){ rp=E.aiReply(AL[ai],p.text,p.seed,ai,p.me,prev); ai++; } else { for(var tries=0;tries<40;tries++){ rp=E.reply(p.text,p.seed,k++,p.me,prev); if(!used[rp.text]) break; } if(used[rp.text]) return; } if(used[rp.text]) return; used[rp.text]=1; shown++; prev=rp; (p.seen=p.seen||[]).push(rp); if(p.seen.length>120) p.seen.shift(); var rc=el('article','post pad reply'); if(!animate) rc.style.animation='none';
+      rc.appendChild(avatar(rp.who)); var b=el('div','body'); var m=el('div','meta'); m.appendChild(el('b',null,rp.who.name)); m.appendChild(campTag(rp.who.camp)); m.appendChild(el('span',null,'@'+rp.who.handle+' · '+(animate?'今':Math.max(1,Math.floor((NOW()-p.at)/(shown+1)))+'秒')));
+      if(rp.bait) m.appendChild(el('span','battle-tag','🔥炎上中')); b.appendChild(m); if(rp.to){ var tt=el('div','to','返信先: '); tt.appendChild(el('b',null,'@'+rp.to)); b.appendChild(tt); }
+      if(rp.qb){ b.appendChild(el('p','txt',rp.text)); var q2=el('div','qt'); q2.appendChild(el('b',null,rp.qb.name)); q2.appendChild(document.createTextNode('　'+rp.qb.text)); b.appendChild(q2); }
+      else if(rp.quote){ b.appendChild(el('p','txt',rp.text)); var q=el('div','qt'); q.appendChild(el('b',null,p.who.name)); q.appendChild(document.createTextNode('　'+p.text)); b.appendChild(q); }
+      else b.appendChild(el('p','txt',rp.text));
+      var a=acts(); var mineSide= rp.who.camp===p.me && !rp.bait && !/(だけど|言いすぎ|言い過ぎ|同情)/.test(rp.text); setActs(a,{rp:rp.rp,rt:rp.rt,lk:rp.lk+(mineSide?1:0),vw:rp.lk*9+rp.rt*20}); if(mineSide) a.querySelector('.lk').classList.add('on'); b.appendChild(a); rc.appendChild(b); if(!p.gentle){ rc.title='タップして言い返す'; rc.onclick=function(){ openComeback(rp, p, list, rc); }; } else rc.style.cursor='default'; placeReply(rc, list, animate); if(adDue(p,shown)){ adN++; placeReply(adCard(p,adN-1), list, animate); } }
+    if(!p.pending){ var already=Math.min(12, Math.floor((NOW()-p.at)/3)); for(var i=0;i<already;i++) addReply(false); }
+    (function loop(){ if(view!=='detail'||openId!==p.id) return; if(Date.now()<battleUntil){ later(loop,600); return; } if(p.pending){ $('burn-msg').textContent='火がつきはじめています…'; later(loop,400); return; } $('burn-msg').textContent=p.gentle?'燃えていません。やさしい返信だけ':'燃えています'; var age=NOW()-p.at; addReply(true); var d=Math.max(260, 1500-age*12)+Math.random()*500; if(shown<120) later(loop,d); else $('burn-msg').textContent='燃え尽きませんでした'; })();
+    (function tickHeat(){ if(view!=='detail') return; var v2=vals(p); hi.style.width=Math.min(100, v2.lk/E.profile(p.text,p.seed,p.me).likes*100)+'%'; later(tickHeat,700); })();
+  }
+
+  // 数字を動かし続ける（全画面共通）
+  function tickAll(){ document.querySelectorAll('.post').forEach(function(c){ if(c._post && c._acts) setActs(c._acts, vals(c._post)); }); document.querySelectorAll('.tm[data-at]').forEach(function(t){ t.textContent=ago(+t.dataset.at); }); }
+  setInterval(tickAll,900);
+
+  function openPost(id){ openId=id; view='detail'; render(); tickAll(); }
+  function go(v){ view=v; if(v!=='detail') $('glow').classList.remove('on'); render(); tickAll(); }
+  $('tab-feed').onclick=function(){go('feed');}; $('tab-rank').onclick=function(){go('rank');};
+  $('nav-home').onclick=function(){go('feed');}; $('nav-rank').onclick=function(){go('rank');}; $('nav-bell').onclick=function(){go('bell');}; $('nav-mail').onclick=function(){dmOpen=null; go('mail');}; $('nav-search').onclick=function(){go('search');};
+  $('back').onclick=function(){go('feed');};
+
+  function badges(){ var b=$('bell-badge'), m=$('mail-badge'); b.hidden=!store.unreadN; b.textContent=store.unreadN>99?'99+':store.unreadN; var u=unreadDm(); m.hidden=!u; m.textContent=u>99?'99+':u; }
+  function unreadDm(){ return store.dms.filter(function(d){ return d.read===false; }).length; }
+  function toast(t,fire){ var d=el('div','toast'+(fire?' f':''),t); $('toasts').appendChild(d); setTimeout(function(){ d.remove(); },3200); }
+  function buzz(){ try{ navigator.vibrate && navigator.vibrate(30); }catch(e){} }
+
+  // 自分の投稿が燃えていく（通知・DM・トースト）。画面を移っても止まらない
+  function ignite(p){
+    var i=0, j=0;
+    function n(){ var age=NOW()-p.at; if(age>240) return;
+      store.unreadN += 3+Math.floor(age*1.7); if(i<14){ var AN=(p.ai&&p.ai.notifs)||[]; var t= (i%2===0 && AN[i>>1]) ? AN[i>>1] : E.notif(p.text,i,p.me); i++; store.notifs.push({text:t,at:NOW()}); toast(t, i%3===1); buzz(); }
+      badges(); setTimeout(n, 2200+Math.random()*2200); }
+    var PL=null; function m(){ if(j>=22) return; var AD=(p.ai&&p.ai.dms)||[]; if(!PL) PL=E.dmPlan(p.text,p.me,p.seed); var d= j<AD.length ? AD[j] : PL[j-AD.length]; if(!d) return; j++; if(store.dms.some(function(x){return x.from===d.from&&x.text===d.text;})){ setTimeout(m,800); return; } store.dms.push({from:d.from,text:d.text,at:NOW(),read:(view==='mail'&&dmOpen===d.from)}); badges(); if(view==='mail') render(); setTimeout(m, 5000+Math.random()*5000); }
+    setTimeout(n,1600); setTimeout(m,7000);
+  }
+
+  // ---- 学習：お題に無かった投稿を、本人が「送る」を押した時だけ匿名でネタ帳（Supabase）へ。作者がそれを元に新しいお題のリプを書き、次から全員に流れる ----
+  var FUFU_VER='v35';
+  var SB={url:'https://dlohqycgfieuzzcumpdn.supabase.co',key:'sb_publishable_s6QftnXjccH_66GmrCjM_Q_e6dgoKka',mock:/sbmock/.test(location.search)};
+  function sbDev(){ var d=null; try{ d=localStorage.getItem('fk_dev'); if(!d){ d=(crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g,function(){return (Math.random()*16|0).toString(16);})); localStorage.setItem('fk_dev',d); } }catch(e){ d=null; }
+    return d||(SB._tmp=SB._tmp||'tmp-'+Date.now().toString(36)+Math.random().toString(36).slice(2,8)); }
+  function sbCall(fn,body){ if(SB.mock){ console.log('[sbmock]',fn,JSON.stringify(body)); return Promise.resolve(fn==='fufu_topics_get'?[]:{ok:true}); }
+    var ctl=window.AbortController?new AbortController():null; var tm=setTimeout(function(){ try{ctl&&ctl.abort();}catch(e){} },6000);
+    return fetch(SB.url+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:SB.key,'Content-Type':'application/json'},body:JSON.stringify(body||{}),signal:ctl?ctl.signal:undefined})
+      .then(function(r){ clearTimeout(tm); if(!r.ok) return r.json().catch(function(){return {};}).then(function(j){ throw new Error(fn+' '+r.status+' '+(j.message||'')); }); return r.json(); }); }
+  function gcEv(path,title){ try{ var gc=window.goatcounter; if(gc&&gc.count) gc.count({path:path,title:title,event:true}); }catch(e){} }
+  function netaCard(p){
+    var c=el('div','neta pad'), txt=E.cleanNeta(p.text);
+    if(p.neta==='sent'){ c.innerHTML='<b>📮 ネタ帳に送りました</b><span>リプが書き足されたら、同じ愚痴でもう一度ポストしてみて。専用のリプで燃えます</span>'; return c; }
+    if(p.neta==='no'){ c.innerHTML='<span>このポストはネタ帳に送っていません（この端末の中だけ）</span>'; return c; }
+    c.innerHTML='<b>📮 このネタ、まだ専用リプが無かった</b><span>今は汎用のリプで燃えています。ネタ帳に送ると作者が新しいリプを書き足して、次からみんなの画面で専用リプで燃えるようになります</span>'+
+      '<div class="neta-q"><small>送る中身（匿名。URL・電話番号・@IDは自動で消します）</small><p></p></div><div class="neta-b"><button type="button" class="neta-no">送らない</button><button type="button" class="neta-yes">匿名でネタ帳に送る</button></div>';
+    c.querySelector('.neta-q p').textContent='「'+txt+'」（'+role(p.me)+'として）';
+    c.querySelector('.neta-no').onclick=function(e){ e.stopPropagation(); setNeta(p,'no'); render(); };
+    c.querySelector('.neta-yes').onclick=function(e){ e.stopPropagation(); var b=this; b.disabled=true; b.textContent='送っています…';
+      sbCall('fufu_neta_submit',{p_device:sbDev(),p_ver:FUFU_VER,p_text:txt,p_role:role(p.me)}).then(function(){ setNeta(p,'sent'); gcEv('fufu-neta','ネタ帳に送った'); toast('ネタ帳に送りました。ありがとう！'); render(); })
+        .catch(function(err){ b.disabled=false; b.textContent='もう一度送る'; toast(/too many/.test(String(err))?'今日はもうたくさん送ってもらいました。また明日！':'送れませんでした。電波を確認してもう一度'); }); };
+    return c; }
+  function role(me){ return me==='夫'?'夫':'妻'; }
+  function setNeta(p,v){ p.neta=v; store.mine.forEach(function(m){ if(m.id===p.id) m.neta=v; }); save(); }
+  function loadLearned(){ sbCall('fufu_topics_get',{}).then(function(arr){ var k=E.addTopics(arr); if(!k) return;
+      // 起動時にお題無しで燃えていた自分の投稿は、学習したお題に当たるようになっていれば付け直す
+      posts.forEach(function(p){ if(p.mine && !p.gentle && !p.ai){ var a=E.fromTopics(p.text,p.me,p.seed); if(a){ p.ai=a; p.unmatched=false; store.mine.forEach(function(m){ if(m.id===p.id) m.unmatched=false; }); } } }); save();
+    }).catch(function(){ /* 学習分が読めなくても、手元のお題だけで普通に遊べる */ }); }
+
+  // ---- お題に当てはまらなかった投稿を記録（素材を増やす材料。この端末の中だけ） ----
+  function noteUnmatched(text,me){ try{ var a=JSON.parse(localStorage.getItem('fufu_unmatched')||'[]'); a.push({t:text,me:me,at:Date.now()}); localStorage.setItem('fufu_unmatched',JSON.stringify(a.slice(-200))); }catch(e){} }
+
+
+
+  // ---- 広告（アフィリエイト）：リプ欄にXの「プロモーション」風に混ぜる。ステマ規制対応で必ずPR表記 ----
+  // IDを入れるだけで収益化：AMZ_TAG=AmazonアソシエイトのトラッキングID（例 futurex-22） / RAKU_ID=楽天アフィリエイトID（例 1a2b3c4d.5e6f7a8b.1a2b3c4d.5e6f7a8b）
+  var AMZ_TAG='', RAKU_ID='588bc65a.31cba630.588bc65b.60d10fcd', AD_FIRST=6, AD_EVERY=15;
+  var ADS=[
+    {kw:['皿','洗い物','食器','シンク'], ic:'🍽', who:'皿洗い戦争 終結委員会', q:'食洗機', t:'皿洗いで揉める夫婦、食洗機を買うと喧嘩の議題がひとつ消えます', h:'工事不要の卓上食洗機', d:'「洗っといて」「今やろうと思ってた」の往復を、ボタン1つに'},
+    {kw:['掃除','ホコリ','床','散らか','片付け'], ic:'🤖', who:'床は誰の担当か問題 研究会', q:'ロボット掃除機', t:'「誰が掃除機かけるか」で揉めるなら、どっちもかけなくていい', h:'ロボット掃除機', d:'担当者：ロボ。責任の押し付け先ができます'},
+    {kw:['洗濯','干し','畳','たたま'], ic:'🌀', who:'洗濯物たたまない同盟', q:'ドラム式洗濯乾燥機', t:'干す・取り込む・畳むの3工程、2つ消せます', h:'ドラム式洗濯乾燥機', d:'「干しといてって言ったよね？」が過去の遺物に'},
+    {kw:['料理','ご飯','ごはん','夕飯','晩ご飯','献立','弁当','味噌汁'], ic:'🍲', who:'献立考えたくない部', q:'電気圧力鍋 自動調理', t:'「今日なに食べたい？」「なんでもいい」→ 鍋が決める', h:'自動調理鍋', d:'材料入れてボタン押すだけ。作った人をもっと褒めてあげて'},
+    {kw:['いびき','寝れない','眠れない','寝室','睡眠','寝不足'], ic:'😴', who:'安眠を取り戻す会', q:'耳栓 睡眠 いびき対策', t:'いびきで眠れない夜、離婚より先に試してほしいもの', h:'いびき対策・睡眠グッズ', d:'寝室別にする前の最終兵器'},
+    {kw:['育児','子ども','子供','夜泣き','抱っこ','ミルク','オムツ','おむつ','寝かしつけ'], ic:'🍼', who:'ワンオペ脱出プロジェクト', q:'育児 便利グッズ', t:'寝かしつけの30分を取り戻すと、夫婦の会話が戻ってきます', h:'育児の時短グッズ', d:'両手が空くだけで、喧嘩の半分は消える'},
+    {kw:['小遣い','お小遣い','給料','貯金','お金','家計','浪費','ローン'], ic:'💰', who:'夫婦の財布会議室', q:'夫婦 お金 本', t:'お金の喧嘩は「どっちが正しいか」じゃなく「仕組み」で終わらせる', h:'夫婦のお金の本', d:'財布を分けるか、一緒にするか。揉める前に一冊'},
+    {kw:['義母','義父','義実家','姑','実家','帰省'], ic:'🏠', who:'義実家サバイバル部', q:'義実家 付き合い方 本', t:'義実家問題、夫が「味方」になれるかが9割', h:'義実家との付き合い方の本', d:'帰省シーズン前に夫婦で読むやつ'},
+    {kw:['ゲーム','スマホ','YouTube','動画'], ic:'⏳', who:'スマホ見すぎ対策室', q:'タイムロッキングコンテナ', t:'「スマホばっか見て！」→ 箱に入れて鍵をかける', h:'スマホ封印ボックス', d:'時間が来るまで開かない。夫婦ともに入れるのがコツ'},
+    {kw:['飲み会','酒','ビール','飲みに'], ic:'🍺', who:'飲み会帰りの夫婦会議', q:'ノンアルコールビール', t:'飲み会で遅くなるなら、家で一緒に飲めばいい説', h:'ノンアルビール・家飲みセット', d:'翌朝の喧嘩が減ります'},
+    {kw:[], ic:'💬', who:'夫婦円満グッズ（PR）', q:'夫婦 会話 本', t:'喧嘩は勝つより、終わらせ方を知ってる方が強い', h:'夫婦の会話術の本', d:'言い返す前に、ちょっとだけ読んでほしい'}
+  ];
+  function adFor(text, n){ var hit=ADS.filter(function(a){ return a.kw.some(function(k){ return text.indexOf(k)>=0; }); }); var pool=hit.length?hit.concat(ADS.slice(-1)):ADS.slice(-1); return pool[n%pool.length]; }
+  function amzUrl(q){ return 'https://www.amazon.co.jp/s?k='+encodeURIComponent(q)+(AMZ_TAG?'&tag='+encodeURIComponent(AMZ_TAG):''); }
+  function rakuUrl(q){ var u='https://search.rakuten.co.jp/search/mall/'+encodeURIComponent(q)+'/'; return RAKU_ID?'https://hb.afl.rakuten.co.jp/hgc/'+RAKU_ID+'/?pc='+encodeURIComponent(u)+'&m='+encodeURIComponent(u):u; }
+  function adCard(p, n){ var a=adFor(p.text, n), rc=el('article','post pad reply ad'); rc.style.animation='none';
+    var av=el('div','av',a.ic); av.style.background='#2F3336'; av.style.fontSize='18px'; rc.appendChild(av);
+    var b=el('div','body'), m=el('div','meta'); m.appendChild(el('b',null,a.who)); m.appendChild(el('span','pr','PR')); b.appendChild(m);
+    b.appendChild(el('p','txt',a.t));
+    var c=el('a','ad-card'); c.href=AMZ_TAG?amzUrl(a.q):rakuUrl(a.q); c.target='_blank'; c.rel='noopener sponsored'; c.innerHTML='<div class="ad-img"></div><div class="ad-t"></div><div class="ad-d"></div>'; c.querySelector('.ad-img').textContent=a.ic; c.querySelector('.ad-t').textContent=a.h; c.querySelector('.ad-d').textContent=a.d; b.appendChild(c);
+    var bt=el('div','ad-btns'); var x=el('a',null,'Amazonで見る'); x.href=amzUrl(a.q); x.target='_blank'; x.rel='noopener sponsored'; var r=el('a','rk','楽天で見る'); r.href=rakuUrl(a.q); r.target='_blank'; r.rel='noopener sponsored'; if(AMZ_TAG||!RAKU_ID) bt.appendChild(x); if(RAKU_ID) bt.appendChild(r); b.appendChild(bt);
+    var f=el('div','ad-foot'); f.innerHTML='<span>↗ プロモーション</span>'; if(AMZ_TAG){ var sm=el('small',null,'Amazonのアソシエイトとして適格販売により収入を得ています'); f.appendChild(sm); } b.appendChild(f);
+    rc.appendChild(b); rc.addEventListener('click',function(e){ e.stopPropagation(); },true); return rc; }
+  function adDue(p, shown){ if(p.gentle || E.sensitive(p.text) || /(つわり|妊娠|妊婦|流産|不妊|死産|産後うつ)/.test(p.text)) return false; return shown===AD_FIRST || (shown>AD_FIRST && (shown-AD_FIRST)%AD_EVERY===0); }
+  // ---- 返信欄を読んでいる最中に新しいリプで位置がズレないようにする（Xと同じく「新しい返信 N件」でためる） ----
+  var pending=[], pill=null, jumpUntil=0;
+  // バトル箱の折りたたみ：閉じてる時は最新2件だけ見せる
+  // 閉じてる時：今のラウンド（言い返した相手のリプ＋自分の発言＋その後の反応）は全部見せ、前のラウンドだけ畳む
+  function refold(box){ var ps=[].slice.call(box.querySelectorAll('.post')), n=ps.length, fold=box.classList.contains('fold'), last=-1;
+    for(var j=0;j<n;j++) if(ps[j].classList.contains('mine-b')) last=j;
+    var hid=0; for(var i=0;i<n;i++){ var o= i<last && ps[i]!==box._anchor; ps[i].classList.toggle('old',o); if(o) hid++; }
+    var mo=box.querySelector('.battle-more'); if(mo){ mo.hidden=hid===0; mo.textContent=fold?('▾ 前の'+hid+'件を表示'):'▴ 前のやり取りを畳む'; }
+    var ic=box.querySelector('.fold-ic'); if(ic) ic.textContent=hid?(fold?'全'+n+'件 ▸':'全'+n+'件 ▾'):''; }
+  function topOf(list){ var ref=list.firstChild; while(ref && ref.classList && (ref.classList.contains('battle'))) ref=ref.nextSibling; return ref; }
+  function reading(list){ return (window.scrollY||document.documentElement.scrollTop||0) > 40 || list.getBoundingClientRect().top < 90; }  // 返信欄の頭が画面の上に消えていたら「読んでいる最中」
+  // 指で触っている間・言い返す画面を開いている間は、上に差し込まない（カードがずれて別のリプを押してしまうのを防ぐ）
+  var holdUntil=0, holdT=null;
+  ['pointerdown','touchstart','mousedown'].forEach(function(ev){ document.addEventListener(ev, function(){ holdUntil=Date.now()+1500; }, {capture:true, passive:true}); });
+  function held(){ return Date.now()<holdUntil || !!document.querySelector('.compose'); }
+  function placeReply(rc, list, animate){
+    if(animate && Date.now()>jumpUntil && reading(list)){ pending.push(rc); showPill(list); return; }
+    if(animate && held()){ pending.push(rc); clearTimeout(holdT); (function wait(){ holdT=setTimeout(function(){ if(!list.isConnected){ pending=[]; return; } if(held()) return wait(); if(reading(list)) showPill(list); else flush(list,false); }, 400); })(); return; }
+    list.insertBefore(rc, topOf(list));
+  }
+  function showPill(list){
+    if(!pill){ pill=el('button','newpill'); pill.type='button'; pill.onclick=function(){ flush(list, true); }; document.body.appendChild(pill); }
+    pill.textContent='↑ 新しい返信 '+pending.length+'件'; pill.hidden=false; pill._list=list;
+  }
+  function flush(list, jump){ var ref=topOf(list); pending.forEach(function(rc){ rc.style.animation='none'; list.insertBefore(rc, ref); ref=rc; }); pending=[]; if(pill) pill.hidden=true;
+    if(jump){ jumpUntil=Date.now()+1500; var b=document.querySelector('.burn'); if(b) window.scrollTo({top: b.getBoundingClientRect().top+window.scrollY-60, behavior:'smooth'}); } }
+  window.addEventListener('scroll', function(){ if(pill && !pill.hidden && pill._list && pill._list.isConnected && !reading(pill._list)) flush(pill._list,false); if(pill && pill._list && !pill._list.isConnected){ pending=[]; pill.hidden=true; } }, {passive:true});
+
+  // ---- リプ欄バトル：リプをタップ → 言い返す → 相手と周りが返してくる ----
+  var rounds={};
+  function cardFor(who, text, opt){ opt=opt||{}; var rc=el('article','post pad reply'+(opt.mine?' mine-rp':'')); rc.appendChild(avatar(who));
+    var b=el('div','body'); var m=el('div','meta'); m.appendChild(el('b',null,who.name)); if(who.camp) m.appendChild(campTag(who.camp)); m.appendChild(el('span',null,'@'+who.handle+' · 今')); if(opt.tag) m.appendChild(el('span','battle-tag',opt.tag)); b.appendChild(m);
+    if(opt.to){ var tt=el('div','to','返信先: '); tt.appendChild(el('b',null,'@'+opt.to)); b.appendChild(tt); }
+    b.appendChild(el('p','txt',text)); var a=acts(); var lk=opt.lk||Math.floor(Math.random()*400); setActs(a,{rp:Math.floor(lk/20),rt:Math.floor(lk/6),lk:lk,vw:lk*12+50}); b.appendChild(a); rc.appendChild(b); return rc; }
+  function openComeback(rp, p, list, anchor){ loadThree().catch(function(){});
+    var s=el('div','compose'); s.setAttribute('role','dialog'); s.setAttribute('aria-label','言い返す');
+    s.innerHTML='<div class="compose-bar pad"><button class="cancel" id="b-cancel">キャンセル</button><button class="send" id="b-send" disabled>返信する</button></div>'+
+      '<div class="compose-main pad"><div class="av">あ</div><div><div class="me-pick" id="b-to"></div><textarea id="b-txt" maxlength="140" placeholder="言い返す"></textarea><div class="ideas" id="b-ideas"></div></div></div>'+
+      '<div class="compose-foot pad"><span>言い返すと、相手と周りが返してきます</span><span id="b-count">0/140</span></div>';
+    document.body.appendChild(s);
+    $('b-to').textContent='返信先: @'+rp.who.handle+'（'+rp.who.name+'）「'+E.short(rp.text,20)+'」';
+    var ta=$('b-txt'); try{ ta.focus({preventScroll:true}); }catch(e){ ta.focus(); } /* iPhoneはタップと同じ流れでfocusしないとキーボードが出ない */ s.querySelector('.compose-main').addEventListener('click',function(e){ if(!e.target.closest('button')) ta.focus(); }); setTimeout(function(){ if(document.activeElement!==ta) ta.focus(); },60);
+    ['論点ずらさないで','うちの事情も知らないで','確かにそうかも','ごめん言い過ぎた','草'].forEach(function(t){ var bt=el('button',null,t); bt.type='button'; bt.onclick=function(){ ta.value=t; up(); ta.focus(); }; $('b-ideas').appendChild(bt); });
+    function up(){ $('b-count').textContent=ta.value.length+'/140'; $('b-send').disabled=!ta.value.trim(); }
+    ta.addEventListener('input',up);
+    $('b-cancel').onclick=function(){ s.remove(); };
+    $('b-send').onclick=function(){ var t=ta.value.trim(); if(!t) return; var sv2=E.sensitive(t); if(sv2==='crisis'){ showCare(sv2, s); return; } s.remove();
+      battleUntil=Date.now()+9000; var key=rp.who.handle; rounds[key]=(rounds[key]||0)+1; var round=rounds[key];
+      // バトルは1つの箱にまとめて、上から時系列に縦線でつなぐ
+      var box = anchor && anchor.closest ? anchor.closest('.battle') : null;
+      lastMe=meOf(p.me); lastFoe=rp.who; if(!box){ fxStart(meOf(p.me), rp.who); } else if(round>1){ fxRound(round); }
+      if(!box){ box=el('section','battle fold'); var hd=el('div','battle-head pad'); hd.innerHTML='<span>⚔</span> バトル中 <small></small><span class="fold-ic"></span>'; box.appendChild(hd); var mo=el('button','battle-more'); mo.type='button'; mo.hidden=true; box.appendChild(mo); hd.onclick=mo.onclick=function(){ box.classList.toggle('fold'); refold(box); }; list.insertBefore(box,list.firstChild); if(anchor){ anchor.style.animation='none'; box.appendChild(anchor); } try{ box.scrollIntoView({block:'start',behavior:'smooth'}); }catch(e){} anchor.onclick=function(){ openComeback(rp, p, list, anchor); }; }
+      var add=function(c){ var y0=window.scrollY, h0=document.documentElement.scrollHeight, below=box.getBoundingClientRect().bottom<0; box.appendChild(c); var res=box.querySelector('.battle-result'); if(res) box.appendChild(res); refold(box); if(below) window.scrollTo(0, y0 + (document.documentElement.scrollHeight-h0)); };
+      box.querySelector('.battle-head small').textContent=round+'回目';
+      var mine=cardFor(meOf(p.me), t, {mine:true, to:rp.who.handle, lk:20+Math.floor(Math.random()*200)}); mine.style.cursor='default'; mine.classList.add('mine-b'); box._anchor=anchor; add(mine);
+      var R=E.battle(t, rp.who, p.me, round, p.seed, p.text);
+      var wait=1200+Math.random()*900;
+      later(function(){ var c=cardFor(rp.who, R.target, {to:'you', tag: R.end&&R.end.win?'降参':(rp.who.camp===p.me?'味方':'反撃'), lk:Math.floor(Math.random()*900)}); var rn={who:rp.who, text:R.target}; c.onclick=function(){ openComeback(rn, p, list, c); }; add(c); buzz(); }, wait);
+      R.allies.forEach(function(x,i){ later(function(){ var c=cardFor(x.who, x.text, {to:'you', tag:'援護', lk:Math.floor(Math.random()*1500)}); var ra={who:x.who,text:x.text}; c.onclick=function(){ openComeback(ra, p, list, c); }; add(c); }, wait+900+i*700); });
+      R.enemies.forEach(function(x,i){ later(function(){ var c=cardFor(x.who, x.text, {to:'you', tag:'参戦', lk:Math.floor(Math.random()*900)}); var rr={who:x.who,text:x.text}; c.onclick=function(){ openComeback(rr, p, list, c); }; add(c); }, wait+1600+i*800); });
+      if(R.end) later(function(){ if(/和解/.test(R.end.text)) p.peace=(p.peace||0)+1; else if(R.end.win) p.wins=(p.wins||0)+1; else p.losses=(p.losses||0)+1; fxEnd(R.end.win, R.end.text); store.unreadN+=R.end.win?50:120; badges(); var old=box.querySelector('.battle-result'); if(old) old.remove(); var rs=el('div','battle-result pad '+(R.end.win?'win':'lose'), (R.end.win?'🏆 勝ち：':'💥 負け：')+R.end.text); box.appendChild(rs); box.querySelector('.battle-head').firstElementChild.nextSibling.textContent=' 決着 '; }, wait+2600);
+    };
+  }
+
+  // ---- 投稿画面 ----
+  var IDEAS=['夫が皿を洗わない','妻がスマホばかり見てる','旦那のいびきがうるさい','嫁にプリン食べられた','夫が記念日を忘れた','妻の「なんでもいい」が怖い'];
+  $('fab').onclick=openCompose;
+  // ===== バトル演出（画面いっぱい）=====
+  var AC=null;
+  function sfx(kind){ try{ AC=AC||new (window.AudioContext||window.webkitAudioContext)(); var t=AC.currentTime;
+    if(kind==='crash'||kind==='flush'||kind==='alarm'){ var len=kind==='alarm'?1.2:kind==='flush'?1.1:.35; if(kind==='alarm'){ var o2=AC.createOscillator(), g2=AC.createGain(); o2.type='square'; for(var q=0;q<6;q++) o2.frequency.setValueAtTime(q%2?660:880,t+q*.2); g2.gain.setValueAtTime(.05,t); g2.gain.linearRampToValueAtTime(0,t+len); o2.connect(g2); g2.connect(AC.destination); o2.start(t); o2.stop(t+len); return; } var buf=AC.createBuffer(1,Math.floor(AC.sampleRate*len),AC.sampleRate), d=buf.getChannelData(0); for(var q=0;q<d.length;q++) d[q]=(Math.random()*2-1)*Math.pow(1-q/d.length, kind==='crash'?3:1.2); var src=AC.createBufferSource(); src.buffer=buf; var fl=AC.createBiquadFilter(); fl.type=kind==='crash'?'highpass':'lowpass'; fl.frequency.value=kind==='crash'?1800:900; var g3=AC.createGain(); g3.gain.value=kind==='crash'?.25:.18; src.connect(fl); fl.connect(g3); g3.connect(AC.destination); src.start(t); return; }
+    var seq= kind==='start'?[[220,.08],[330,.08],[660,.25]] : kind==='round'?[[523,.12]] : kind==='win'?[[523,.1],[659,.1],[784,.1],[1047,.35]] : kind==='peace'?[[659,.15],[784,.15],[988,.3]] : [[392,.18],[311,.18],[196,.5]];
+    var at=t; seq.forEach(function(n){ var o=AC.createOscillator(), g=AC.createGain(); o.type= kind==='lose'?'sawtooth':'square'; o.frequency.value=n[0]; g.gain.setValueAtTime(.06,at); g.gain.exponentialRampToValueAtTime(.001,at+n[1]); o.connect(g); g.connect(AC.destination); o.start(at); o.stop(at+n[1]); at+=n[1]*.9; }); }catch(e){} }
+  function vib(p){ try{ navigator.vibrate && navigator.vibrate(p); }catch(e){} }
+  function fxShow(cls, html, ms){ var o=document.querySelector('.fx'); if(o) o.remove(); var f=el('div','fx '+cls); f.innerHTML=html+'<div class="flash"></div><div class="tap">タップで閉じる</div>'; document.body.appendChild(f);
+    var done=function(){ if(f.isConnected){ f.style.transition='opacity .25s'; f.style.opacity='0'; setTimeout(function(){ f.remove(); },250); } }; f.onclick=done; setTimeout(done, ms); document.body.classList.remove('shake'); void document.body.offsetWidth; document.body.classList.add('shake'); return f; }
+  function avHTML(w){ return '<div class="av" style="background:'+w.color+'">'+esc(w.initial)+'</div>'; }
+  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  // ===== 3D演出（three.js r128）。ChatGPT案（黄金トロフィー・通報ボタン・卵焼き和平条約）＋Grok案（アイコン激突で皿と靴下が飛び散る・皿粉砕でROUND）=====
+  var T3=null;
+  function loadThree(){ if(window.THREE) return Promise.resolve(window.THREE); if(T3) return T3;
+    T3=new Promise(function(ok,ng){ var sc=document.createElement('script'); sc.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'; sc.onload=function(){ ok(window.THREE); }; sc.onerror=function(){ T3=null; ng(); }; document.head.appendChild(sc); setTimeout(function(){ if(!window.THREE){ ng(); } },6000); });
+    return T3; }
+  function canUse3D(){ if(!window.THREE) return false; try{ var c=document.createElement('canvas'); return !!(c.getContext('webgl')||c.getContext('experimental-webgl')); }catch(e){ return false; } }
+  function fx3(kind, o){
+    var TH=window.THREE, W=window.innerWidth, H=window.innerHeight, D={start:2.2,round:1.3,win:2.9,lose:2.7,peace:2.8}[kind];
+    var old=document.querySelector('.fx,.fx3'); if(old) old.remove();
+    var f=el('div','fx3 '+kind); var cv=document.createElement('canvas'); f.appendChild(cv); var tl=el('div','t3'); f.appendChild(tl); f.appendChild(el('div','tap','タップで閉じる')); document.body.appendChild(f);
+    var R=new TH.WebGLRenderer({canvas:cv, alpha:true, antialias:true}); R.setPixelRatio(Math.min(2,window.devicePixelRatio||1)); R.setSize(W,H);
+    var S=new TH.Scene(), C=new TH.PerspectiveCamera(W<H?62:48, W/H, .1, 200); C.position.set(0,0,12);
+    S.add(new TH.AmbientLight(0xffffff,.75)); var dl=new TH.DirectionalLight(0xffffff,1.1); dl.position.set(4,6,9); S.add(dl); var pl=new TH.PointLight(kind==='lose'?0xff2020:0xffd27a,1.4,40); pl.position.set(-4,-2,6); S.add(pl);
+    var U=[], t0=performance.now(), shakeA=0, dead=false;
+    function add(obj, upd){ S.add(obj); U.push({o:obj,u:upd}); return obj; }
+    function std(c,opt){ var m=new TH.MeshStandardMaterial({color:c, roughness:.45, metalness:0}); if(opt) for(var k in opt) m[k]=opt[k]; return m; }
+    function ctex(w,h,draw){ var c=document.createElement('canvas'); c.width=w; c.height=h; draw(c.getContext('2d'),w,h); var t=new TH.CanvasTexture(c); t.anisotropy=4; return t; }
+    function eob(x){ var c1=1.70158,c3=c1+1; return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2); }
+    function eo(x){ return 1-Math.pow(1-x,3); }
+    function cl(x){ return x<0?0:x>1?1:x; }
+    // ---- 小道具 ----
+    function coin(w){ var face=ctex(256,256,function(g,w2,h2){ g.fillStyle=w.color||'#888'; g.beginPath(); g.arc(128,128,128,0,7); g.fill(); g.fillStyle='#fff'; g.font='900 150px sans-serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText(w.initial||'?',128,140); });
+      var g=new TH.Group(); var mf=std(0xffffff,{map:face}); var fr=new TH.Mesh(new TH.CircleGeometry(1.5,48),mf); fr.position.z=.18; g.add(fr); var bk=new TH.Mesh(new TH.CircleGeometry(1.5,48),mf); bk.rotation.y=Math.PI; bk.position.z=-.18; g.add(bk);
+      var rim=new TH.Mesh(new TH.CylinderGeometry(1.5,1.5,.36,48,1,true),std(0xffffff,{metalness:.7,roughness:.25,side:TH.DoubleSide})); rim.rotation.x=Math.PI/2; g.add(rim); return g; }
+    function plate(){ var g=new TH.Group(); var p=new TH.Mesh(new TH.CylinderGeometry(1,.75,.14,40), std(0xffffff,{roughness:.2})); g.add(p); var r=new TH.Mesh(new TH.TorusGeometry(.9,.05,8,40), std(0x2b6cff)); r.rotation.x=Math.PI/2; r.position.y=.08; g.add(r); return g; }
+    function sock(col){ var st=ctex(64,128,function(g){ g.fillStyle=col; g.fillRect(0,0,64,128); g.fillStyle='#fff'; for(var y=0;y<128;y+=24) g.fillRect(0,y,64,8); }); var m=std(0xffffff,{map:st}); var g=new TH.Group(); var a=new TH.Mesh(new TH.CylinderGeometry(.28,.28,1.3,16),m); g.add(a); var b=new TH.Mesh(new TH.CylinderGeometry(.28,.28,.8,16),m); b.rotation.z=Math.PI/2; b.position.set(.3,-.65,0); g.add(b); return g; }
+    function remote(){ var g=new TH.Group(); g.add(new TH.Mesh(new TH.BoxGeometry(.45,1.5,.18), std(0x222222))); var cols=[0xff3344,0x33aaff,0x33dd77,0xffcc00]; for(var i=0;i<8;i++){ var b=new TH.Mesh(new TH.SphereGeometry(.07,8,8), std(cols[i%4])); b.position.set(i%2?.1:-.1, .45-Math.floor(i/2)*.22, .1); g.add(b); } return g; }
+    function bento(){ var g=new TH.Group(); var b=new TH.Mesh(new TH.BoxGeometry(1.4,.45,.9), std(0x111111)); g.add(b); var l=new TH.Mesh(new TH.BoxGeometry(1.45,.15,.95), std(0xe53935)); l.position.y=.32; g.add(l); return g; }
+    function phone(){ var g=new TH.Group(); g.add(new TH.Mesh(new TH.BoxGeometry(.75,1.45,.09), std(0x111111))); var sc=new TH.Mesh(new TH.PlaneGeometry(.65,1.3), new TH.MeshBasicMaterial({color:0x1d9bf0})); sc.position.z=.05; g.add(sc); return g; }
+    // 人型ピクトグラム（トイレの案内板みたいな立体）。妻=赤のワンピース型、夫=青、独身=グレー。手足は関節ごとに回せる
+    function figure(w){ var camp=(w&&w.camp)||'夫', col= camp==='妻'?0xe8384f: camp==='夫'?0x1f6fe0: 0x8a8f98, m=std(col,{roughness:.55});
+      var g=new TH.Group(), body=new TH.Group(); g.add(body);
+      var head=new TH.Mesh(new TH.SphereGeometry(.42,24,16),m); head.position.y=2.55; body.add(head);
+      if(camp==='妻'){ var dr=new TH.Mesh(new TH.CylinderGeometry(.28,.85,1.45,28),m); dr.position.y=1.45; body.add(dr); }
+      else { var tor=new TH.Mesh(new TH.CylinderGeometry(.46,.36,1.25,24),m); tor.position.y=1.55; body.add(tor); var sh=new TH.Mesh(new TH.SphereGeometry(.46,20,12),m); sh.position.y=2.15; sh.scale.y=.45; body.add(sh); }
+      function limb(len,r){ var p=new TH.Group(); var c=new TH.Mesh(new TH.CylinderGeometry(r,r,len,14),m); c.position.y=-len/2; p.add(c); var e=new TH.Mesh(new TH.SphereGeometry(r,12,10),m); e.position.y=-len; p.add(e); var top=new TH.Mesh(new TH.SphereGeometry(r,12,10),m); p.add(top); return p; }
+      var aL=limb(1.05,.15), aR=limb(1.05,.15); aL.position.set(-.6,2.1,0); aR.position.set(.6,2.1,0); body.add(aL); body.add(aR);
+      var lL=limb(1.05,.19), lR=limb(1.05,.19); lL.position.set(-.24,.98,0); lR.position.set(.24,.98,0); body.add(lL); body.add(lR);
+      g.userData={body:body, head:head, aL:aL, aR:aR, lL:lL, lR:lR};
+      g.run=function(t,sp){ var s=Math.sin(t*(sp||16)); aL.rotation.x=s*.9; aR.rotation.x=-s*.9; lL.rotation.x=-s*.8; lR.rotation.x=s*.8; body.position.y=Math.abs(Math.cos(t*(sp||16)))*.18; };
+      g.stance=function(t){ var s=Math.sin(t*9); aL.rotation.set(-1.1,0,.3); aR.rotation.set(-1.4+s*.15,0,-.2); lL.rotation.x=.35; lR.rotation.x=-.35; body.position.y=Math.abs(s)*.12; };
+      g.cheer=function(t){ var s=Math.sin(t*14); aL.rotation.set(0,0,2.6+s*.3); aR.rotation.set(0,0,-2.6-s*.3); lL.rotation.x=0; lR.rotation.x=0; body.position.y=Math.max(0,Math.sin(t*9))*.7; };
+      g.rest=function(){ [aL,aR,lL,lR].forEach(function(x){ x.rotation.set(0,0,0); }); body.position.y=0; };
+      return g; }
+    function propRandom(i){ var k=i%5; return k===0?plate():k===1?sock(['#ff6b9d','#4fc3f7','#ffd54f','#81c784'][i%4]):k===2?remote():k===3?bento():phone(); }
+    function label(txt, size, color, stroke){ var t=ctex(1024,256,function(g){ g.font='900 '+size+'px "Arial Black",Impact,sans-serif'; g.textAlign='center'; g.textBaseline='middle'; g.lineWidth=18; g.strokeStyle=stroke||'#000'; g.strokeText(txt,512,136); g.fillStyle=color; g.fillText(txt,512,136); });
+      return new TH.Mesh(new TH.PlaneGeometry(8,2), new TH.MeshBasicMaterial({map:t, transparent:true, depthWrite:false})); }
+    function shards(n, pos, col, speed){ for(var i=0;i<n;i++){ (function(){ var m=new TH.Mesh(new TH.TetrahedronGeometry(.12+Math.random()*.22), std(col||0xffffff,{roughness:.2})); m.position.copy(pos); var v=new TH.Vector3((Math.random()-.5),(Math.random()-.3),(Math.random()-.2)).normalize().multiplyScalar((speed||9)*(.5+Math.random())); var w=new TH.Vector3(Math.random()*12,Math.random()*12,Math.random()*12);
+        add(m,function(t,dt){ v.y-=14*dt; m.position.addScaledVector(v,dt); m.rotation.x+=w.x*dt; m.rotation.y+=w.y*dt; }); })(); } }
+    function rain(n, t0r, spread){ for(var i=0;i<n;i++){ (function(i){ var m=propRandom(i); m.scale.setScalar(.45+Math.random()*.35); m.position.set((Math.random()-.5)*spread, 9+Math.random()*8, (Math.random()-.5)*4-1); m.visible=false; var vy=-(4+Math.random()*5), w=Math.random()*6;
+        add(m,function(t,dt){ if(t<t0r) return; m.visible=true; m.position.y+=vy*dt; m.rotation.x+=w*dt; m.rotation.z+=w*.7*dt; }); })(i); } }
+    function confetti(n){ var cols=[0xff2d55,0xffd400,0x00e5ff,0x7ee0b5,0xff7a00,0xffffff]; for(var i=0;i<n;i++){ (function(i){ var m=new TH.Mesh(new TH.PlaneGeometry(.18,.3), new TH.MeshBasicMaterial({color:cols[i%6], side:TH.DoubleSide})); m.position.set((Math.random()-.5)*14, 7+Math.random()*6, (Math.random()-.5)*6); var vy=-(2+Math.random()*3), vx=(Math.random()-.5)*2, w=4+Math.random()*8;
+        add(m,function(t,dt){ m.position.y+=vy*dt; m.position.x+=vx*dt; m.rotation.x+=w*dt; m.rotation.y+=w*.6*dt; }); })(i); } }
+    function dom(html, cls, at){ if(o.freeze!=null){ if(at<=o.freeze){ var d0=el('div','w3 '+(cls||'')); d0.innerHTML=html; d0.style.animation='none'; tl.appendChild(d0); } return; } setTimeout(function(){ if(dead) return; var d=el('div','w3 '+(cls||'')); d.innerHTML=html; tl.appendChild(d); }, at*1000); }
+    // ---- 演出ごとの台本 ----
+    if(kind==='start'){
+      // 人型ピクトグラム同士が走ってきて、ビンタ→回し蹴り→構えて睨み合い
+      var A=figure(o.me), B=figure(o.foe); A.scale.setScalar(1.05); B.scale.setScalar(1.05); A.position.set(-10,-2.2,0); B.position.set(10,-2.2,0); A.rotation.y=Math.PI/2; B.rotation.y=-Math.PI/2;
+      var hitA=false, hitB=false;
+      add(A,function(t){ var u=A.userData;
+        if(t<.6){ A.position.x=-10+(10-1.5)*eo(t/.6); A.run(t); }
+        else if(t<.95){ A.stance(t); A.rotation.y=Math.PI/2; }
+        else if(t<1.25){ var k=(t-.95)/.3; A.rest(); u.aR.rotation.set(0,0,-.4); u.aR.rotation.x=-Math.PI/2; u.aR.rotation.z=-1.6+k*3.4; A.position.x=-1.5+Math.sin(k*Math.PI)*.4; if(k>.55&&!hitA){ hitA=true; slap(); } }
+        else if(t<1.7){ var k2=(t-1.25)/.45; A.rest(); A.position.x=-1.5-eo(k2)*.8; A.rotation.z=Math.sin(k2*Math.PI)*.5; u.aL.rotation.z=1.2; u.aR.rotation.z=-1.2; }
+        else { A.rotation.z=0; A.position.x=-2.3; A.stance(t); } });
+      add(B,function(t){ var u=B.userData;
+        if(t<.6){ B.position.x=10-(10-1.5)*eo(t/.6); B.run(t); }
+        else if(t<1.13){ B.stance(t); B.rotation.y=-Math.PI/2; }
+        else if(t<1.3){ var k=(t-1.13)/.17; B.rest(); u.head.position.x=0; B.rotation.z=-k*.5; B.position.x=1.5+k*.7; u.head.rotation.y=k*6; }
+        else if(t<1.7){ var k2=(t-1.3)/.4; B.rotation.z=-.5+k2*.5; B.rest(); B.rotation.y=-Math.PI/2+k2*Math.PI*2; u.lR.rotation.x=-Math.sin(k2*Math.PI)*2.2; u.lR.rotation.z=0; B.position.x=2.2+k2*.1; if(k2>.5&&!hitB){ hitB=true; kick(); } }
+        else { B.rotation.y=-Math.PI/2; B.rotation.z=0; B.position.x=2.3; B.stance(t); } });
+      function slap(){ shakeA=.8; shards(26,new TH.Vector3(0,.2,0),0xffffff,10); sfx('crash'); vib([60,30,90]); for(var i=0;i<6;i++) fly(i,new TH.Vector3(.6,.2,0)); }
+      function kick(){ shakeA=1.1; shards(30,new TH.Vector3(-.4,-.3,0),0xffd400,12); sfx('crash'); vib([90,40,140]); for(var i=6;i<12;i++) fly(i,new TH.Vector3(-.6,-.2,0)); }
+      function fly(i,pos){ var m=propRandom(i); m.scale.setScalar(.55); m.position.copy(pos); var v=new TH.Vector3((Math.random()-.5)*12,4+Math.random()*7,(Math.random()-.2)*6), w=4+Math.random()*8; add(m,function(t,dt){ v.y-=13*dt; m.position.addScaledVector(v,dt); m.rotation.x+=w*dt; m.rotation.z+=w*.8*dt; }); }
+      var vs=label('VS',230,'#ffe600'); vs.position.set(0,2.6,8); vs.visible=false;
+      add(vs,function(t){ var k=cl((t-.62)/.3); vs.visible=t>.62; vs.position.z=8-7.6*eo(k); vs.scale.setScalar(.01+eob(k)*.95); vs.rotation.z=(1-k)*3+Math.sin(t*6)*.04; });
+      dom('レスバ開始！！','big low',1.1); dom('言い負かせ。口が悪いと通報されるぞ','sub',1.3);
+    }
+    if(kind==='round'){
+      var pz=plate(); pz.scale.setScalar(2.4); pz.rotation.x=Math.PI/2; pz.position.set(0,0,-30);
+      add(pz,function(t){ var k=cl(t/.42); pz.position.z=-30+33*k*k; pz.rotation.z=t*14; pz.visible=t<.42; });
+      (o.freeze!=null? function(fn,ms){ if(ms/1000<=o.freeze) fn(); } : setTimeout)(function(){ if(!dead){ shakeA=.7; shards(55,new TH.Vector3(0,0,3),0xffffff,13); shards(15,new TH.Vector3(0,0,3),0x2b6cff,10); sfx('crash'); vib(80); } }, 420);
+      dom('ROUND '+o.n,'big round',.42); dom(o.n>=3?'もう戻れない。':'まだ言うか。','sub',.6);
+    }
+    if(kind==='win'){
+      var gold=null;
+      var tr=new TH.Group();
+      // 優勝カップ（主「普通にトロフィーでいい」「トロフィーの質をあげて」）：映り込み用の環境マップ＋なめらかな杯・耳型の取っ手・ふた・大理石の台座・金のプレート・後光・キラキラ
+      var es=new TH.Scene(); var eg=ctex(512,256,function(g,w,h){ var gr=g.createLinearGradient(0,0,0,h); gr.addColorStop(0,'#fff8e0'); gr.addColorStop(.35,'#ffd27a'); gr.addColorStop(.55,'#7a4a10'); gr.addColorStop(1,'#1a0e02'); g.fillStyle=gr; g.fillRect(0,0,w,h); g.fillStyle='rgba(255,255,255,.95)'; g.fillRect(60,40,90,30); g.fillRect(330,30,120,24); g.fillRect(210,90,40,60); });
+      eg.mapping=TH.EquirectangularReflectionMapping; var esph=new TH.Mesh(new TH.SphereGeometry(20,32,16),new TH.MeshBasicMaterial({map:eg,side:TH.BackSide})); es.add(esph);
+      var pm=new TH.PMREMGenerator(R); var envT=pm.fromScene(es,.02).texture; S.environment=envT; pm.dispose();
+      gold=new TH.MeshStandardMaterial({color:0xffdb6e,metalness:1,roughness:.14,envMapIntensity:1.5});
+      var goldD=new TH.MeshStandardMaterial({color:0xd9952b,metalness:1,roughness:.3,envMapIntensity:1.1});
+      var prof=[]; for(var q=0;q<=24;q++){ var u=q/24, y=-.15+u*1.95, r=.18+Math.pow(u,.55)*1.12+Math.sin(u*Math.PI)*.06; prof.push(new TH.Vector2(r,y)); } prof.push(new TH.Vector2(1.36,1.82)); prof.push(new TH.Vector2(1.27,1.84)); prof.push(new TH.Vector2(1.2,1.7));
+      var cupG=new TH.Mesh(new TH.LatheGeometry(prof,72),new TH.MeshStandardMaterial({color:0xffdb6e,metalness:1,roughness:.12,envMapIntensity:1.6,side:TH.DoubleSide})); tr.add(cupG);
+      var rim=new TH.Mesh(new TH.TorusGeometry(1.33,.06,12,72),gold); rim.rotation.x=Math.PI/2; rim.position.y=1.82; tr.add(rim);
+      var band=new TH.Mesh(new TH.TorusGeometry(1.0,.05,10,72),goldD); band.rotation.x=Math.PI/2; band.position.y=.55; band.scale.set(1.04,1.04,1); tr.add(band);
+      var emb=ctex(256,256,function(g){ g.fillStyle='rgba(0,0,0,0)'; g.clearRect(0,0,256,256); g.strokeStyle='#8a5a10'; g.lineWidth=10; g.beginPath(); g.arc(128,128,108,0,7); g.stroke(); g.fillStyle='#8a5a10'; g.font='900 120px serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText('論',128,136); });
+      var em=new TH.Mesh(new TH.PlaneGeometry(.95,.95),new TH.MeshStandardMaterial({map:emb,transparent:true,metalness:.6,roughness:.4})); em.position.set(0,1.05,1.21); em.rotation.x=-.12; tr.add(em);
+      [-1,1].forEach(function(sd){ var cv2=new TH.CatmullRomCurve3([new TH.Vector3(1.18,1.55,0),new TH.Vector3(1.75,1.7,0),new TH.Vector3(2.0,1.25,0),new TH.Vector3(1.75,.6,0),new TH.Vector3(1.05,.35,0)]); var hd=new TH.Mesh(new TH.TubeGeometry(cv2,48,.09,12,false),gold); var hw=new TH.Group(); hw.add(hd); hw.scale.x=sd; tr.add(hw); });
+      var lid=new TH.Mesh(new TH.SphereGeometry(1.25,48,16,0,Math.PI*2,0,Math.PI*.32),gold); lid.position.y=1.32; tr.add(lid);
+      var fin=new TH.Mesh(new TH.SphereGeometry(.22,24,16),gold); fin.position.y=2.68; tr.add(fin);
+      var fst=new TH.Mesh(new TH.CylinderGeometry(.06,.12,.3,16),gold); fst.position.y=2.45; tr.add(fst);
+      var stem=new TH.Mesh(new TH.CylinderGeometry(.16,.3,.9,32),gold); stem.position.y=-.62; tr.add(stem);
+      var knob=new TH.Mesh(new TH.SphereGeometry(.3,32,20),gold); knob.scale.y=.75; knob.position.y=-.5; tr.add(knob);
+      var ped=new TH.Mesh(new TH.CylinderGeometry(.55,.95,.45,48),gold); ped.position.y=-1.28; tr.add(ped);
+      var ring2=new TH.Mesh(new TH.TorusGeometry(.95,.06,10,48),goldD); ring2.rotation.x=Math.PI/2; ring2.position.y=-1.5; tr.add(ring2);
+      var marbleT=ctex(256,256,function(g){ g.fillStyle='#14161a'; g.fillRect(0,0,256,256); g.strokeStyle='rgba(255,255,255,.18)'; g.lineWidth=2; for(var q=0;q<14;q++){ g.beginPath(); var x=Math.random()*256; g.moveTo(x,0); for(var y=0;y<=256;y+=32) g.lineTo(x+(Math.random()-.5)*60,y); g.stroke(); } });
+      var mar=new TH.MeshStandardMaterial({map:marbleT,roughness:.12,metalness:.1,envMapIntensity:.8});
+      var base1=new TH.Mesh(new TH.BoxGeometry(2.3,.55,1.5),mar); base1.position.y=-1.8; tr.add(base1);
+      var base2=new TH.Mesh(new TH.BoxGeometry(2.7,.45,1.8),mar); base2.position.y=-2.3; tr.add(base2);
+      var trim=new TH.Mesh(new TH.BoxGeometry(2.34,.06,1.54),gold); trim.position.y=-1.53; tr.add(trim);
+      var platT=ctex(512,160,function(g){ var gr=g.createLinearGradient(0,0,0,160); gr.addColorStop(0,'#fff0b0'); gr.addColorStop(.5,'#d9a530'); gr.addColorStop(1,'#a8741a'); g.fillStyle=gr; g.fillRect(0,0,512,160); g.strokeStyle='#6b4a0a'; g.lineWidth=8; g.strokeRect(10,10,492,140); g.fillStyle='#3a2604'; g.textAlign='center'; g.font='900 64px serif'; g.fillText('論破王',256,80); g.font='700 30px serif'; g.fillText('夫婦喧嘩炎上杯 優勝',256,124); });
+      var plate2=new TH.Mesh(new TH.PlaneGeometry(1.7,.53),new TH.MeshStandardMaterial({map:platT,metalness:.7,roughness:.3})); plate2.position.set(0,-1.8,.76); tr.add(plate2);
+      // 後光とキラキラ
+      var rayT=ctex(512,512,function(g){ g.translate(256,256); for(var q=0;q<24;q++){ g.rotate(Math.PI/12); var gr=g.createLinearGradient(0,0,250,0); gr.addColorStop(0,'rgba(255,255,220,.9)'); gr.addColorStop(1,'rgba(255,255,220,0)'); g.fillStyle=gr; g.beginPath(); g.moveTo(0,0); g.lineTo(250,-18); g.lineTo(250,18); g.closePath(); g.fill(); } });
+      var rays=new TH.Mesh(new TH.PlaneGeometry(14,14),new TH.MeshBasicMaterial({map:rayT,transparent:true,blending:TH.AdditiveBlending,depthWrite:false})); rays.position.set(0,.6,-4); add(rays,function(t){ rays.rotation.z=t*.6; rays.material.opacity=cl((t-.5)/.4); rays.position.y=tr.position.y+.6; });
+      var spT=ctex(64,64,function(g){ g.translate(32,32); g.fillStyle='#fff'; g.beginPath(); for(var q=0;q<8;q++){ var a=q*Math.PI/4, r=q%2?6:30; g.lineTo(Math.cos(a)*r,Math.sin(a)*r); } g.closePath(); g.fill(); });
+      for(var q=0;q<16;q++){ (function(q){ var sp=new TH.Sprite(new TH.SpriteMaterial({map:spT,transparent:true,depthWrite:false,blending:TH.AdditiveBlending})); var a=q/16*Math.PI*2, rr=1.6+Math.random()*1.4, yy=(Math.random()-.3)*3.8; sp.scale.setScalar(.35+Math.random()*.4); add(sp,function(t){ var tw=Math.max(0,Math.sin(t*7+q*1.7)); sp.material.opacity= t<.7?0:tw; sp.position.set(Math.cos(a)*rr, tr.position.y+yy, Math.sin(a)*.6+1.6); sp.material.rotation=t*2+q; }); })(q); }
+      tr.position.set(0,12,0); tr.scale.setScalar(1.0);
+      add(tr,function(t){ var k=cl(t/.7); tr.position.y=12-11.2*eob(k); tr.rotation.y=Math.sin(t*2.2)*.6; tr.rotation.x=.12; });
+      var foe=figure(o.foe); foe.position.set(0,-2.4,2); foe.scale.setScalar(.6);
+      var meF=figure(o.me); meF.scale.setScalar(.75); meF.position.set(-2.1,-2.6,2.4); meF.rotation.y=.6; add(meF,function(t){ if(t<.7) meF.rest(); else meF.cheer(t); });
+      add(foe,function(t){ if(t<.7){ foe.visible=false; return; } foe.visible=true; var k=t-.7; foe.position.set(k*9, -2.4+k*8-k*k*2, 2-k*3); foe.rotation.z=k*18; foe.rotation.y=k*9; foe.run(t,30); });
+      var flag=new TH.Mesh(new TH.PlaneGeometry(.9,.6), new TH.MeshBasicMaterial({color:0xffffff, side:TH.DoubleSide})); flag.position.set(.9,2.6,0); foe.add(flag); var pole=new TH.Mesh(new TH.CylinderGeometry(.04,.04,1.6,6),std(0x8b5a2b)); pole.position.set(.45,2.2,0); foe.add(pole);
+      rain(18,.8,14); confetti(90);
+      (o.freeze!=null? function(fn,ms){ if(ms/1000<=o.freeze) fn(); } : setTimeout)(function(){ if(!dead){ shakeA=.6; sfx('win'); vib([60,40,60,40,200]); } }, 700);
+      dom('完全論破！！','big gold',.75); dom('はい、論破。','stamp',1.2); dom(esc(o.text||''),'sub',1.45);
+    }
+    if(kind==='lose'){
+      var me=figure(o.me); me.position.set(0,-3.1,0); add(me,function(t){ var k=cl((t-.55)/.1); if(t<.55){ me.rest(); var u=me.userData; u.aL.rotation.z=2.8; u.aR.rotation.z=-2.8; me.userData.body.position.y=Math.abs(Math.sin(t*20))*.15; } me.scale.set(1+k*.9,1-k*.9,1+k*.6); });
+      var btn=new TH.Group(); var bs=new TH.Mesh(new TH.CylinderGeometry(2.4,2.6,1,40),std(0x555b66,{metalness:.5,roughness:.35})); btn.add(bs);
+      var dome=new TH.Mesh(new TH.SphereGeometry(1.9,40,20,0,Math.PI*2,0,Math.PI/2),std(0xff1a2e,{emissive:new TH.Color(0x550000),roughness:.25})); dome.position.y=.5; btn.add(dome);
+      var lab=label('通報',190,'#fff','#b00010'); lab.scale.setScalar(.45); lab.position.set(0,0,2.62); btn.add(lab);
+      btn.position.set(0,14,0); btn.rotation.x=.35;
+      add(btn,function(t){ var k=cl(t/.55); btn.position.y=14-12.6*k*k; btn.rotation.y=Math.sin(t*3)*.2; if(t>.55){ btn.position.y=1.4+Math.max(0,Math.sin((t-.55)*14))*.4*Math.max(0,1-(t-.55)*2); } });
+      (o.freeze!=null? function(fn,ms){ if(ms/1000<=o.freeze) fn(); } : setTimeout)(function(){ if(!dead){ shakeA=1.2; shards(30,new TH.Vector3(0,-1.6,0),0xff3344,9); sfx('lose'); sfx('alarm'); vib([300,80,300]); C.rotation.z=.12; } }, 550);
+      rain(16,1.0,12);
+      dom('YOU LOSE','big lose',.7); dom('通報されました。','warn',1.25); dom(esc(o.text||''),'sub',1.55);
+    }
+    if(kind==='peace'){
+      var pl2=plate(); pl2.scale.setScalar(2.2); pl2.position.set(0,-1.6,0); add(pl2,function(t){ pl2.rotation.y=t*.6; });
+      var ty=ctex(256,128,function(g){ var cs=['#ffd84d','#f2b705','#ffe27a','#e0a100']; for(var y=0;y<128;y+=16){ g.fillStyle=cs[(y/16)%4]; g.fillRect(0,y,256,16); } g.fillStyle='rgba(120,60,0,.35)'; for(var y2=10;y2<128;y2+=32) g.fillRect(0,y2,256,4); });
+      var tm=new TH.Mesh(new TH.BoxGeometry(2.6,1.1,1.3),std(0xffffff,{map:ty,roughness:.6})); tm.position.set(-12,6,0);
+      add(tm,function(t){ var k=cl(t/.65); tm.position.set(-12+12*eo(k), 6-6.9*k*k+Math.sin(k*Math.PI)*2, 0); tm.rotation.set((1-k)*9,(1-k)*6,0); if(t>.65){ var s=1+Math.max(0,Math.sin((t-.65)*18))*.12*Math.max(0,1-(t-.65)*2); tm.scale.set(s,2-s,s); } });
+      var a2=figure(o.me), b2=figure(o.foe); a2.scale.setScalar(.7); b2.scale.setScalar(.7); a2.rotation.y=Math.PI/2; b2.rotation.y=-Math.PI/2;
+      add(a2,function(t){ var k=eo(cl((t-.8)/.6)); a2.position.set(-7+6.25*k, -.3, -.5); if(k<1) a2.run(t,12); else { a2.rest(); a2.userData.aL.rotation.x=-1.5; a2.userData.aR.rotation.x=-1.5; a2.userData.aL.rotation.z=-.5; a2.userData.aR.rotation.z=.5; a2.rotation.z=-.08; } });
+      add(b2,function(t){ var k=eo(cl((t-.8)/.6)); b2.position.set(7-6.25*k, -.3, -.5); if(k<1) b2.run(t,12); else { b2.rest(); b2.userData.aL.rotation.x=-1.5; b2.userData.aR.rotation.x=-1.5; b2.userData.aL.rotation.z=-.5; b2.userData.aR.rotation.z=.5; b2.rotation.z=.08; } });
+      var hs=new TH.Shape(); hs.moveTo(0,.5); hs.bezierCurveTo(0,.8,-.5,1,-.75,.7); hs.bezierCurveTo(-1.05,.35,-.6,-.1,0,-.6); hs.bezierCurveTo(.6,-.1,1.05,.35,.75,.7); hs.bezierCurveTo(.5,1,0,.8,0,.5);
+      var hg=new TH.ExtrudeGeometry(hs,{depth:.3,bevelEnabled:true,bevelSize:.06,bevelThickness:.06,bevelSegments:2});
+      for(var i=0;i<14;i++){ (function(i){ var h=new TH.Mesh(hg,std(i%2?0xff5c8a:0xff9ec0,{emissive:new TH.Color(0x400010)})); var x=(Math.random()-.5)*10, sp=1.5+Math.random()*2.5, d=1.2+Math.random()*.8; h.scale.setScalar(.5+Math.random()*.5); h.visible=false;
+        add(h,function(t){ if(t<d){ h.visible=false; return; } h.visible=true; h.position.set(x+Math.sin(t*3+i)*.4, -3+(t-d)*sp*2.2, -1-(i%3)); h.rotation.y=t*3; }); })(i); }
+      (o.freeze!=null? function(fn,ms){ if(ms/1000<=o.freeze) fn(); } : setTimeout)(function(){ if(!dead){ shakeA=.35; sfx('peace'); vib([40,40,40]); } }, 650);
+      dom('和解成立！','big peace',1.3); dom('なお、皿洗いは別問題。','sub',1.65);
+    }
+    // ---- ループ ----
+    var last=t0, base=C.position.clone();
+    function loop(now){ if(dead) return; var t=(now-t0)/1000, dt=Math.min(.05,(now-last)/1000); last=now;
+      U.forEach(function(x){ x.u(t,dt); });
+      if(kind==='start'){ C.position.z=15-1.5*eo(cl(t/.6)); base.x=Math.sin(t*.9)*.4; C.lookAt(0,0,0); }
+      shakeA*=Math.pow(.02,dt); C.position.x=base.x+(Math.random()-.5)*shakeA; C.position.y=base.y+(Math.random()-.5)*shakeA;
+      R.render(S,C); if(t<D) requestAnimationFrame(loop); else close(); }
+    function close(){ if(dead) return; dead=true; f.style.transition='opacity .25s'; f.style.opacity='0'; setTimeout(function(){ f.remove(); try{ R.dispose(); S.traverse(function(x){ if(x.geometry) x.geometry.dispose(); if(x.material){ [].concat(x.material).forEach(function(m){ if(m.map) m.map.dispose(); m.dispose(); }); } }); }catch(e){} },260); }
+    if(o.freeze!=null){ var steps=Math.round(o.freeze*60); for(var q=0;q<=steps;q++){ var tt=q/60; U.forEach(function(x){ x.u(tt,1/60); }); if(kind==='start'){ C.position.z=15-1.5*eo(cl(tt/.6)); base.x=Math.sin(tt*.9)*.4; C.lookAt(0,0,0); } } C.position.x=base.x; R.render(S,C); f.onclick=close; return; }
+    f.onclick=close; requestAnimationFrame(loop);
+    document.body.classList.remove('shake'); void document.body.offsetWidth; document.body.classList.add('shake');
+  }
+  function fxStart(me, foe){ sfx('start'); if(canUse3D()){ fx3('start',{me:me,foe:foe}); return; } vib([40,40,120]);
+    fxShow('start','<div class="bg"></div><div class="dim"></div><div class="slash"></div><div class="vs"><div class="side l">'+avHTML(me)+'<span>あなた</span></div><div class="vsT">VS</div><div class="side r">'+avHTML(foe)+'<span>'+esc(foe.name)+'</span></div></div><div class="big">レスバ開始！！</div><div class="sub">言い負かせ。口が悪いと通報されるぞ</div>', 1900); }
+  function fxRound(n){ sfx('round'); if(canUse3D()){ fx3('round',{n:n}); return; } vib(40); fxShow('round','<div class="bg"></div><div class="big">ROUND '+n+'</div><div class="sub">'+(n>=3?'そろそろ決着…！':'まだまだ続く')+'</div>', 900); }
+  var lastFoe=null, lastMe=null;
+  function fxEnd(win, text){ var peace=/和解/.test(text), cls= peace?'peace':(win?'win':'lose');
+    if(canUse3D()){ fx3(cls,{me:lastMe||{initial:'あ',color:'#f91880'}, foe:lastFoe||{initial:'?',color:'#555'}, text:text}); return; }
+    sfx(cls); vib(win?[60,40,60,40,200]:[300,80,300]);
+    var big= peace?'和解<small>なんか仲良くなった</small>' : win?'論破！！<small>YOU WIN</small>' : '完敗…<small>YOU LOSE</small>';
+    var f=fxShow(cls,'<div class="bg"></div>'+(cls==='lose'?'<svg class="crack" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M52 0 L47 22 L58 30 L44 52 L56 60 L41 100 M47 22 L30 18 L12 30 M58 30 L80 26 L100 34 M44 52 L20 58 L0 54 M56 60 L78 70 L100 66" fill="none" stroke="#fff" stroke-width=".6"/></svg>':'')+'<div class="res">'+big+'</div><div class="sub">'+esc(text)+'</div>', 2800);
+    if(cls!=='lose'){ var cols=['#ff2d55','#ffd400','#00e5ff','#7ee0b5','#ff7a00','#fff']; for(var i=0;i<70;i++){ var c=el('i','conf'); c.style.left=Math.random()*100+'%'; c.style.background=cols[i%cols.length]; c.style.setProperty('--dx',(Math.random()*160-80)+'px'); c.style.setProperty('--rot',(Math.random()*900-450)+'deg'); c.style.animationDuration=(1.4+Math.random()*1.6)+'s'; c.style.animationDelay=(Math.random()*.5)+'s'; f.appendChild(c); } } }
+  // ===== シェア（X・インスタ・LINE）。ChatGPT案「炎上速報カード（BREAKING NEWS）」を canvas 1080×1350 で描く =====
+  var GAME_URL='https://futurex-jp.github.io/fufu-enjou/', GAME_NAME='夫婦喧嘩炎上シミュレーター';
+  var JP='"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic","Meiryo",sans-serif';
+  function heatOf(p){ var v=vals(p); return Math.max(1,Math.min(99,Math.round(Math.log10(v.lk+v.rt*2+v.rp*3+1)*18))); }
+  function topReplies(p){ var s=(p.seen||[]).filter(function(x){ return x.who && x.who.camp!=='独身' && x.text && x.text.length>4 && !x.quote; });
+    s.sort(function(a,b){ return (b.bait?1e6:0)+b.lk-((a.bait?1e6:0)+a.lk); }); var out=[], camps={};
+    s.forEach(function(x){ if(out.length<3 && (out.length<2? !camps[x.who.camp] || out.length===0 : true) && out.indexOf(x)<0){ out.push(x); camps[x.who.camp]=1; } });
+    s.forEach(function(x){ if(out.length<3 && out.indexOf(x)<0) out.push(x); }); return out; }
+  function wrap(g, text, maxW, maxLines){ var lines=[], cur=''; String(text).split('').forEach(function(ch){ if(ch==='\n'){ lines.push(cur); cur=''; return; } if(g.measureText(cur+ch).width>maxW){ lines.push(cur); cur=ch; } else cur+=ch; }); if(cur) lines.push(cur); if(lines.length>maxLines){ lines=lines.slice(0,maxLines); var l=lines[maxLines-1]; while(g.measureText(l+'…').width>maxW && l.length) l=l.slice(0,-1); lines[maxLines-1]=l+'…'; } return lines; }
+  function rr(g,x,y,w,h,r){ g.beginPath(); g.moveTo(x+r,y); g.arcTo(x+w,y,x+w,y+h,r); g.arcTo(x+w,y+h,x,y+h,r); g.arcTo(x,y+h,x,y,r); g.arcTo(x,y,x+w,y,r); g.closePath(); }
+  function drawCard(p){ var W=1080,H=1350, c=document.createElement('canvas'); c.width=W; c.height=H; var g=c.getContext('2d'); var v=vals(p), heat=heatOf(p);
+    g.fillStyle='#111316'; g.fillRect(0,0,W,H);
+    // 斜めの警報ストライプ
+    g.save(); g.globalAlpha=.07; g.fillStyle='#FF394B'; for(var i=-H;i<W;i+=70){ g.beginPath(); g.moveTo(i,0); g.lineTo(i+35,0); g.lineTo(i+35+H,H); g.lineTo(i+H,H); g.fill(); } g.restore();
+    // 警報帯
+    g.fillStyle='#D92332'; g.fillRect(0,0,W,96); g.fillStyle='#fff'; g.font='900 40px '+JP; g.textBaseline='middle'; g.fillText('● 炎上速報',48,50); g.font='900 30px Impact,"Arial Black",sans-serif'; g.textAlign='right'; g.fillText('BREAKING NEWS',W-48,50); g.textAlign='left';
+    // 見出し
+    g.fillStyle='#F5F6F8'; g.font='900 78px '+JP; g.fillText('この投稿、燃えすぎ。',48,170); g.fillStyle='#A7ADB7'; g.font='700 28px '+JP; g.fillText(GAME_NAME,52,232);
+    // 投稿カード
+    rr(g,40,258,W-80,232,28); g.fillStyle='#202329'; g.fill(); g.strokeStyle='#FF394B'; g.lineWidth=4; g.stroke();
+    g.fillStyle=p.me==='夫'?'#1D9BF0':'#F91880'; g.beginPath(); g.arc(104,316,34,0,7); g.fill(); g.fillStyle='#fff'; g.font='900 34px '+JP; g.textAlign='center'; g.fillText('あ',104,318); g.textAlign='left';
+    g.font='800 30px '+JP; g.fillStyle='#F5F6F8'; g.fillText('あなた',156,304); g.fillStyle=p.me==='夫'?'#77C8FF':'#FF8B99'; g.font='800 24px '+JP; g.fillText((p.me==='夫'?'夫':'妻')+'の愚痴',156,338);
+    g.fillStyle='#F5F6F8'; g.font='800 44px '+JP; var pl=wrap(g,'「'+p.text+'」',W-150,2); pl.forEach(function(l,i){ g.fillText(l,76,402+i*56); });
+    // 数字
+    var st=[['いいね',v.lk,'#FF394B'],['リポスト',v.rt,'#00BA7C'],['返信',v.rp,'#77C8FF']]; st.forEach(function(s,i){ var x=48+i*335; g.fillStyle='#A7ADB7'; g.font='700 26px '+JP; g.fillText(s[0],x,540); g.fillStyle=s[2]; g.font='900 66px Impact,"Arial Black",'+JP; g.fillText(E.fmt(s[1]),x,602); });
+    // 炎上度
+    g.fillStyle='#A7ADB7'; g.font='700 26px '+JP; g.fillText('炎上度',48,672); g.fillStyle='#F5F6F8'; g.font='900 60px Impact,"Arial Black",sans-serif'; g.fillText(heat,170,674); g.font='800 30px '+JP; g.fillStyle='#A7ADB7'; g.fillText('/ 100',170+g.measureText(String(heat)).width+60,674);
+    g.textAlign='right'; g.fillStyle='#FF394B'; g.font='900 30px '+JP; g.fillText(heat>=80?'ネット全域に延焼中':heat>=60?'全国の家庭に飛び火':'じわじわ燃焼中',W-48,674); g.textAlign='left';
+    rr(g,48,700,W-96,24,12); g.fillStyle='#2a2d33'; g.fill(); var grd=g.createLinearGradient(48,0,W-48,0); grd.addColorStop(0,'#F4C542'); grd.addColorStop(.5,'#FF7A00'); grd.addColorStop(1,'#FF394B'); rr(g,48,700,Math.max(24,(W-96)*heat/100),24,12); g.fillStyle=grd; g.fill();
+    // 燃えたリプ TOP3
+    g.fillStyle='#F5F6F8'; g.font='900 34px '+JP; g.fillText('🔥 燃えたリプ TOP3',48,778);
+    var tops=topReplies(p), y=800; tops.forEach(function(x){ var w=x.who.camp==='妻'; rr(g,48,y,W-96,96,18); g.fillStyle='#202329'; g.fill(); rr(g,68,y+14,86,34,10); g.fillStyle=w?'#FF8B99':'#77C8FF'; g.fill(); g.fillStyle='#111316'; g.font='900 24px '+JP; g.textAlign='center'; g.fillText((w?'妻':'夫')+'側',111,y+32); g.textAlign='left';
+      g.fillStyle='#A7ADB7'; g.font='700 22px '+JP; g.fillText(x.who.name+(x.bait?'  🔥炎上中  返信 '+E.fmt(x.rp)+'件':'   ♡ '+E.fmt(x.lk)),170,y+32); g.fillStyle='#F5F6F8'; g.font='800 30px '+JP; var tl=wrap(g,'「'+String(x.text).replace(/^「(.*)」$/,'$1')+'」',W-150,1); g.fillText(tl[0],76,y+76); y+=106; });
+    if(!tops.length){ g.fillStyle='#A7ADB7'; g.font='700 28px '+JP; g.fillText('（これから燃える）',76,y+40); y+=120; }
+    // 戦績
+    var by=1124; rr(g,48,by-6,W-96,82,18); g.fillStyle='rgba(244,197,66,.12)'; g.fill(); g.strokeStyle='#F4C542'; g.lineWidth=3; g.stroke();
+    var wins=p.wins||0, loss=p.losses||0, peace=p.peace||0; g.fillStyle='#F4C542'; g.font='900 32px '+JP; g.fillText(wins>loss?'レスバ WIN!':loss>wins?'レスバ 完敗…':(wins||loss)?'レスバ 引き分け':'レスバ 未参戦',72,by+46);
+    g.fillStyle='#F5F6F8'; g.font='800 28px '+JP; g.textAlign='right'; g.fillText('論破 '+wins+'　完敗 '+loss+'　和解 '+peace,W-72,by+46); g.textAlign='left';
+    // フッター
+    g.fillStyle='#F5F6F8'; g.font='900 44px '+JP; g.fillText('あなたなら、どう燃やす？',48,H-80); g.fillStyle='#A7ADB7'; g.font='700 22px '+JP; g.textAlign='right'; g.fillText(GAME_NAME,W-48,H-96); g.fillText('※ネタゲーム。リプは全部架空',W-48,H-62); g.textAlign='left';
+    return c; }
+  // 2026-10-16 主「もうちょい違うものが欲しい、もっと見やすく」→ ChatGPTの新案A（数字で殴る炎上スコア）とB（名言一本勝負）。要素は3〜4個だけ
+  function cardScore(p){ var W=1080,H=1350, c=document.createElement('canvas'); c.width=W; c.height=H; var g=c.getContext('2d'), v=vals(p), heat=heatOf(p);
+    g.fillStyle='#101114'; g.fillRect(0,0,W,H);
+    var glow=g.createRadialGradient(W/2,520,40,W/2,520,620); glow.addColorStop(0,'rgba(255,70,85,.30)'); glow.addColorStop(1,'rgba(255,70,85,0)'); g.fillStyle=glow; g.fillRect(0,0,W,H);
+    g.textAlign='center'; g.textBaseline='alphabetic';
+    g.fillStyle='#A4A6AD'; g.font='800 34px '+JP; g.fillText('炎上度',W/2,190);
+    g.fillStyle='#FF4655'; g.font='900 330px Impact,"Arial Black",sans-serif'; g.fillText(String(heat),W/2-40,520);
+    var nw=g.measureText(String(heat)).width; g.fillStyle='#A4A6AD'; g.font='800 46px '+JP; g.textAlign='left'; g.fillText('/ 100',W/2-40+nw/2+16,520);
+    g.textAlign='center'; g.fillStyle='#FFFFFF'; g.font='900 64px '+JP; g.fillText(heat>=80?'燃えすぎ。':heat>=60?'だいぶ燃えた。':'じわじわ燃えた。',W/2,640);
+    g.font='800 52px '+JP; var pl=wrap(g,'「'+p.text+'」',W-160,2); pl.forEach(function(l,i){ g.fillText(l,W/2,800+i*72); });
+    g.fillStyle='#FF4655'; g.font='900 44px '+JP; g.fillText('♥ '+E.fmt(v.lk)+'いいね　·　返信 '+E.fmt(v.rp)+'件',W/2,1010);
+    g.fillStyle='#2a2c31'; g.fillRect(80,1150,W-160,2);
+    g.fillStyle='#FFFFFF'; g.font='900 40px '+JP; g.fillText('夫婦喧嘩炎上シミュレーター',W/2,1232);
+    g.fillStyle='#A4A6AD'; g.font='700 26px '+JP; g.fillText('夫婦の愚痴を書くと、全国の夫と妻がレスバを始める（※全部架空）',W/2,1282);
+    g.textAlign='left'; return c; }
+  function cardQuote(p){ var W=1080,H=1350, c=document.createElement('canvas'); c.width=W; c.height=H; var g=c.getContext('2d'); var t=topReplies(p)[0];
+    var w=!t || t.who.camp==='妻', col=w?'#D82F42':'#1675B9', txt=t? String(t.text).replace(/^「(.*)」$/,'$1') : p.text;
+    g.fillStyle='#F3F0E9'; g.fillRect(0,0,W,H);
+    g.fillStyle=col; g.fillRect(0,0,W,16);
+    g.fillStyle='#6b6760'; g.font='800 30px '+JP; g.fillText('今日の夫婦喧嘩・名場面',90,140);
+    g.fillStyle=col; g.globalAlpha=.12; g.font='900 420px Georgia,serif'; g.fillText('“',60,560); g.globalAlpha=1;
+    g.fillStyle='#171717'; g.font='900 70px '+JP; var ql=wrap(g,txt,W-180,6); var y0=360+Math.max(0,(4-ql.length))*40; ql.forEach(function(l,i){ g.fillText(l,90,y0+i*96); });
+    var ty=y0+ql.length*96+40; rr(g,90,ty,(w?'妻側の一撃':'夫側の一撃').length*34+56,62,31); g.fillStyle=col; g.fill(); g.fillStyle='#fff'; g.font='900 32px '+JP; g.fillText(w?'妻側の一撃':'夫側の一撃',118,ty+43);
+    g.fillStyle='#6b6760'; g.font='700 30px '+JP; var pp=wrap(g,'元の投稿：「'+p.text+'」',W-180,1); g.fillText(pp[0],90,ty+130);
+    g.fillStyle='#171717'; g.fillRect(90,H-210,W-180,3);
+    g.font='900 44px '+JP; g.fillText('あなたなら言い返せる？',90,H-130); g.fillStyle='#6b6760'; g.font='800 28px '+JP; g.fillText('夫婦喧嘩炎上シミュレーター（※全部架空）',90,H-80);
+    return c; }
+  function shareText(p, kind){ var v=vals(p), heat=heatOf(p), t=E.short(p.text,40), wins=p.wins||0;
+    if(kind==='line') return '夫婦の愚痴を書くと、全国の夫と妻が勝手にレスバを始めるゲームやってみて笑\n私の「'+t+'」は'+E.fmt(v.lk)+'いいね・炎上度'+heat+'だった🔥\n'+GAME_URL;
+    return '夫婦の愚痴を投稿したら'+E.fmt(v.lk)+'いいね、リプ欄が全面戦争になった🔥\n「'+t+'」\n炎上度'+heat+(wins?'／レスバ'+wins+'勝':'')+'\n#夫婦喧嘩炎上シミュレーター'; }
+  var DL=null; try{ window.claude && window.claude.use && window.claude.use('downloads').then(function(d){ DL=d||null; }).catch(function(){}); }catch(e){}
+  var CARDS=[['score','炎上スコア',function(p){return cardScore(p);}],['quote','名言',function(p){return cardQuote(p);}],['news','炎上速報',function(p){return drawCard(p);}]], cardKind='score';
+  function openShare(p){ var cv=null, url='';
+    var s=el('div','share'); s.setAttribute('role','dialog'); s.setAttribute('aria-label','シェア');
+    s.innerHTML='<div class="share-in"><div class="share-top"><b>結果をシェア</b><button type="button" class="share-x" aria-label="閉じる">×</button></div><div class="share-tabs"></div><img class="share-img" alt="シェア用の画像"><p class="share-hint">画像を長押しで保存もできる</p><div class="share-btns">'+
+      '<a class="sb x" target="_blank" rel="noopener"><span>𝕏</span>ポスト</a><a class="sb line" target="_blank" rel="noopener"><span>LINE</span>送る</a><button type="button" class="sb ig"><span>◎</span>インスタ</button><button type="button" class="sb more"><span>⋯</span>その他</button><button type="button" class="sb copy"><span>🔗</span>リンク</button></div></div>';
+    document.body.appendChild(s); var tabs=s.querySelector('.share-tabs'); function paint(){ var k=CARDS.filter(function(x){return x[0]===cardKind;})[0]||CARDS[0]; cv=k[2](p); url=cv.toDataURL('image/png'); s.querySelector('.share-img').src=url; [].forEach.call(tabs.children,function(b){ b.setAttribute('aria-pressed', b.dataset.k===cardKind?'true':'false'); }); }
+    CARDS.forEach(function(k){ var b=el('button',null,k[1]); b.type='button'; b.dataset.k=k[0]; b.onclick=function(){ cardKind=k[0]; paint(); }; tabs.appendChild(b); }); paint();
+    s.querySelector('.share-x').onclick=function(){ s.remove(); }; s.onclick=function(e){ if(e.target===s) s.remove(); };
+    s.querySelector('.sb.x').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(shareText(p,'x'))+'&url='+encodeURIComponent(GAME_URL);
+    s.querySelector('.sb.line').href='https://line.me/R/share?text='+encodeURIComponent(shareText(p,'line'));
+    function blob(cb){ cv.toBlob(function(b){ cb(b); },'image/png'); }
+    function nativeShare(withText){ blob(function(b){ var f=new File([b],'fufu_enjou.png',{type:'image/png'}); var data={files:[f]}; if(withText){ data.text=shareText(p,'x')+'\n'+GAME_URL; }
+      if(navigator.canShare && navigator.canShare(data)){ navigator.share(data).catch(function(){}); } else saveImg(b); }); }
+    function saveImg(b){ if(DL){ var fr=new FileReader(); fr.onload=function(){ DL.save({filename:'fufu_enjou.png', data:new Uint8Array(fr.result)}).then(function(){ toast('画像を保存しました'); }).catch(function(){ toast('画像を長押しで保存してね'); }); }; fr.readAsArrayBuffer(b); } else toast('画像を長押しで保存してね', true); }
+    s.querySelector('.sb.ig').onclick=function(){ nativeShare(false); toast('インスタを選んでストーリーかフィードへ'); };
+    s.querySelector('.sb.more').onclick=function(){ nativeShare(true); };
+    s.querySelector('.sb.copy').onclick=function(){ var t=shareText(p,'x')+'\n'+GAME_URL; (navigator.clipboard? navigator.clipboard.writeText(t):Promise.reject()).then(function(){ toast('シェア文とリンクをコピーしました'); }).catch(function(){ toast('コピーできなかった'); }); };
+  }
+  // 命・暴力の話は燃やさない。相談先（厚労省「まもろうよ こころ」・内閣府DV相談、2026-10-15確認）を出す
+  function showCare(kind, sheet){
+    var c=el('div','care'); c.setAttribute('role','dialog');
+    var lines = kind==='crisis'
+      ? '<h3>このポストは燃やさないでおくね</h3><p>ゲームのネタにするには重すぎる話かもしれない。もし本当につらい状況なら、ひとりで抱えずに話してみて</p>'+
+        '<ul><li><b>よりそいホットライン</b> <a href="tel:0120279338">0120-279-338</a>（24時間・無料）</li><li><b>DV相談＋</b> <a href="tel:0120279889">0120-279-889</a>（24時間・無料）</li><li><b>DV相談ナビ</b> <a href="tel:%238008">#8008</a>（近くの窓口につながる）</li><li><b>いのちの電話</b> <a href="tel:0120783556">0120-783-556</a>（毎日16〜21時・無料）</li><li><b>子どものこと</b> 児童相談所 <a href="tel:189">189</a></li></ul>'
+      : '<h3>その話はリプ欄じゃなくて二人で</h3><p>ここで燃やすと本当にこじれるやつ。別の愚痴でどうぞ（弁当・靴下・いびき・皿洗い…）</p>';
+    c.innerHTML='<div class="care-in">'+lines+'<div class="care-btns"><button type="button" class="send" id="care-edit">書き直す</button><button type="button" class="cancel" id="care-close">やめる</button></div></div>';
+    document.body.appendChild(c);
+    $('care-edit').onclick=function(){ c.remove(); var t=sheet.querySelector('textarea'); if(t){ t.focus(); } };
+    $('care-close').onclick=function(){ c.remove(); sheet.remove(); };
+  }
+  function openCompose(){
+    var s=el('div','compose'); s.setAttribute('role','dialog'); s.setAttribute('aria-label','ポストを作成');
+    s.innerHTML='<div class="compose-bar pad"><button class="cancel" id="c-cancel">キャンセル</button><button class="send" id="c-send" disabled>ポストする</button></div>'+
+      '<div class="compose-main pad"><div class="av">あ</div><div><div class="me-pick">わたしは<button type="button" class="w" id="me-w" aria-pressed="true">妻</button><button type="button" class="h" id="me-h" aria-pressed="false">夫</button></div><textarea id="cmp" maxlength="140" placeholder="夫（妻）への愚痴をどうぞ"></textarea><div class="ideas" id="c-ideas"></div></div></div>'+
+      '<div class="compose-foot pad"><span>何を書いても夫婦戦争になります</span><span id="c-count">0/140</span></div>';
+    document.body.appendChild(s);
+    var ta=$('cmp'); try{ ta.focus({preventScroll:true}); }catch(e){ ta.focus(); } /* iPhoneはタップと同じ流れでfocusしないとキーボードが出ない */ s.querySelector('.compose-main').addEventListener('click',function(e){ if(!e.target.closest('button')) ta.focus(); }); setTimeout(function(){ if(document.activeElement!==ta) ta.focus(); },60);
+    IDEAS.forEach(function(t){ var b=el('button',null,t); b.type='button'; b.onclick=function(){ ta.value=t; upd(); ta.focus(); }; $('c-ideas').appendChild(b); });
+    var meR='妻', manual=false; function setMe(r,man){ meR=r; if(man) manual=true; $('me-w').setAttribute('aria-pressed',r==='妻'); $('me-h').setAttribute('aria-pressed',r==='夫'); }
+    $('me-w').onclick=function(){ setMe('妻',true); }; $('me-h').onclick=function(){ setMe('夫',true); };
+    function upd(){ $('c-count').textContent=ta.value.length+'/140'; $('c-send').disabled=!ta.value.trim(); if(!manual){ var g=E.guess(ta.value); if(g) setMe(g,false); } }
+    ta.addEventListener('input',upd);
+    $('c-cancel').onclick=function(){ s.remove(); };
+    $('c-send').onclick=function(){ var text=ta.value.trim(); if(!text) return; var sv=E.sensitive(text);
+      if(sv==='crisis'){ showCare(sv, s); return; }
+      s.remove();
+      var p={id:'m'+Date.now(), text:text, me:meR, who:meOf(meR), at:NOW(), seed:Math.floor(Math.random()*1e6), mine:true};
+      posts.unshift(p); var rec={id:p.id,text:p.text,me:p.me,at:p.at,seed:p.seed}; store.mine.push(rec); store.mine=store.mine.slice(-30); save();
+      if(sv==='grief'){ p.gentle=true; p.ai=null; rec.gentle=true; save(); openPost(p.id); toast('このポストは燃やしません。やさしい返信だけ届きます', true); return; }
+      p.ai=E.fromTopics(p.text,p.me,p.seed); if(!p.ai){ noteUnmatched(p.text,p.me); p.unmatched=true; rec.unmatched=true; save(); }
+      openPost(p.id); toast('ポストしました'); ignite(p); };
+  }
+
+  render(); tickAll(); loadLearned();
+})();
+</script>
+
+</body></html>
